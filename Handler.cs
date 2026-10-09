@@ -1,6 +1,6 @@
 ﻿namespace WestCoastEducation;
 
-public class EducationLeader : Teacher
+public class Handler : Teacher
 {
     public DateTime DateOfEmployment { get; set; }
 }

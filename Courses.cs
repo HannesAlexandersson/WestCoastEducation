@@ -1,16 +1,23 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
-namespace WestCoastEducation
+
+using WestCoastEducation.Storage;
+
+namespace WestCoastEducation;
+
+public class Course
 {
-    public class Course
+    public string? CourseId { get; set; }
+    public string? Title { get; set; }
+    public int CourseLength { get; set; }
+    public DateTime StartDate { get; set; }
+    public DateTime EndDate { get; set; }
+
+    public static List<Course> ListAllAvailableCourses()
     {
-        public string? CourseId { get; set; }
-        public string? Title { get; set; }
-        public int CourseLength { get; set; }
-        public DateTime StartDate { get; set; }
-        public DateTime EndDate { get; set; }
+        var db = new DataBase<Course>();
+        var path = string.Concat(Environment.CurrentDirectory, "/Data/courses.json");
+        var studentsEnrolled = db.Read(path);
+
+        return studentsEnrolled;
     }
 }

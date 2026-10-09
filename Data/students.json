@@ -1,0 +1,221 @@
+[
+    {
+        "firstName": "Emma",
+        "lastName": "Andersson",
+        "phoneNumber": "0701-234567",
+        "address": "Linnégatan 12",
+        "postalCode": 41304,
+        "city": "Gothenburg",
+        "enrolledCourses": [
+            {
+                "courseId": "C001",
+                "title": "Introduction to C#",
+                "courseLength": 8,
+                "startDate": "2026-01-12T00:00:00",
+                "endDate": "2026-03-09T00:00:00"
+            },
+            {
+                "courseId": "C002",
+                "title": "Object-Oriented Programming",
+                "courseLength": 10,
+                "startDate": "2026-01-19T00:00:00",
+                "endDate": "2026-03-30T00:00:00"
+            }
+        ]
+    },
+    {
+        "firstName": "Oscar",
+        "lastName": "Johansson",
+        "phoneNumber": "0722-345678",
+        "address": "Södra Vägen 45",
+        "postalCode": 41254,
+        "city": "Gothenburg",
+        "enrolledCourses": [
+            {
+                "courseId": "C003",
+                "title": "Database Fundamentals",
+                "courseLength": 6,
+                "startDate": "2026-02-02T00:00:00",
+                "endDate": "2026-03-16T00:00:00"
+            },
+            {
+                "courseId": "C007",
+                "title": "SQL and Relational Databases",
+                "courseLength": 6,
+                "startDate": "2026-04-06T00:00:00",
+                "endDate": "2026-05-18T00:00:00"
+            }
+        ]
+    },
+    {
+        "firstName": "William",
+        "lastName": "Karlsson",
+        "phoneNumber": "0733-456789",
+        "address": "Kungsportsavenyen 18",
+        "postalCode": 41136,
+        "city": "Gothenburg",
+        "enrolledCourses": [
+            {
+                "courseId": "C004",
+                "title": "Web Development with HTML and CSS",
+                "courseLength": 6,
+                "startDate": "2026-02-09T00:00:00",
+                "endDate": "2026-03-23T00:00:00"
+            }
+        ]
+    },
+    {
+        "firstName": "Alice",
+        "lastName": "Nilsson",
+        "phoneNumber": "0704-567890",
+        "address": "Andra Långgatan 22",
+        "postalCode": 41327,
+        "city": "Gothenburg",
+        "enrolledCourses": [
+            {
+                "courseId": "C005",
+                "title": "JavaScript Fundamentals",
+                "courseLength": 8,
+                "startDate": "2026-03-02T00:00:00",
+                "endDate": "2026-04-27T00:00:00"
+            },
+            {
+                "courseId": "C009",
+                "title": "API Development with .NET",
+                "courseLength": 8,
+                "startDate": "2026-05-04T00:00:00",
+                "endDate": "2026-06-29T00:00:00"
+            }
+        ]
+    },
+    {
+        "firstName": "Lucas",
+        "lastName": "Eriksson",
+        "phoneNumber": "0725-678901",
+        "address": "Övre Husargatan 9",
+        "postalCode": 41314,
+        "city": "Gothenburg",
+        "enrolledCourses": [
+            {
+                "courseId": "C006",
+                "title": "ASP.NET Core",
+                "courseLength": 10,
+                "startDate": "2026-03-16T00:00:00",
+                "endDate": "2026-05-25T00:00:00"
+            }
+        ]
+    },
+    {
+        "firstName": "Maja",
+        "lastName": "Larsson",
+        "phoneNumber": "0736-789012",
+        "address": "Vasagatan 31",
+        "postalCode": 41124,
+        "city": "Gothenburg",
+        "enrolledCourses": [
+            {
+                "courseId": "C008",
+                "title": "Software Testing",
+                "courseLength": 5,
+                "startDate": "2026-04-13T00:00:00",
+                "endDate": "2026-05-18T00:00:00"
+            },
+            {
+                "courseId": "C010",
+                "title": "Git and Version Control",
+                "courseLength": 3,
+                "startDate": "2026-05-11T00:00:00",
+                "endDate": "2026-06-01T00:00:00"
+            }
+        ]
+    },
+    {
+        "firstName": "Elias",
+        "lastName": "Olsson",
+        "phoneNumber": "0707-890123",
+        "address": "Friggagatan 16",
+        "postalCode": 41101,
+        "city": "Gothenburg",
+        "enrolledCourses": [
+            {
+                "courseId": "C001",
+                "title": "Introduction to C#",
+                "courseLength": 8,
+                "startDate": "2026-01-12T00:00:00",
+                "endDate": "2026-03-09T00:00:00"
+            },
+            {
+                "courseId": "C006",
+                "title": "ASP.NET Core",
+                "courseLength": 10,
+                "startDate": "2026-03-16T00:00:00",
+                "endDate": "2026-05-25T00:00:00"
+            }
+        ]
+    },
+    {
+        "firstName": "Julia",
+        "lastName": "Persson",
+        "phoneNumber": "0728-901234",
+        "address": "Karl Johansgatan 55",
+        "postalCode": 41455,
+        "city": "Gothenburg",
+        "enrolledCourses": [
+            {
+                "courseId": "C002",
+                "title": "Object-Oriented Programming",
+                "courseLength": 10,
+                "startDate": "2026-01-19T00:00:00",
+                "endDate": "2026-03-30T00:00:00"
+            }
+        ]
+    },
+    {
+        "firstName": "Alexander",
+        "lastName": "Svensson",
+        "phoneNumber": "0739-012345",
+        "address": "Wieselgrensplatsen 7",
+        "postalCode": 41717,
+        "city": "Gothenburg",
+        "enrolledCourses": [
+            {
+                "courseId": "C003",
+                "title": "Database Fundamentals",
+                "courseLength": 6,
+                "startDate": "2026-02-02T00:00:00",
+                "endDate": "2026-03-16T00:00:00"
+            },
+            {
+                "courseId": "C005",
+                "title": "JavaScript Fundamentals",
+                "courseLength": 8,
+                "startDate": "2026-03-02T00:00:00",
+                "endDate": "2026-04-27T00:00:00"
+            }
+        ]
+    },
+    {
+        "firstName": "Ella",
+        "lastName": "Gustafsson",
+        "phoneNumber": "0702-123456",
+        "address": "Mölndalsvägen 28",
+        "postalCode": 41263,
+        "city": "Gothenburg",
+        "enrolledCourses": [
+            {
+                "courseId": "C004",
+                "title": "Web Development with HTML and CSS",
+                "courseLength": 6,
+                "startDate": "2026-02-09T00:00:00",
+                "endDate": "2026-03-23T00:00:00"
+            },
+            {
+                "courseId": "C007",
+                "title": "SQL and Relational Databases",
+                "courseLength": 6,
+                "startDate": "2026-04-06T00:00:00",
+                "endDate": "2026-05-18T00:00:00"
+            }
+        ]
+    }
+]
