@@ -1,0 +1,11 @@
+﻿namespace WestCoastEducation;
+
+public class Person
+{
+    public string? FirstName { get; set; }
+    public string? LastnName { get; set; }
+    public string? PhoneNumber { get; set; }
+    public string? Address { get; set; }
+    public int PostalCode { get; set; }
+    public string? City { get; set; }
+}
