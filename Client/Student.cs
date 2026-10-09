@@ -1,0 +1,18 @@
+﻿using WestCoastEducation.Client.Storage;
+
+namespace WestCoastEducation.Client;
+
+public class Student : Person
+{
+    public Course[] EnrolledCourses { get; set; } = [];
+
+
+    public static List<Student> ListAllEnrolled()
+    {
+        var db = new DataBase<Student>();
+        var path = string.Concat(Environment.CurrentDirectory, "/Data/students.json");
+        var studentsEnrolled = db.Read(path);
+
+        return studentsEnrolled;
+    }
+}
