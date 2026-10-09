@@ -4,7 +4,14 @@ class Program
 {
     static void Main()
     {
-        var presentation = new Presentation();
-        presentation.Present();
+        MainMenu menu = new();
+        try
+        {
+            menu.RunMenu();
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
     }
 }

@@ -32,8 +32,7 @@ public class MainMenu
                 Console.WriteLine(menuOptions[6]);
                 Console.WriteLine("- - - - - - - - - - -");
                 Console.WriteLine(menuOptions[7]);
-                Console.WriteLine("- - - - - - - - - - -");
-                Console.WriteLine(menuOptions[8]);
+
                 Console.WriteLine("*********************");
 
             }
@@ -56,8 +55,8 @@ public class MainMenu
                 Console.WriteLine(menuOptions[6]);
                 Console.WriteLine("- - - - - - - - - - -");
                 Console.WriteLine(menuOptions[7]);
-                Console.WriteLine("- - - - - - - - - - -");
-                Console.WriteLine(menuOptions[8]);
+
+
                 Console.WriteLine("*********************");
             }
             else if (menuSelect == 2)
@@ -79,8 +78,7 @@ public class MainMenu
                 Console.WriteLine(menuOptions[6]);
                 Console.WriteLine("- - - - - - - - - - -");
                 Console.WriteLine(menuOptions[7]);
-                Console.WriteLine("- - - - - - - - - - -");
-                Console.WriteLine(menuOptions[8]);
+
                 Console.WriteLine("*********************");
             }
             else if (menuSelect == 3)
@@ -102,8 +100,7 @@ public class MainMenu
                 Console.WriteLine(menuOptions[6]);
                 Console.WriteLine("- - - - - - - - - - -");
                 Console.WriteLine(menuOptions[7]);
-                Console.WriteLine("- - - - - - - - - - -");
-                Console.WriteLine(menuOptions[8]);
+
                 Console.WriteLine("*********************");
             }
             else if (menuSelect == 4)
@@ -125,8 +122,7 @@ public class MainMenu
                 Console.WriteLine(menuOptions[6]);
                 Console.WriteLine("- - - - - - - - - - -");
                 Console.WriteLine(menuOptions[7]);
-                Console.WriteLine("- - - - - - - - - - -");
-                Console.WriteLine(menuOptions[8]);
+
                 Console.WriteLine("*********************");
             }
             else if (menuSelect == 5)
@@ -148,8 +144,7 @@ public class MainMenu
                 Console.WriteLine(menuOptions[6]);
                 Console.WriteLine("- - - - - - - - - - -");
                 Console.WriteLine(menuOptions[7]);
-                Console.WriteLine("- - - - - - - - - - -");
-                Console.WriteLine(menuOptions[8]);
+
                 Console.WriteLine("*********************");
             }
             else if (menuSelect == 6)
@@ -171,8 +166,7 @@ public class MainMenu
                 Console.WriteLine("* " + menuOptions[6] + " *");
                 Console.WriteLine("- - - - - - - - - - -");
                 Console.WriteLine(menuOptions[7]);
-                Console.WriteLine("- - - - - - - - - - -");
-                Console.WriteLine(menuOptions[8]);
+
                 Console.WriteLine("*********************");
             }
             else if (menuSelect == 7)
@@ -194,34 +188,10 @@ public class MainMenu
                 Console.WriteLine(menuOptions[6]);
                 Console.WriteLine("- - - - - - - - - - -");
                 Console.WriteLine("* " + menuOptions[7] + " *");
-                Console.WriteLine("- - - - - - - - - - -");
-                Console.WriteLine(menuOptions[8]);
-                Console.WriteLine("*********************");
-            }
-            else if (menuSelect == 8)
-            {
-                Console.WriteLine("BUSS-SIMULATORN 1000");
-                Console.WriteLine("*********************");
-                Console.WriteLine(menuOptions[0]);
-                Console.WriteLine("- - - - - - - - - - -");
-                Console.WriteLine(menuOptions[1]);
-                Console.WriteLine("- - - - - - - - - - -");
-                Console.WriteLine(menuOptions[2]);
-                Console.WriteLine("- - - - - - - - - - -");
-                Console.WriteLine(menuOptions[3]);
-                Console.WriteLine("- - - - - - - - - - -");
-                Console.WriteLine(menuOptions[4]);
-                Console.WriteLine("- - - - - - - - - - -");
-                Console.WriteLine(menuOptions[5]);
-                Console.WriteLine("- - - - - - - - - - -");
-                Console.WriteLine(menuOptions[6]);
-                Console.WriteLine("- - - - - - - - - - -");
-                Console.WriteLine(menuOptions[7]);
-                Console.WriteLine("- - - - - - - - - - -");
-                Console.WriteLine("* " + menuOptions[8] + " *");
-                Console.WriteLine("**********************");
 
+                Console.WriteLine("*********************");
             }
+
 
             // let the user use the up and down keys to navigate the menu
             var keyPressed = Console.ReadKey();
@@ -253,10 +223,10 @@ public class MainMenu
                         // add new admins
                         break;
                     case 5:
-                        // lsit all courses
+                        ListAllCourses();
                         break;
                     case 6:
-                        // list all students                       
+                        ListAllStudents();
                         break;
                     case 7:
                         Terminate();
@@ -270,8 +240,38 @@ public class MainMenu
         }
     }
 
+    public void ListAllCourses()
+    {
+        var courses = Course.ListAllAvailableCourses();
+        int counter = 0;
+        foreach (var course in courses)
+        {
+            counter++;
+            Console.WriteLine(counter + "." + " " + course.Title);
+        }
+        Console.ForegroundColor = ConsoleColor.Red;
+        Console.WriteLine("Press any key to go back to the menu...");
+        Console.ReadLine();
+    }
+
+    public void ListAllStudents()
+    {
+        var students = Student.ListAllEnrolled();
+        int counter = 0;
+        foreach (var student in students)
+        {
+            counter++;
+            Console.WriteLine(counter + "." + " " + student.FirstName + " " + student.LastName);
+        }
+        Console.ForegroundColor = ConsoleColor.Red;
+        Console.WriteLine("Press any key to go back to the menu...");
+        Console.ReadLine();
+    }
+
     public void Terminate()
     {
         Environment.Exit(0);
     }
+
+
 }

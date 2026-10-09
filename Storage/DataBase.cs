@@ -2,7 +2,7 @@
 using System.Text.Encodings.Web;
 using WestCoastEducation.Interfaces;
 
-namespace WestCoastEducation.Client.Storage;
+namespace WestCoastEducation.Storage;
 
 public class DataBase<T> : IDatabase<T> where T : class
 {

@@ -1,6 +1,6 @@
-﻿using WestCoastEducation.Client.Storage;
+﻿using WestCoastEducation.Storage;
 
-namespace WestCoastEducation.Client;
+namespace WestCoastEducation;
 
 public class Student : Person
 {
