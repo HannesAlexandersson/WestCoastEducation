@@ -1,4 +1,7 @@
-﻿namespace WestCoastEducation;
+﻿using Microsoft.VisualBasic;
+using WestCoastEducation.Storage;
+
+namespace WestCoastEducation;
 
 public class MainMenu
 {
@@ -240,47 +243,6 @@ public class MainMenu
         }
     }
 
-    public void AddNewStudent()
-    {
-        // first fetch the current student list
-        var students = GetStudentsList();
-        string firstName = Helper.PromptUserForStringInput("Enter students firstname: ");
-        string lastName = Helper.PromptUserForStringInput("Enter students lastname: ");
-        string email = Helper.PromptUserForStringInput("Enter students email: ");
-        string phone = Helper.PromptUserForStringInput("Enter students phonenumber: ");
-        string address = Helper.PromptUserForStringInput("Enter students address: ");
-        int pCode = Helper.PromptUserForIntInput("Enter students postal code: ");
-        string city = Helper.PromptUserForStringInput("Enter what city the student lives in: ");
-
-        Console.WriteLine("Press any key to generate a studentId for the student");
-        Console.ReadKey();
-        Guid id = Helper.GenerateGuid();
-        // construct the new Student object
-        Student newStudent = new()
-        {
-            FirstName = firstName,
-            LastName = lastName,
-            PhoneNumber = phone,
-            Email = email,
-            Address = address,
-            PostalCode = pCode,
-            City = city,
-            StudentId = id
-        };
-
-    }
-
-    public void ListAllCourses()
-    {
-        var courses = Course.ListAllAvailableCourses();
-        int counter = 0;
-        foreach (var course in courses)
-        {
-            counter++;
-            Console.WriteLine(counter + "." + " " + course.Title);
-        }
-        ReturnToMenu();
-    }
     public void HandleListStudents()
     {
         bool inStudentMenu = true;
@@ -433,6 +395,111 @@ public class MainMenu
 
     }
 
+    public void AddNewStudent()
+    {
+        // first fetch the current student list
+        var students = GetStudentsList();
+        string firstName = Helper.PromptUserForStringInput("Enter students firstname: ");
+        string lastName = Helper.PromptUserForStringInput("Enter students lastname: ");
+        string email = Helper.PromptUserForStringInput("Enter students email: ");
+        string phone = Helper.PromptUserForStringInput("Enter students phonenumber: ");
+        string address = Helper.PromptUserForStringInput("Enter students address: ");
+        int pCode = Helper.PromptUserForIntInput("Enter students postal code: ");
+        string city = Helper.PromptUserForStringInput("Enter what city the student lives in: ");
+
+        Console.WriteLine("please make sure that all info is correct before proceeding...");
+        Console.ReadKey();
+        bool allFieldsCorrect = false;
+        while (!allFieldsCorrect)
+        {
+            Console.Clear();
+            firstName = Helper.ValidateStringInput("Firstname", firstName);
+            Console.Clear();
+            lastName = Helper.ValidateStringInput("Lastname", lastName);
+            Console.Clear();
+            address = Helper.ValidateStringInput("Address", address);
+            Console.Clear();
+            pCode = Helper.ValidateIntInput("Postal code", pCode);
+            Console.Clear();
+            city = Helper.ValidateStringInput("City", city);
+            Console.Clear();
+            phone = Helper.ValidateStringInput("Phonenumber", phone);
+            Console.Clear();
+            email = Helper.ValidateStringInput("Email", email);
+            Console.Clear();
+            Console.WriteLine("FIELDS: ");
+            Console.WriteLine($"{firstName} {lastName}");
+            Console.WriteLine($"{address} {pCode} {city}");
+            Console.WriteLine($"{phone}");
+            Console.WriteLine($"{email}");
+            Console.WriteLine("Is all fields correct? Y/N");
+            var userCheck = Console.ReadLine()?.Trim().ToLower();
+            if (string.IsNullOrWhiteSpace(userCheck))
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Incorrect input value! Please answer with Y for yes or N for no!");
+                Console.ResetColor();
+                continue;
+            }
+            else if (userCheck != "y" && userCheck != "n")
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Please only answer with 'Y' or 'N'");
+                Console.ResetColor();
+                continue;
+            }
+            else if (userCheck == "y")
+            {
+                allFieldsCorrect = true; // end the loop
+            }
+            else if (userCheck == "n")
+            {
+                // send the user back to the start of the while loop to revalidate the fields              
+                continue;
+            }
+        }
+
+
+        Console.Clear();
+        Console.WriteLine("Press any key to generate a studentId for the student");
+        Console.ReadKey();
+        Guid id = Helper.GenerateGuid();
+        // construct the new Student object with all the user input fields
+        Student newStudent = new()
+        {
+            FirstName = firstName,
+            LastName = lastName,
+            PhoneNumber = phone,
+            Email = email,
+            Address = address,
+            PostalCode = pCode,
+            City = city,
+            StudentId = id
+        };
+
+        // add the new student to the students list
+        students.Add(newStudent);
+
+        // write the new updated list to file
+        Student.AddNewStudentToDb(students);
+
+    }
+
+
+
+    public void ListAllCourses()
+    {
+        var courses = Course.ListAllAvailableCourses();
+        int counter = 0;
+        foreach (var course in courses)
+        {
+            counter++;
+            Console.WriteLine(counter + "." + " " + course.Title);
+        }
+        ReturnToMenu();
+    }
+
+
 
     public List<Student> GetStudentsList()
     {
@@ -447,7 +514,7 @@ public class MainMenu
     }
 
 
-    public void Terminate()
+    private void Terminate()
     {
         Environment.Exit(0);
     }

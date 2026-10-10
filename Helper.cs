@@ -10,7 +10,7 @@ public class Helper
         string userInput = "";
         Console.Clear();
         Console.ForegroundColor = ConsoleColor.Cyan;
-        Console.CursorVisible = false;
+        Console.CursorVisible = true;
         while (incorrect)
         {
             Console.WriteLine(prompt);
@@ -35,7 +35,7 @@ public class Helper
         int result;
         Console.Clear();
         Console.ForegroundColor = ConsoleColor.Cyan;
-        Console.CursorVisible = false;
+        Console.CursorVisible = true;
         while (true)
         {
             Console.WriteLine(prompt);
@@ -67,5 +67,44 @@ public class Helper
     {
         Guid newGuid = Guid.NewGuid();
         return newGuid;
+    }
+
+    public static string ValidateStringInput(string nameOfInput, string input)
+    {
+        while (true)
+        {
+            Console.WriteLine($"{nameOfInput}: {input}");
+            Console.WriteLine($"Press any key to continue, or press 'Y' to change the {nameOfInput}... ");
+            var userInput = Console.ReadLine()?.Trim().ToLower();
+            if (string.IsNullOrWhiteSpace(userInput))
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Incorrect input, please press a key");
+                Console.ResetColor();
+            }
+            else if (userInput == "y")
+            {
+                return PromptUserForStringInput($"Enter the {nameOfInput}");
+            }
+        }
+    }
+    public static int ValidateIntInput(string nameOfInput, int input)
+    {
+        while (true)
+        {
+            Console.WriteLine($"{nameOfInput}: {input}");
+            Console.WriteLine($"Press any key to continue, or press 'Y' to change the {nameOfInput}... ");
+            var userInput = Console.ReadLine()?.Trim().ToLower();
+            if (string.IsNullOrWhiteSpace(userInput))
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Incorrect input, please press a key");
+                Console.ResetColor();
+            }
+            else if (userInput == "y")
+            {
+                return PromptUserForIntInput($"Enter the {nameOfInput}");
+            }
+        }
     }
 }
