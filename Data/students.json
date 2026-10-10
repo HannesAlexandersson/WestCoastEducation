@@ -6,6 +6,7 @@
         "address": "Linnégatan 12",
         "postalCode": 41304,
         "city": "Gothenburg",
+        "studentId": "f7c3a821-6b94-4d2e-9a51-8c0f2e7b6134",
         "enrolledCourses": [
             {
                 "courseId": "C001",
@@ -30,6 +31,7 @@
         "address": "Södra Vägen 45",
         "postalCode": 41254,
         "city": "Gothenburg",
+        "studentId": "a2d9e640-3f71-4b85-8c26-5e1a7d9034bf",
         "enrolledCourses": [
             {
                 "courseId": "C003",
@@ -54,6 +56,7 @@
         "address": "Kungsportsavenyen 18",
         "postalCode": 41136,
         "city": "Gothenburg",
+        "studentId": "c8b1f503-7e26-49d0-a435-1f6c8b2e907d",
         "enrolledCourses": [
             {
                 "courseId": "C004",
@@ -71,6 +74,7 @@
         "address": "Andra Långgatan 22",
         "postalCode": 41327,
         "city": "Gothenburg",
+        "studentId": "d4e7a219-5c83-42f6-b901-7a3e6d8c2045",
         "enrolledCourses": [
             {
                 "courseId": "C005",
@@ -95,6 +99,7 @@
         "address": "Övre Husargatan 9",
         "postalCode": 41314,
         "city": "Gothenburg",
+        "studentId": "e1a6c932-8d45-47b0-a263-9f5c1d7e804b",
         "enrolledCourses": [
             {
                 "courseId": "C006",
@@ -112,6 +117,7 @@
         "address": "Vasagatan 31",
         "postalCode": 41124,
         "city": "Gothenburg",
+        "studentId": "b5f0d814-2c79-43e6-9a12-6d8c4f3071ae",
         "enrolledCourses": [
             {
                 "courseId": "C008",
@@ -136,6 +142,7 @@
         "address": "Friggagatan 16",
         "postalCode": 41101,
         "city": "Gothenburg",
+        "studentId": "92c4e7b1-6a30-4d85-bf19-3e8a5c7206d4",
         "enrolledCourses": [
             {
                 "courseId": "C001",
@@ -160,6 +167,7 @@
         "address": "Karl Johansgatan 55",
         "postalCode": 41455,
         "city": "Gothenburg",
+        "studentId": "6d3a8f20-1b57-46c9-a824-5e0d7b913f62",
         "enrolledCourses": [
             {
                 "courseId": "C002",
@@ -177,6 +185,7 @@
         "address": "Wieselgrensplatsen 7",
         "postalCode": 41717,
         "city": "Gothenburg",
+        "studentId": "3f9b2d61-74e8-40a5-9c13-8b6d1e5072af",
         "enrolledCourses": [
             {
                 "courseId": "C003",
@@ -201,6 +210,7 @@
         "address": "Mölndalsvägen 28",
         "postalCode": 41263,
         "city": "Gothenburg",
+        "studentId": "8a5e1c73-0d92-4b6f-a318-7e2d9c504bf1",
         "enrolledCourses": [
             {
                 "courseId": "C004",

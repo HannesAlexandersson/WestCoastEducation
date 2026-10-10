@@ -232,7 +232,7 @@ public class MainMenu
                         Terminate();
                         break;
                     default:
-                        CheckInput();
+                        Helper.CheckInput();
                         break;
 
                 }
@@ -242,8 +242,34 @@ public class MainMenu
 
     public void AddNewStudent()
     {
+        // first fetch the current student list
+        var students = GetStudentsList();
+        string firstName = Helper.PromptUserForStringInput("Enter students firstname: ");
+        string lastName = Helper.PromptUserForStringInput("Enter students lastname: ");
+        string email = Helper.PromptUserForStringInput("Enter students email: ");
+        string phone = Helper.PromptUserForStringInput("Enter students phonenumber: ");
+        string address = Helper.PromptUserForStringInput("Enter students address: ");
+        int pCode = Helper.PromptUserForIntInput("Enter students postal code: ");
+        string city = Helper.PromptUserForStringInput("Enter what city the student lives in: ");
+
+        Console.WriteLine("Press any key to generate a studentId for the student");
+        Console.ReadKey();
+        Guid id = Helper.GenerateGuid();
+        // construct the new Student object
+        Student newStudent = new()
+        {
+            FirstName = firstName,
+            LastName = lastName,
+            PhoneNumber = phone,
+            Email = email,
+            Address = address,
+            PostalCode = pCode,
+            City = city,
+            StudentId = id
+        };
 
     }
+
     public void ListAllCourses()
     {
         var courses = Course.ListAllAvailableCourses();
@@ -253,9 +279,7 @@ public class MainMenu
             counter++;
             Console.WriteLine(counter + "." + " " + course.Title);
         }
-        Console.ForegroundColor = ConsoleColor.Red;
-        Console.WriteLine("Press any key to go back to the menu...");
-        Console.ReadLine();
+        ReturnToMenu();
     }
     public void HandleListStudents()
     {
@@ -401,7 +425,7 @@ public class MainMenu
                         inStudentMenu = false;
                         break;
                     default:
-                        CheckInput();
+                        Helper.CheckInput();
                         break;
                 }
             }
@@ -422,13 +446,7 @@ public class MainMenu
         Console.ReadKey();
     }
 
-    private static void CheckInput()
-    {
-        Console.ForegroundColor = ConsoleColor.Red;
-        Console.WriteLine("Invalid selection. Please try again.");
-        Console.ResetColor();
-        Console.ReadKey();
-    }
+
     public void Terminate()
     {
         Environment.Exit(0);
