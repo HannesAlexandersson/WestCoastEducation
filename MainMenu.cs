@@ -15,7 +15,7 @@ public class MainMenu
             Console.CursorVisible = false;
             if (menuSelect == 0)
             {
-                Console.WriteLine("BUSS-SIMULATORN 1000");
+                Console.WriteLine("WestCoast Education");
                 Console.WriteLine("*********************");
                 Console.WriteLine("* " + menuOptions[0] + " *");
                 Console.WriteLine("- - - - - - - - - - -");
@@ -38,7 +38,7 @@ public class MainMenu
             }
             else if (menuSelect == 1)
             {
-                Console.WriteLine("BUSS-SIMULATORN 1000");
+                Console.WriteLine("WestCoast Education");
                 Console.WriteLine("*********************");
                 Console.WriteLine(menuOptions[0]);
                 Console.WriteLine("- - - - - - - - - - -");
@@ -61,7 +61,7 @@ public class MainMenu
             }
             else if (menuSelect == 2)
             {
-                Console.WriteLine("BUSS-SIMULATORN 1000");
+                Console.WriteLine("WestCoast Education");
                 Console.WriteLine("*********************");
                 Console.WriteLine(menuOptions[0]);
                 Console.WriteLine("- - - - - - - - - - -");
@@ -83,7 +83,7 @@ public class MainMenu
             }
             else if (menuSelect == 3)
             {
-                Console.WriteLine("BUSS-SIMULATORN 1000");
+                Console.WriteLine("WestCoast Education");
                 Console.WriteLine("*********************");
                 Console.WriteLine(menuOptions[0]);
                 Console.WriteLine("- - - - - - - - - - -");
@@ -105,7 +105,7 @@ public class MainMenu
             }
             else if (menuSelect == 4)
             {
-                Console.WriteLine("BUSS-SIMULATORN 1000");
+                Console.WriteLine("WestCoast Education");
                 Console.WriteLine("*********************");
                 Console.WriteLine(menuOptions[0]);
                 Console.WriteLine("- - - - - - - - - - -");
@@ -127,7 +127,7 @@ public class MainMenu
             }
             else if (menuSelect == 5)
             {
-                Console.WriteLine("BUSS-SIMULATORN 1000");
+                Console.WriteLine("WestCoast Education");
                 Console.WriteLine("*********************");
                 Console.WriteLine(menuOptions[0]);
                 Console.WriteLine("- - - - - - - - - - -");
@@ -149,7 +149,7 @@ public class MainMenu
             }
             else if (menuSelect == 6)
             {
-                Console.WriteLine("BUSS-SIMULATORN 1000");
+                Console.WriteLine("WestCoast Education");
                 Console.WriteLine("*********************");
                 Console.WriteLine(menuOptions[0]);
                 Console.WriteLine("- - - - - - - - - - -");
@@ -171,7 +171,7 @@ public class MainMenu
             }
             else if (menuSelect == 7)
             {
-                Console.WriteLine("BUSS-SIMULATORN 1000");
+                Console.WriteLine("WestCoast Education");
                 Console.WriteLine("*********************");
                 Console.WriteLine(menuOptions[0]);
                 Console.WriteLine("- - - - - - - - - - -");
@@ -214,7 +214,7 @@ public class MainMenu
                         // add new teaches
                         break;
                     case 2:
-                        // add new students
+                        AddNewStudent();
                         break;
                     case 3:
                         // add ny handlers
@@ -226,13 +226,13 @@ public class MainMenu
                         ListAllCourses();
                         break;
                     case 6:
-                        ListAllStudents();
+                        HandleListStudents();
                         break;
                     case 7:
                         Terminate();
                         break;
                     default:
-                        // CheckInput(); 
+                        CheckInput();
                         break;
 
                 }
@@ -240,6 +240,10 @@ public class MainMenu
         }
     }
 
+    public void AddNewStudent()
+    {
+
+    }
     public void ListAllCourses()
     {
         var courses = Course.ListAllAvailableCourses();
@@ -253,21 +257,178 @@ public class MainMenu
         Console.WriteLine("Press any key to go back to the menu...");
         Console.ReadLine();
     }
-
-    public void ListAllStudents()
+    public void HandleListStudents()
     {
-        var students = Student.ListAllEnrolled();
-        int counter = 0;
-        foreach (var student in students)
+        bool inStudentMenu = true;
+        var students = GetStudentsList();
+        string[] listStudentMenuIptions = ["1. List student names", "2. List student e-mails", "3. List students phonenumbers", "4. List students addressess", "5. Go back to main menu"];
+        int studentMenuSelection = 0;
+        while (inStudentMenu)
         {
-            counter++;
-            Console.WriteLine(counter + "." + " " + student.FirstName + " " + student.LastName);
+            Console.Clear();
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.CursorVisible = false;
+            if (studentMenuSelection == 0)
+            {
+                Console.WriteLine("List student functions");
+                Console.WriteLine("*********************");
+                Console.WriteLine("* " + listStudentMenuIptions[0] + " *");
+                Console.WriteLine("- - - - - - - - - - -");
+                Console.WriteLine(listStudentMenuIptions[1]);
+                Console.WriteLine("- - - - - - - - - - -");
+                Console.WriteLine(listStudentMenuIptions[2]);
+                Console.WriteLine("- - - - - - - - - - -");
+                Console.WriteLine(listStudentMenuIptions[3]);
+                Console.WriteLine("- - - - - - - - - - -");
+                Console.WriteLine(listStudentMenuIptions[4]);
+                Console.WriteLine("- - - - - - - - - - -");
+            }
+            if (studentMenuSelection == 1)
+            {
+                Console.WriteLine("List student functions");
+                Console.WriteLine("*********************");
+                Console.WriteLine(listStudentMenuIptions[0]);
+                Console.WriteLine("- - - - - - - - - - -");
+                Console.WriteLine("* " + listStudentMenuIptions[1] + " *");
+                Console.WriteLine("- - - - - - - - - - -");
+                Console.WriteLine(listStudentMenuIptions[2]);
+                Console.WriteLine("- - - - - - - - - - -");
+                Console.WriteLine(listStudentMenuIptions[3]);
+                Console.WriteLine("- - - - - - - - - - -");
+                Console.WriteLine(listStudentMenuIptions[4]);
+                Console.WriteLine("- - - - - - - - - - -");
+            }
+            if (studentMenuSelection == 2)
+            {
+                Console.WriteLine("List student functions");
+                Console.WriteLine("*********************");
+                Console.WriteLine(listStudentMenuIptions[0]);
+                Console.WriteLine("- - - - - - - - - - -");
+                Console.WriteLine(listStudentMenuIptions[1]);
+                Console.WriteLine("- - - - - - - - - - -");
+                Console.WriteLine("* " + listStudentMenuIptions[2] + " *");
+                Console.WriteLine("- - - - - - - - - - -");
+                Console.WriteLine(listStudentMenuIptions[3]);
+                Console.WriteLine("- - - - - - - - - - -");
+                Console.WriteLine(listStudentMenuIptions[4]);
+                Console.WriteLine("- - - - - - - - - - -");
+            }
+            if (studentMenuSelection == 3)
+            {
+                Console.WriteLine("List student functions");
+                Console.WriteLine("*********************");
+                Console.WriteLine(listStudentMenuIptions[0]);
+                Console.WriteLine("- - - - - - - - - - -");
+                Console.WriteLine(listStudentMenuIptions[1]);
+                Console.WriteLine("- - - - - - - - - - -");
+                Console.WriteLine(listStudentMenuIptions[2]);
+                Console.WriteLine("- - - - - - - - - - -");
+                Console.WriteLine("* " + listStudentMenuIptions[3] + " *");
+                Console.WriteLine("- - - - - - - - - - -");
+                Console.WriteLine(listStudentMenuIptions[4]);
+                Console.WriteLine("- - - - - - - - - - -");
+            }
+            if (studentMenuSelection == 4)
+            {
+                Console.WriteLine("List student functions");
+                Console.WriteLine("*********************");
+                Console.WriteLine(listStudentMenuIptions[0]);
+                Console.WriteLine("- - - - - - - - - - -");
+                Console.WriteLine(listStudentMenuIptions[1]);
+                Console.WriteLine("- - - - - - - - - - -");
+                Console.WriteLine(listStudentMenuIptions[2]);
+                Console.WriteLine("- - - - - - - - - - -");
+                Console.WriteLine(listStudentMenuIptions[3]);
+                Console.WriteLine("- - - - - - - - - - -");
+                Console.WriteLine("* " + listStudentMenuIptions[4] + " *");
+                Console.WriteLine("- - - - - - - - - - -");
+            }
+            var keyPressed = Console.ReadKey();
+            if (keyPressed.Key == ConsoleKey.DownArrow && studentMenuSelection != listStudentMenuIptions.Length - 1)
+            {
+                studentMenuSelection++;
+            }
+            else if (keyPressed.Key == ConsoleKey.UpArrow && studentMenuSelection >= 1)
+            {
+                studentMenuSelection--;
+            }
+            else if (keyPressed.Key == ConsoleKey.Enter)
+            {
+                int counter;
+                switch (studentMenuSelection)
+                {
+                    case 0:
+                        // list names
+                        counter = 0;
+                        foreach (var student in students)
+                        {
+                            counter++;
+                            Console.WriteLine($"{counter}. {student.FirstName} {student.LastName} - id: {student.StudentId}.");
+                        }
+                        ReturnToMenu();
+                        break;
+                    case 1:
+                        // list emails
+                        counter = 0;
+                        foreach (var student in students)
+                        {
+                            counter++;
+                            Console.WriteLine($"{counter}. {student.StudentId} - {student.Email}");
+                        }
+                        ReturnToMenu();
+                        break;
+                    case 2:
+                        // list phone
+                        counter = 0;
+                        foreach (var student in students)
+                        {
+                            counter++;
+                            Console.WriteLine($"{counter}. {student.StudentId} - {student.PhoneNumber}");
+                        }
+                        ReturnToMenu();
+                        break;
+                    case 3:
+                        // list addressess
+                        counter = 0;
+                        foreach (var student in students)
+                        {
+                            counter++;
+                            Console.WriteLine($"{counter}. {student.StudentId} - {student.Address}");
+                        }
+                        ReturnToMenu();
+                        break;
+                    case 4:
+                        inStudentMenu = false;
+                        break;
+                    default:
+                        CheckInput();
+                        break;
+                }
+            }
         }
-        Console.ForegroundColor = ConsoleColor.Red;
-        Console.WriteLine("Press any key to go back to the menu...");
-        Console.ReadLine();
+
     }
 
+
+    public List<Student> GetStudentsList()
+    {
+        return Student.ListAllEnrolled();
+    }
+    private void ReturnToMenu()
+    {
+        Console.ForegroundColor = ConsoleColor.Red;
+        Console.WriteLine("Press any key to go back to the menu...");
+        Console.ResetColor();
+        Console.ReadKey();
+    }
+
+    private static void CheckInput()
+    {
+        Console.ForegroundColor = ConsoleColor.Red;
+        Console.WriteLine("Invalid selection. Please try again.");
+        Console.ResetColor();
+        Console.ReadKey();
+    }
     public void Terminate()
     {
         Environment.Exit(0);

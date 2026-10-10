@@ -4,6 +4,7 @@ namespace WestCoastEducation;
 
 public class Student : Person
 {
+    public Guid StudentId = new();
     public Course[] EnrolledCourses { get; set; } = [];
 
 
@@ -15,4 +16,5 @@ public class Student : Person
 
         return studentsEnrolled;
     }
+
 }
