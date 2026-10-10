@@ -53,7 +53,8 @@ public class App
 
     public static void AddNewStudent()
     {
-        var students = GetStudentsList();
+        var students = GetStudentsList(); // get a copy of the current student list for later
+        // ask the user for all new student info       
         string firstName = Helper.PromptUserForStringInput("Enter students firstname: ");
         string lastName = Helper.PromptUserForStringInput("Enter students lastname: ");
         string email = Helper.PromptUserForStringInput("Enter students email: ");
@@ -91,38 +92,8 @@ public class App
             Console.WriteLine($"{address} {pCode} {city}");
             Console.WriteLine($"{phone}");
             Console.WriteLine($"{email}");
-            bool allClear = false;
-            while (!allClear)
-            {
-                Console.ForegroundColor = ConsoleColor.Cyan;
-                Console.WriteLine("Is all fields correct? Y/N");
-                Console.ForegroundColor = ConsoleColor.Green;
-                var userCheck = Console.ReadLine()?.Trim().ToLower();
-                if (string.IsNullOrWhiteSpace(userCheck))
-                {
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("Incorrect input value! Please answer with Y for yes or N for no!");
-                    Console.ResetColor();
-                    continue;
-                }
-                else if (userCheck != "y" && userCheck != "n")
-                {
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("Please only answer with 'Y' or 'N'");
-                    Console.ResetColor();
-                    continue;
-                }
-                else if (userCheck == "y")
-                {
-                    allClear = true;
-                    allFieldsCorrect = true; // end the loop and continue to the write to file
-                }
-                else if (userCheck == "n")
-                {
-                    allClear = true;
-                    // send the user back to the start of the outer while loop to revalidate the fields                    
-                }
-            }
+
+            allFieldsCorrect = Helper.ConfirmInput();
         }
 
 
@@ -195,38 +166,9 @@ public class App
             Console.WriteLine($"{title}");
             Console.WriteLine($"{courseLngth} weeks");
             Console.WriteLine($"{strtDate} - {endDate}");
-            bool allClear = false;
-            while (!allClear)
-            {
-                Console.ForegroundColor = ConsoleColor.Cyan;
-                Console.WriteLine("Is all fields correct? Y/N");
-                Console.ForegroundColor = ConsoleColor.Green;
-                var userCheck = Console.ReadLine()?.Trim().ToLower();
-                if (string.IsNullOrWhiteSpace(userCheck))
-                {
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("Incorrect input value! Please answer with Y for yes or N for no!");
-                    Console.ResetColor();
-                    continue;
-                }
-                else if (userCheck != "y" && userCheck != "n")
-                {
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("Please only answer with 'Y' or 'N'");
-                    Console.ResetColor();
-                    continue;
-                }
-                else if (userCheck == "y")
-                {
-                    allClear = true;
-                    allFieldsCorrect = true; // end the loop and continue to the write to file
-                }
-                else if (userCheck == "n")
-                {
-                    allClear = true;
-                    // send the user back to the start of the outer while loop to revalidate the fields                    
-                }
-            }
+
+            allFieldsCorrect = Helper.ConfirmInput(); // confirm all input
+
         }
 
         Console.Clear();

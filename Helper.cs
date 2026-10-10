@@ -212,4 +212,36 @@ public class Helper
         Environment.Exit(0);
     }
 
+    public static bool ConfirmInput()
+    {
+        while (true)
+        {
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.WriteLine("Is all fields correct? Y/N");
+            Console.ForegroundColor = ConsoleColor.Green;
+            var userCheck = Console.ReadLine()?.Trim().ToLower();
+            if (string.IsNullOrWhiteSpace(userCheck))
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Incorrect input value! Please answer with Y for yes or N for no!");
+                Console.ResetColor();
+                continue;
+            }
+            else if (userCheck != "y" && userCheck != "n")
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Please only answer with 'Y' or 'N'");
+                Console.ResetColor();
+                continue;
+            }
+            else if (userCheck == "y")
+            {
+                return true;
+            }
+            else if (userCheck == "n")
+            {
+                return false;
+            }
+        }
+    }
 }
