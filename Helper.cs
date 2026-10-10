@@ -15,7 +15,7 @@ public class Helper
         {
             Console.WriteLine(prompt);
             Console.ForegroundColor = ConsoleColor.Green;
-            userInput = Console.ReadLine()?.Trim().ToLower() ?? "";
+            userInput = Console.ReadLine()?.Trim() ?? "";
 
             if (string.IsNullOrWhiteSpace(userInput))
             {
@@ -32,7 +32,6 @@ public class Helper
     }
     public static int PromptUserForIntInput(string prompt)
     {
-        int result;
         Console.Clear();
         Console.ForegroundColor = ConsoleColor.Cyan;
         Console.CursorVisible = true;
@@ -48,7 +47,7 @@ public class Helper
                 Console.WriteLine("Incorrect input, please try again, ONLY use numbers...");
                 Console.ResetColor();
             }
-            else if (int.TryParse(userInput, out result))
+            else if (int.TryParse(userInput, out int result))
             {
                 return result;
             }
@@ -73,8 +72,11 @@ public class Helper
     {
         while (true)
         {
+            Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine($"{nameOfInput}: {input}");
-            Console.WriteLine($"Press any key to continue, or press 'Y' to change the {nameOfInput}... ");
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.WriteLine($"If {nameOfInput} is correct, press 'Y'. To change the {nameOfInput} press 'N' ");
+            Console.ForegroundColor = ConsoleColor.Green;
             var userInput = Console.ReadLine()?.Trim().ToLower();
             if (string.IsNullOrWhiteSpace(userInput))
             {
@@ -82,9 +84,21 @@ public class Helper
                 Console.WriteLine("Incorrect input, please press a key");
                 Console.ResetColor();
             }
+            else if (userInput != "n" && userInput != "y")
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Please only answer with 'Y' or 'N'");
+                Console.ResetColor();
+                continue;
+            }
             else if (userInput == "y")
             {
+                return input;
+            }
+            else if (userInput == "n")
+            {
                 return PromptUserForStringInput($"Enter the {nameOfInput}");
+
             }
         }
     }
@@ -92,8 +106,11 @@ public class Helper
     {
         while (true)
         {
+            Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine($"{nameOfInput}: {input}");
-            Console.WriteLine($"Press any key to continue, or press 'Y' to change the {nameOfInput}... ");
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.WriteLine($"If {nameOfInput} is correct, press 'Y'. To change the {nameOfInput} press 'N' ");
+            Console.ForegroundColor = ConsoleColor.Green;
             var userInput = Console.ReadLine()?.Trim().ToLower();
             if (string.IsNullOrWhiteSpace(userInput))
             {
@@ -101,7 +118,18 @@ public class Helper
                 Console.WriteLine("Incorrect input, please press a key");
                 Console.ResetColor();
             }
+            else if (userInput != "n" && userInput != "y")
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Please only answer with 'Y' or 'N'");
+                Console.ResetColor();
+                continue;
+            }
             else if (userInput == "y")
+            {
+                return input;
+            }
+            else if (userInput == "n")
             {
                 return PromptUserForIntInput($"Enter the {nameOfInput}");
             }

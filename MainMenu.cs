@@ -406,12 +406,15 @@ public class MainMenu
         string address = Helper.PromptUserForStringInput("Enter students address: ");
         int pCode = Helper.PromptUserForIntInput("Enter students postal code: ");
         string city = Helper.PromptUserForStringInput("Enter what city the student lives in: ");
+        Console.Clear();
 
+        Console.ForegroundColor = ConsoleColor.Cyan;
         Console.WriteLine("please make sure that all info is correct before proceeding...");
         Console.ReadKey();
         bool allFieldsCorrect = false;
         while (!allFieldsCorrect)
         {
+            Console.ForegroundColor = ConsoleColor.Cyan;
             Console.Clear();
             firstName = Helper.ValidateStringInput("Firstname", firstName);
             Console.Clear();
@@ -427,43 +430,56 @@ public class MainMenu
             Console.Clear();
             email = Helper.ValidateStringInput("Email", email);
             Console.Clear();
-            Console.WriteLine("FIELDS: ");
+
+            Console.WriteLine("NEW STUDENT FIELDS: ");
             Console.WriteLine($"{firstName} {lastName}");
             Console.WriteLine($"{address} {pCode} {city}");
             Console.WriteLine($"{phone}");
             Console.WriteLine($"{email}");
-            Console.WriteLine("Is all fields correct? Y/N");
-            var userCheck = Console.ReadLine()?.Trim().ToLower();
-            if (string.IsNullOrWhiteSpace(userCheck))
+            bool allClear = false;
+            while (!allClear)
             {
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("Incorrect input value! Please answer with Y for yes or N for no!");
-                Console.ResetColor();
-                continue;
-            }
-            else if (userCheck != "y" && userCheck != "n")
-            {
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("Please only answer with 'Y' or 'N'");
-                Console.ResetColor();
-                continue;
-            }
-            else if (userCheck == "y")
-            {
-                allFieldsCorrect = true; // end the loop
-            }
-            else if (userCheck == "n")
-            {
-                // send the user back to the start of the while loop to revalidate the fields              
-                continue;
+                Console.ForegroundColor = ConsoleColor.Cyan;
+                Console.WriteLine("Is all fields correct? Y/N");
+                Console.ForegroundColor = ConsoleColor.Green;
+                var userCheck = Console.ReadLine()?.Trim().ToLower();
+                if (string.IsNullOrWhiteSpace(userCheck))
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("Incorrect input value! Please answer with Y for yes or N for no!");
+                    Console.ResetColor();
+                    continue;
+                }
+                else if (userCheck != "y" && userCheck != "n")
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("Please only answer with 'Y' or 'N'");
+                    Console.ResetColor();
+                    continue;
+                }
+                else if (userCheck == "y")
+                {
+                    allClear = true;
+                    allFieldsCorrect = true; // end the loop and continue to the write to file
+                }
+                else if (userCheck == "n")
+                {
+                    allClear = true;
+                    // send the user back to the start of the outer while loop to revalidate the fields                    
+                }
             }
         }
 
 
         Console.Clear();
+        Console.ForegroundColor = ConsoleColor.Cyan;
         Console.WriteLine("Press any key to generate a studentId for the student");
         Console.ReadKey();
         Guid id = Helper.GenerateGuid();
+        Console.WriteLine($" StudentId created: {id}. Press any key to add the new student into the database...");
+        Console.ReadKey();
+        Console.WriteLine("Please wait while the system adds the student to the database...");
+        Thread.Sleep(450);
         // construct the new Student object with all the user input fields
         Student newStudent = new()
         {
@@ -476,13 +492,19 @@ public class MainMenu
             City = city,
             StudentId = id
         };
-
+        Console.WriteLine("....");
+        Thread.Sleep(450);
+        Console.WriteLine("Connecting to database...");
+        Thread.Sleep(450);
         // add the new student to the students list
         students.Add(newStudent);
-
+        Console.WriteLine("....");
+        Thread.Sleep(450);
+        Console.WriteLine("Writing to disk...");
         // write the new updated list to file
         Student.AddNewStudentToDb(students);
-
+        Console.WriteLine("Student added to the rolls in the database!");
+        ReturnToMenu();
     }
 
 
