@@ -4,6 +4,7 @@ namespace WestCoastEducation;
 
 public class Student : Person
 {
+    public Guid StudentId { get; set; }
     public Course[] EnrolledCourses { get; set; } = [];
 
 
@@ -15,4 +16,12 @@ public class Student : Person
 
         return studentsEnrolled;
     }
+
+    public static void AddNewStudentToDb(List<Student> studentList)
+    {
+        var db = new DataBase<Student>();
+        var path = string.Concat(Environment.CurrentDirectory, "/Data/students.json");
+        db.Write(path, studentList);
+    }
+
 }
