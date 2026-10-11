@@ -212,7 +212,7 @@ public class MainMenu
                         App.AddNewCourse();
                         break;
                     case 1:
-                        // add new teaches
+                        App.AddNewTeacher();
                         break;
                     case 2:
                         App.AddNewStudent();
@@ -244,7 +244,7 @@ public class MainMenu
     public void HandleListStudents()
     {
         bool inStudentMenu = true;
-        var students = App.GetStudentsList();
+        var students = DatabaseHandler.GetList<Student>("students.json");
         string[] listStudentMenuIptions = ["1. List student names", "2. List student e-mails", "3. List students phonenumbers", "4. List students addressess", "5. Go back to main menu"];
         int studentMenuSelection = 0;
         while (inStudentMenu)
@@ -377,7 +377,7 @@ public class MainMenu
                         foreach (var student in students)
                         {
                             counter++;
-                            Console.WriteLine($"{counter}. {student.StudentId} - {student.Address}");
+                            Console.WriteLine($"{counter}. {student.StudentId} - {student.Addresses}");
                         }
                         ReturnToMenu();
                         break;
