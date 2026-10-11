@@ -376,10 +376,10 @@ public class MainMenu
                         foreach (var student in students)
                         {
                             counter++;
-                            Console.WriteLine($"{counter}. {student.StudentId}-");
+                            Console.WriteLine($"{counter}. {student.FirstName} {student.LastName} -");
                             foreach (var address in student.Addresses)
                             {
-                                Console.Write(
+                                Console.WriteLine(
                                     $" {address.StreetAddress}, {address.PostalCode} {address.City}");
                             }
                         }
