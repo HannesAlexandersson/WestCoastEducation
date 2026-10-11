@@ -208,6 +208,48 @@ public class Helper
         }
     }
 
+    public static Address ValidateAddress(string nameOfInput, Address address)
+    {
+        while (true)
+        {
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine($"{nameOfInput}:");
+            Console.WriteLine($"{address.StreetAddress}, {address.PostalCode} {address.City}");
+
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.WriteLine($"If {nameOfInput} is correct, press 'Y'. To change it, press 'N'");
+
+            Console.ForegroundColor = ConsoleColor.Green;
+            var userInput = Console.ReadLine()?.Trim().ToLower();
+
+            if (string.IsNullOrWhiteSpace(userInput))
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Incorrect input, please press a key");
+                Console.ResetColor();
+            }
+            else if (userInput != "n" && userInput != "y")
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Please only answer with 'Y' or 'N'");
+                Console.ResetColor();
+                continue;
+            }
+            else if (userInput == "y")
+            {
+                return address;
+            }
+            else if (userInput == "n")
+            {
+                address.StreetAddress = PromptUserForStringInput("Enter the street address");
+                address.PostalCode = ValidateIntInput("Postal code", address.PostalCode);
+                address.City = PromptUserForStringInput("Enter the city");
+
+                return address;
+            }
+        }
+    }
+
     public static void Terminate()
     {
         Environment.Exit(0);
@@ -248,43 +290,140 @@ public class Helper
 
     public static Person PromptForPerson(string nameOfObject)
     {
-        string firstName = PromptUserForStringInput($"Enter {nameOfObject} firstname: ");
-        string lastName = PromptUserForStringInput($"Enter {nameOfObject} lastname: ");
-        string email = PromptUserForStringInput($"Enter {nameOfObject} email: ");
-        string phone = PromptUserForStringInput($"Enter {nameOfObject} phonenumber: ");
-        string address = PromptUserForStringInput($"Enter {nameOfObject} address: ");
-        int pCode = PromptUserForIntInput($"Enter {nameOfObject} postal code: ");
-        string city = PromptUserForStringInput($"Enter what city the {nameOfObject} lives in: ");
+        Dictionary<string, string> fields = new()
+    {
+        { "firstName", "" },
+        { "lastName", "" },
+        { "email", "" },
+        { "phone", "" },
+        { "address", "" },
+        { "city", "" }
+    };
+
+        foreach (var field in fields.Keys.ToList())
+        {
+            fields[field] = PromptUserForStringInput(
+                $"Enter {nameOfObject} {field}: ");
+        }
+
+        int pCode = PromptUserForIntInput(
+            $"Enter {nameOfObject} postal code: ");
 
         return new Person
         {
-            FirstName = firstName,
-            LastName = lastName,
-            Email = email,
-            PhoneNumber = phone,
+            FirstName = fields["firstName"],
+            LastName = fields["lastName"],
+            Email = fields["email"],
+            PhoneNumber = fields["phone"],
             Addresses =
             [
                 new Address
             {
-                StreetAddress = address,
+                StreetAddress = fields["address"],
                 PostalCode = pCode,
-                City = city
+                City = fields["city"]
             }
             ]
         };
     }
 
-    public static Teacher PromptForTeacher()
+    public static Teacher PromptForPersonell(string position)
     {
+        var personData = PromptForPerson(position);
         FieldOfKnowledge[] subjectFields = PromptForSubjectFields();
-        Console.WriteLine("Select the course/courses that the new teacher is teaching...");
+        Console.ForegroundColor = ConsoleColor.Cyan;
+        Console.WriteLine($"Select the course/courses that the new {position} is handling...");
         List<Course> teachingCourses = SelectCourses();
 
-        return new Teacher
+        Console.ForegroundColor = ConsoleColor.Cyan;
+        Console.WriteLine("please make sure that all info is correct before proceeding...");
+        Console.ReadKey();
+        // validate all fields
+        bool allFieldsCorrect = false;
+        while (!allFieldsCorrect)
         {
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.Clear();
+            foreach (var item in personData.GetType().GetProperties()) // since personData is an instance of the Person calss I cant iterate through it. So I need too retrive its properties to iterate over them
+            {
+                var value = item.GetValue(personData); // get the actual value of the 'item' 
+
+                if (value is string text) // check what type the value the property is so we know what validationtype to call
+                {
+                    item.SetValue(personData,
+                        ValidateStringInput(item.Name, text));
+                }
+                else if (value is int number)
+                {
+                    item.SetValue(personData,
+                        ValidateIntInput(item.Name, number));
+                }
+                else if (item.Name == nameof(personData.Addresses)) // this was really tricky, since Address is an collection of addresses and a class of ots own I needed to get the proeprtyname of Addresses and compare it to item.name so I dont have to hardcode the string to compare
+                {
+                    for (int i = 0; i < personData.Addresses.Count; i++)
+                    {
+                        personData.Addresses[i] = ValidateAddress(
+                            $"Address {i + 1}",
+                            personData.Addresses[i]);
+                    }
+                }
+
+                Console.Clear();
+            }
+
+            for (int i = 0; i < subjectFields.Length; i++) // this is more straightforward, I simply iterate thorugh the subjectField array and call the validation method for each iteration
+            {
+                subjectFields[i].NameOfSubject =
+                   ValidateStringInput(
+                        $"Subject field {i + 1}",
+                        subjectFields[i].NameOfSubject);
+                Console.Clear();
+            }
+
+            for (int i = 0; i < teachingCourses.Count; i++) // same here but with a list instead of array
+            {
+                teachingCourses[i].Title =
+                   ValidateStringInput(
+                        $"Course title {i + 1}",
+                        teachingCourses[i].Title);
+                Console.Clear();
+            }
+
+            Console.WriteLine($"*** NEW {position} FINAL CHECK ***");
+            Console.WriteLine($"{personData.FirstName} {personData.LastName}");
+            Console.WriteLine($"{personData.Addresses[0].StreetAddress} {personData.Addresses[0].PostalCode} {personData.Addresses[0].City}");
+            Console.WriteLine(personData.PhoneNumber);
+            Console.WriteLine(personData.Email);
+
+            Console.WriteLine("Subject fields:");
+            foreach (var subject in subjectFields)
+            {
+                Console.WriteLine(subject.NameOfSubject);
+            }
+
+            Console.WriteLine("Courses:");
+            foreach (var course in teachingCourses)
+            {
+                Console.WriteLine(course.Title);
+            }
+
+            Console.WriteLine("********-----********");
+            allFieldsCorrect = ConfirmInput(); // final cofimation before finalazing
+        }
+
+
+        Teacher newTeacher = new()
+        {
+            FirstName = personData.FirstName,
+            LastName = personData.LastName,
+            Email = personData.Email,
+            PhoneNumber = personData.PhoneNumber,
+            Addresses = personData.Addresses,
             SubjectFields = subjectFields,
             TeachingCourses = teachingCourses.ToArray()
         };
+
+        return newTeacher;
     }
 
     public static FieldOfKnowledge[] PromptForSubjectFields()
@@ -295,8 +434,7 @@ public class Helper
 
         while (addMore)
         {
-            string subject = PromptUserForStringInput(
-                "Enter a subject field for the teacher: ");
+            string subject = PromptUserForStringInput($"Enter a subject fields: ");
 
             subjectFields.Add(new FieldOfKnowledge
             {
@@ -333,7 +471,7 @@ public class Helper
         return subjectFields.ToArray();
     }
 
-    public static Guid SelectTeacher(List<Teacher> teachers)
+    public static Guid[] SelectTeacher(List<Teacher> teachers)
     {
 
         for (int i = 0; i < teachers.Count; i++)
@@ -350,7 +488,7 @@ public class Helper
                 selection >= 1 &&
                 selection <= teachers.Count)
             {
-                return teachers[selection - 1].TeacherId;
+                return [teachers[selection - 1].TeacherId];
             }
 
             Console.WriteLine("Invalid selection. Please try again.");
@@ -372,6 +510,7 @@ public class Helper
         while (selectMore)
         {
             Console.WriteLine("Select a course by number: ");
+            Console.ForegroundColor = ConsoleColor.Green;
             string? input = Console.ReadLine();
 
             if (int.TryParse(input, out int selection) &&
@@ -383,13 +522,15 @@ public class Helper
                 if (!selectedCourses.Contains(selectedCourse))
                 {
                     selectedCourses.Add(selectedCourse);
+                    Console.ForegroundColor = ConsoleColor.Cyan;
                     Console.WriteLine($"{selectedCourse.Title} added.");
                 }
                 else
                 {
+                    Console.ForegroundColor = ConsoleColor.Cyan;
                     Console.WriteLine("Course already selected.");
                 }
-
+                Console.ForegroundColor = ConsoleColor.Cyan;
                 Console.WriteLine("Add more subject fields? Y/N");
                 Console.ForegroundColor = ConsoleColor.Green;
                 var userCheck = Console.ReadLine()?.Trim().ToLower();
@@ -423,5 +564,44 @@ public class Helper
         }
 
         return selectedCourses;
+    }
+
+    public static bool ValidateInputs(Dictionary<string, object> fields)
+    {
+        foreach (var field in fields.Keys.ToList())
+        {
+            Console.Clear();
+            if (fields[field] is string stringValue)
+            {
+                fields[field] = ValidateStringInput(field, stringValue);
+            }
+            else if (fields[field] is int intValue)
+            {
+                fields[field] = ValidateIntInput(field, intValue);
+            }
+        }
+
+        return ConfirmInput();
+    }
+
+    public static void SimulateInsertToDb(string fName, string lName)
+    {
+
+        Thread.Sleep(550);
+        Console.WriteLine("Please wait while the system connects to the database...");
+        Thread.Sleep(550);
+        Console.WriteLine("....");
+        Thread.Sleep(550);
+        Console.WriteLine("Connecting to database...");
+        Thread.Sleep(550);
+        Console.WriteLine("....");
+        Thread.Sleep(550);
+        Console.WriteLine("Attempting to write to disk...");
+        Thread.Sleep(550);
+        Console.WriteLine("....");
+        Thread.Sleep(550);
+        Console.WriteLine("Writing to disk...");
+        Thread.Sleep(550);
+        Console.WriteLine($"{fName} {lName} added to the teacher rolls in the database!");
     }
 }

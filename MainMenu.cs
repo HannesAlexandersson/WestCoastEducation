@@ -218,10 +218,10 @@ public class MainMenu
                         App.AddNewStudent();
                         break;
                     case 3:
-                        // add ny handlers
+                        App.AddNewHandler();
                         break;
                     case 4:
-                        // add new admins
+                        App.AddNewAdmin();
                         break;
                     case 5:
                         App.ListAllCourses();
@@ -235,7 +235,6 @@ public class MainMenu
                     default:
                         Helper.CheckInput();
                         break;
-
                 }
             }
         }

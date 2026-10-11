@@ -8,7 +8,7 @@
         "courseLength": 8,
         "startDate": "2026-01-12T00:00:00",
         "endDate": "2026-03-09T00:00:00",
-        "courseTeacherId": "6f8a2c41-9d73-4b56-a102-7e5c3f8d6b90"
+        "coursePersonnelIds": []
       },
       {
         "courseId": "b7d3f9a2-1c64-4e8b-9f52-3a6e0d8c1b47",
@@ -16,15 +16,13 @@
         "courseLength": 10,
         "startDate": "2026-01-19T00:00:00",
         "endDate": "2026-03-30T00:00:00",
-        "courseTeacherId": "6f8a2c41-9d73-4b56-a102-7e5c3f8d6b90"
+        "coursePersonnelIds": []
       }
     ],
     "firstName": "Emma",
     "lastName": "Andersson",
     "phoneNumber": "0701-234567",
-    "address": "Linnégatan 12",
-    "postalCode": 41304,
-    "city": "Gothenburg",
+    "addresses": [],
     "email": "emma.andersson@example.com"
   },
   {
@@ -36,7 +34,7 @@
         "courseLength": 6,
         "startDate": "2026-02-02T00:00:00",
         "endDate": "2026-03-16T00:00:00",
-        "courseTeacherId": "2b7e4d19-8c65-43a1-b902-5f6d7e3a8c41"
+        "coursePersonnelIds": []
       },
       {
         "courseId": "17c9e4b6-2a53-48d1-b705-9f3e6c8a2d41",
@@ -44,15 +42,13 @@
         "courseLength": 6,
         "startDate": "2026-04-06T00:00:00",
         "endDate": "2026-05-18T00:00:00",
-        "courseTeacherId": "2b7e4d19-8c65-43a1-b902-5f6d7e3a8c41"
+        "coursePersonnelIds": []
       }
     ],
     "firstName": "Oscar",
     "lastName": "Johansson",
     "phoneNumber": "0722-345678",
-    "address": "Södra Vägen 45",
-    "postalCode": 41254,
-    "city": "Gothenburg",
+    "addresses": [],
     "email": "oscar.johansson@example.com"
   },
   {
@@ -64,15 +60,13 @@
         "courseLength": 6,
         "startDate": "2026-02-09T00:00:00",
         "endDate": "2026-03-23T00:00:00",
-        "courseTeacherId": "9c3a6f52-1e84-47d2-a615-8b4f0c7e9d23"
+        "coursePersonnelIds": []
       }
     ],
     "firstName": "William",
     "lastName": "Karlsson",
     "phoneNumber": "0733-456789",
-    "address": "Kungsportsavenyen 18",
-    "postalCode": 41136,
-    "city": "Gothenburg",
+    "addresses": [],
     "email": "william.karlsson@example.com"
   },
   {
@@ -84,7 +78,7 @@
         "courseLength": 8,
         "startDate": "2026-03-02T00:00:00",
         "endDate": "2026-04-27T00:00:00",
-        "courseTeacherId": "9c3a6f52-1e84-47d2-a615-8b4f0c7e9d23"
+        "coursePersonnelIds": []
       },
       {
         "courseId": "39e1b6d4-7a82-45c9-a316-8d2f0b5e7c64",
@@ -92,15 +86,13 @@
         "courseLength": 8,
         "startDate": "2026-05-04T00:00:00",
         "endDate": "2026-06-29T00:00:00",
-        "courseTeacherId": "4d1f8b67-3a92-45e6-b804-2c7d9f1a5e38"
+        "coursePersonnelIds": []
       }
     ],
     "firstName": "Alice",
     "lastName": "Nilsson",
     "phoneNumber": "0704-567890",
-    "address": "Andra Långgatan 22",
-    "postalCode": 41327,
-    "city": "Gothenburg",
+    "addresses": [],
     "email": "alice.nilsson@example.com"
   },
   {
@@ -112,15 +104,13 @@
         "courseLength": 10,
         "startDate": "2026-03-16T00:00:00",
         "endDate": "2026-05-25T00:00:00",
-        "courseTeacherId": "4d1f8b67-3a92-45e6-b804-2c7d9f1a5e38"
+        "coursePersonnelIds": []
       }
     ],
     "firstName": "Lucas",
     "lastName": "Eriksson",
     "phoneNumber": "0725-678901",
-    "address": "Övre Husargatan 9",
-    "postalCode": 41314,
-    "city": "Gothenburg",
+    "addresses": [],
     "email": "lucas.eriksson@example.com"
   },
   {
@@ -132,7 +122,7 @@
         "courseLength": 5,
         "startDate": "2026-04-13T00:00:00",
         "endDate": "2026-05-18T00:00:00",
-        "courseTeacherId": "7a5e2c93-6b14-48f1-9d30-4e8c1a6b7f52"
+        "coursePersonnelIds": []
       },
       {
         "courseId": "4a6f2c8d-1b75-49e3-8d20-5c7a9f1e6b83",
@@ -140,15 +130,13 @@
         "courseLength": 3,
         "startDate": "2026-05-11T00:00:00",
         "endDate": "2026-06-01T00:00:00",
-        "courseTeacherId": "7a5e2c93-6b14-48f1-9d30-4e8c1a6b7f52"
+        "coursePersonnelIds": []
       }
     ],
     "firstName": "Maja",
     "lastName": "Larsson",
     "phoneNumber": "0736-789012",
-    "address": "Vasagatan 31",
-    "postalCode": 41124,
-    "city": "Gothenburg",
+    "addresses": [],
     "email": "maja.larsson@example.com"
   },
   {
@@ -160,7 +148,7 @@
         "courseLength": 8,
         "startDate": "2026-01-12T00:00:00",
         "endDate": "2026-03-09T00:00:00",
-        "courseTeacherId": "6f8a2c41-9d73-4b56-a102-7e5c3f8d6b90"
+        "coursePersonnelIds": []
       },
       {
         "courseId": "f6b2d8a4-9c15-43e7-8a61-2d5b0e9c7f34",
@@ -168,15 +156,13 @@
         "courseLength": 10,
         "startDate": "2026-03-16T00:00:00",
         "endDate": "2026-05-25T00:00:00",
-        "courseTeacherId": "4d1f8b67-3a92-45e6-b804-2c7d9f1a5e38"
+        "coursePersonnelIds": []
       }
     ],
     "firstName": "Elias",
     "lastName": "Olsson",
     "phoneNumber": "0707-890123",
-    "address": "Friggagatan 16",
-    "postalCode": 41101,
-    "city": "Gothenburg",
+    "addresses": [],
     "email": "elias.olsson@example.com"
   },
   {
@@ -188,15 +174,13 @@
         "courseLength": 10,
         "startDate": "2026-01-19T00:00:00",
         "endDate": "2026-03-30T00:00:00",
-        "courseTeacherId": "6f8a2c41-9d73-4b56-a102-7e5c3f8d6b90"
+        "coursePersonnelIds": []
       }
     ],
     "firstName": "Julia",
     "lastName": "Persson",
     "phoneNumber": "0728-901234",
-    "address": "Karl Johansgatan 55",
-    "postalCode": 41455,
-    "city": "Gothenburg",
+    "addresses": [],
     "email": "julia.persson@example.com"
   },
   {
@@ -208,7 +192,7 @@
         "courseLength": 6,
         "startDate": "2026-02-02T00:00:00",
         "endDate": "2026-03-16T00:00:00",
-        "courseTeacherId": "2b7e4d19-8c65-43a1-b902-5f6d7e3a8c41"
+        "coursePersonnelIds": []
       },
       {
         "courseId": "e1a7c5d9-8b32-4f64-b013-6d2e9a7c4b85",
@@ -216,15 +200,13 @@
         "courseLength": 8,
         "startDate": "2026-03-02T00:00:00",
         "endDate": "2026-04-27T00:00:00",
-        "courseTeacherId": "9c3a6f52-1e84-47d2-a615-8b4f0c7e9d23"
+        "coursePersonnelIds": []
       }
     ],
     "firstName": "Alexander",
     "lastName": "Svensson",
     "phoneNumber": "0739-012345",
-    "address": "Wieselgrensplatsen 7",
-    "postalCode": 41717,
-    "city": "Gothenburg",
+    "addresses": [],
     "email": "alexander.svensson@example.com"
   },
   {
@@ -236,7 +218,7 @@
         "courseLength": 6,
         "startDate": "2026-02-09T00:00:00",
         "endDate": "2026-03-23T00:00:00",
-        "courseTeacherId": "9c3a6f52-1e84-47d2-a615-8b4f0c7e9d23"
+        "coursePersonnelIds": []
       },
       {
         "courseId": "17c9e4b6-2a53-48d1-b705-9f3e6c8a2d41",
@@ -244,15 +226,13 @@
         "courseLength": 6,
         "startDate": "2026-04-06T00:00:00",
         "endDate": "2026-05-18T00:00:00",
-        "courseTeacherId": "2b7e4d19-8c65-43a1-b902-5f6d7e3a8c41"
+        "coursePersonnelIds": []
       }
     ],
     "firstName": "Ella",
     "lastName": "Gustafsson",
     "phoneNumber": "0702-123456",
-    "address": "Mölndalsvägen 28",
-    "postalCode": 41263,
-    "city": "Gothenburg",
+    "addresses": [],
     "email": "ella.gustafsson@example.com"
   },
   {
@@ -261,9 +241,22 @@
     "firstName": "Hannes",
     "lastName": "Alexandersson",
     "phoneNumber": "0790112009",
-    "address": "Munkebäcksgatan 23 H",
-    "postalCode": 41653,
-    "city": "Gothenburg",
+    "addresses": [],
     "email": "s103154@gmail.com"
+  },
+  {
+    "studentId": "537c1332-b365-4d18-ad2a-a8af204fc9de",
+    "enrolledCourses": [],
+    "firstName": "dfgfdg",
+    "lastName": "dfgdfgd",
+    "phoneNumber": "556456",
+    "addresses": [
+      {
+        "streetAddress": "fghfh6",
+        "postalCode": 674756,
+        "city": "fghgf"
+      }
+    ],
+    "email": "ghfghr"
   }
 ]

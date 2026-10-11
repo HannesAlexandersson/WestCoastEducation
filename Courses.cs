@@ -7,6 +7,6 @@ public class Course
     public int CourseLength { get; set; }
     public DateTime StartDate { get; set; }
     public DateTime EndDate { get; set; }
-    public Guid CourseTeacherId { get; set; }
+    public Guid[] CoursePersonnelIds { get; set; } = [];
 
 }

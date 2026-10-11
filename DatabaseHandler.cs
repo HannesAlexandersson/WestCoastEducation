@@ -2,6 +2,7 @@
 
 namespace WestCoastEducation;
 
+// another helper method to take responsibility for deciding where the application stores it files
 public class DatabaseHandler
 {
     // generic methods to replace the 5 almost identical former methods I had
