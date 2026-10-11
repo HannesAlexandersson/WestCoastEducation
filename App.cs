@@ -20,40 +20,11 @@ public class App
         }
     }
 
-    public static List<Student> GetStudentsList()
-    {
-        var db = new DataBase<Student>();
-        var path = string.Concat(Environment.CurrentDirectory, "/Data/students.json");
-        var studentsEnrolled = db.Read(path);
-
-        return studentsEnrolled;
-    }
-    public static List<Course> GetCoursesList()
-    {
-        var db = new DataBase<Course>();
-        var path = string.Concat(Environment.CurrentDirectory, "/Data/courses.json");
-        var studentsEnrolled = db.Read(path);
-
-        return studentsEnrolled;
-    }
-    public static void AddNewStudentToDb(List<Student> studentList)
-    {
-        var db = new DataBase<Student>();
-        var path = string.Concat(Environment.CurrentDirectory, "/Data/students.json");
-        db.Write(path, studentList);
-    }
-
-    public static void AddNewCourseToDb(List<Course> courseList)
-    {
-        var db = new DataBase<Course>();
-        var path = string.Concat(Environment.CurrentDirectory, "/Data/courses.json");
-        db.Write(path, courseList);
-    }
 
 
     public static void AddNewStudent()
     {
-        var students = GetStudentsList(); // get a copy of the current student list for later
+        var students = DatabaseHandler.GetList<Student>("students.json"); // get a copy of the current student list for later
         // ask the user for all new student info       
         string firstName = Helper.PromptUserForStringInput("Enter students firstname: ");
         string lastName = Helper.PromptUserForStringInput("Enter students lastname: ");
@@ -134,7 +105,7 @@ public class App
         Thread.Sleep(450);
         Console.WriteLine("Writing to disk...");
         // write the new updated list to file
-        AddNewStudentToDb(students);
+        DatabaseHandler.SaveList("students.json", students);
         Console.WriteLine("Student added to the rolls in the database!");
         MainMenu.ReturnToMenu();
 
@@ -142,11 +113,12 @@ public class App
 
     public static void AddNewCourse()
     {
-        var courses = GetCoursesList();
+        var courses = DatabaseHandler.GetList<Course>("courses.json");
         string title = Helper.PromptUserForStringInput("Enter Title of course: ");
         int courseLngth = Helper.PromptUserForIntInput("Enter length of course in weeks: ");
         DateTime strtDate = Helper.PromptUserForDateInput("Enter the startdate: ");
         DateTime endDate = Helper.PromptUserForDateInput("Enter the enddate: ");
+        Guid teacherId = Helper.SelectTeacher();
 
         Console.Clear();
 
@@ -188,11 +160,12 @@ public class App
         Thread.Sleep(450);
         Course newCourse = new()
         {
+            CourseId = id,
             Title = title,
             StartDate = strtDate,
             EndDate = endDate,
             CourseLength = courseLngth,
-            CourseId = id
+            CourseTeacherId = teacherId
         };
         Console.WriteLine("....");
         Thread.Sleep(450);
@@ -203,14 +176,14 @@ public class App
         Thread.Sleep(450);
         Console.WriteLine("Writing to disk...");
         // write the new updated list to file
-        AddNewCourseToDb(courses);
+        DatabaseHandler.SaveList("courses.json", courses);
         Console.WriteLine("Student added to the rolls in the database!");
         MainMenu.ReturnToMenu();
 
     }
     public static void ListAllCourses()
     {
-        var courses = GetCoursesList();
+        var courses = DatabaseHandler.GetList<Course>("courses.json");
         int counter = 0;
         foreach (var course in courses)
         {

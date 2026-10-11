@@ -244,4 +244,31 @@ public class Helper
             }
         }
     }
+
+
+    public static Guid SelectTeacher()
+    {
+        var teachers = DatabaseHandler.GetList<Teacher>("teachers.json");
+
+        for (int i = 0; i < teachers.Count; i++)
+        {
+            Console.WriteLine($"{i + 1}. {teachers[i].FirstName} {teachers[i].LastName}");
+        }
+
+        while (true)
+        {
+            Console.Write("\nSelect a teacher by number: ");
+            string? input = Console.ReadLine();
+
+            if (int.TryParse(input, out int selection) &&
+                selection >= 1 &&
+                selection <= teachers.Count)
+            {
+                return teachers[selection - 1].TeacherId;
+            }
+
+            Console.WriteLine("Invalid selection. Please try again.");
+        }
+    }
+
 }

@@ -244,7 +244,7 @@ public class MainMenu
     public void HandleListStudents()
     {
         bool inStudentMenu = true;
-        var students = App.GetStudentsList();
+        var students = DatabaseHandler.GetList<Student>("students.json");
         string[] listStudentMenuIptions = ["1. List student names", "2. List student e-mails", "3. List students phonenumbers", "4. List students addressess", "5. Go back to main menu"];
         int studentMenuSelection = 0;
         while (inStudentMenu)

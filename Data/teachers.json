@@ -1,5 +1,6 @@
 [
     {
+        "teacherId": "6f8a2c41-9d73-4b56-a102-7e5c3f8d6b90",
         "firstName": "Erik",
         "lastName": "Andersson",
         "phoneNumber": "0701234567",
@@ -34,6 +35,7 @@
         ]
     },
     {
+        "teacherId": "2b7e4d19-8c65-43a1-b902-5f6d7e3a8c41",
         "firstName": "Maria",
         "lastName": "Johansson",
         "phoneNumber": "0702345678",
@@ -47,7 +49,9 @@
         "email": "maria.johansson@example.com",
         "subjectFields": [
             {
-                "nameOfSubject": "C#",
+                "nameOfSubject": "C#"
+            },
+            {
                 "nameOfSubject": "Database Managment"
             }
         ],
@@ -69,6 +73,7 @@
         ]
     },
     {
+        "teacherId": "9c3a6f52-1e84-47d2-a615-8b4f0c7e9d23",
         "firstName": "Johan",
         "lastName": "Karlsson",
         "phoneNumber": "0703456789",
@@ -82,9 +87,15 @@
         "email": "johan.karlsson@example.com",
         "subjectFields": [
             {
-                "nameOfSubject": "Web Development",
-                "nameOfSubject": "HTML",
-                "nameOfSubject": "CSS",
+                "nameOfSubject": "Web Development"
+            },
+            {
+                "nameOfSubject": "HTML"
+            },
+            {
+                "nameOfSubject": "CSS"
+            },
+            {
                 "nameOfSubject": "Javascript"
             }
         ],
@@ -106,6 +117,7 @@
         ]
     },
     {
+        "teacherId": "4d1f8b67-3a92-45e6-b804-2c7d9f1a5e38",
         "firstName": "Anna",
         "lastName": "Nilsson",
         "phoneNumber": "0704567890",
@@ -119,8 +131,12 @@
         "email": "anna.nilsson@example.com",
         "subjectFields": [
             {
-                "nameOfSubject": "C#",
-                "nameOfSubject": ".NET",
+                "nameOfSubject": "C#"
+            },
+            {
+                "nameOfSubject": ".NET"
+            },
+            {
                 "nameOfSubject": "API managment"
             }
         ],
@@ -142,6 +158,7 @@
         ]
     },
     {
+        "teacherId": "7a5e2c93-6b14-48f1-9d30-4e8c1a6b7f52",
         "firstName": "Marcus",
         "lastName": "Svensson",
         "phoneNumber": "0705678901",
@@ -155,7 +172,9 @@
         "email": "marcus.svensson@example.com",
         "subjectFields": [
             {
-                "nameOfSubject": "Testdriven softwaredevelopment",
+                "nameOfSubject": "Testdriven softwaredevelopment"
+            },
+            {
                 "nameOfSubject": "Git"
             }
         ],
