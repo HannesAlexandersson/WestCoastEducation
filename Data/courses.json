@@ -78,5 +78,13 @@
     "startDate": "2026-05-11T00:00:00",
     "endDate": "2026-06-01T00:00:00",
     "courseTeacherId": "7a5e2c93-6b14-48f1-9d30-4e8c1a6b7f52"
+  },
+  {
+    "courseId": "830ddc39-5d96-48df-9b7b-8d3f25072316",
+    "title": "Introduction to TypeScript",
+    "courseLength": 4,
+    "startDate": "2026-11-01T00:00:00",
+    "endDate": "2026-12-01T00:00:00",
+    "courseTeacherId": "6f8a2c41-9d73-4b56-a102-7e5c3f8d6b90"
   }
 ]

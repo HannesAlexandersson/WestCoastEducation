@@ -212,7 +212,7 @@ public class MainMenu
                         App.AddNewCourse();
                         break;
                     case 1:
-                        // add new teaches
+                        App.AddNewTeacher();
                         break;
                     case 2:
                         App.AddNewStudent();

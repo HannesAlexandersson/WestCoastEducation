@@ -1,7 +1,3 @@
-using System;
-using System.ComponentModel.Design;
-using WestCoastEducation.Storage;
-
 namespace WestCoastEducation;
 
 public class App
@@ -20,19 +16,134 @@ public class App
         }
     }
 
+    public static void AddNewTeacher()
+    {
+        var teachers = DatabaseHandler.GetList<Teacher>("teachers.json");
+        var newTeacherPersonData = Helper.PromptForPerson("teacher");
+        var newTeacherData = Helper.PromptForTeacher();
+        Console.Clear();
+        Console.ForegroundColor = ConsoleColor.Cyan;
+        Console.WriteLine("please make sure that all info is correct before proceeding...");
+        Console.ReadKey();
+        bool allFieldsCorrect = false;
 
+        while (!allFieldsCorrect)
+        {
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.Clear();
+
+            newTeacherPersonData.FirstName =
+                Helper.ValidateStringInput("Firstname", newTeacherPersonData.FirstName);
+            Console.Clear();
+
+            newTeacherPersonData.LastName =
+                Helper.ValidateStringInput("Lastname", newTeacherPersonData.LastName);
+            Console.Clear();
+
+            newTeacherPersonData.Addresses[0].StreetAddress =
+                Helper.ValidateStringInput("Address", newTeacherPersonData.Addresses[0].StreetAddress);
+            Console.Clear();
+
+            newTeacherPersonData.Addresses[0].PostalCode =
+                Helper.ValidateIntInput("Postal code", newTeacherPersonData.Addresses[0].PostalCode);
+            Console.Clear();
+
+            newTeacherPersonData.Addresses[0].City =
+                Helper.ValidateStringInput("City", newTeacherPersonData.Addresses[0].City);
+            Console.Clear();
+
+            newTeacherPersonData.PhoneNumber =
+                Helper.ValidateStringInput("Phonenumber", newTeacherPersonData.PhoneNumber);
+            Console.Clear();
+
+            newTeacherPersonData.Email =
+                Helper.ValidateStringInput("Email", newTeacherPersonData.Email ?? "");
+            Console.Clear();
+
+            for (int i = 0; i < newTeacherData.SubjectFields.Length; i++)
+            {
+                newTeacherData.SubjectFields[i].NameOfSubject =
+                    Helper.ValidateStringInput(
+                        $"Subject field {i + 1}",
+                        newTeacherData.SubjectFields[i].NameOfSubject);
+                Console.Clear();
+            }
+
+            for (int i = 0; i < newTeacherData.TeachingCourses.Length; i++)
+            {
+                newTeacherData.TeachingCourses[i].Title =
+                    Helper.ValidateStringInput(
+                        $"Course title {i + 1}",
+                        newTeacherData.TeachingCourses[i].Title);
+                Console.Clear();
+            }
+
+            Console.WriteLine("*** NEW TEACHER FIELDS ***");
+            Console.WriteLine($"{newTeacherPersonData.FirstName} {newTeacherPersonData.LastName}");
+            Console.WriteLine($"{newTeacherPersonData.Addresses[0].StreetAddress} {newTeacherPersonData.Addresses[0].PostalCode} {newTeacherPersonData.Addresses[0].City}");
+            Console.WriteLine(newTeacherPersonData.PhoneNumber);
+            Console.WriteLine(newTeacherPersonData.Email);
+
+            Console.WriteLine("Subject fields:");
+            foreach (var subject in newTeacherData.SubjectFields)
+            {
+                Console.WriteLine(subject.NameOfSubject);
+            }
+
+            Console.WriteLine("Teaching courses:");
+            foreach (var course in newTeacherData.TeachingCourses)
+            {
+                Console.WriteLine(course.Title);
+            }
+
+            Console.WriteLine("********-----********");
+            allFieldsCorrect = Helper.ConfirmInput();
+        }
+
+
+        Console.Clear();
+        Console.ForegroundColor = ConsoleColor.Cyan;
+        Console.WriteLine("Press any key to generate a TeacherId for the teacher");
+        Console.ReadKey();
+        Guid id = Helper.GenerateGuid();
+        Console.WriteLine($" TeacherId created: {id}. Press any key to add the new teacher into the database...");
+        Console.ReadKey();
+        Thread.Sleep(550);
+        Console.WriteLine("Please wait while the system adds the teacher to the database...");
+        Thread.Sleep(550);
+
+        // construct the new teacher object with all the user inputted fields
+        Teacher newTeacher = new()
+        {
+            TeacherId = id,
+            FirstName = newTeacherPersonData.FirstName,
+            LastName = newTeacherPersonData.LastName,
+            PhoneNumber = newTeacherPersonData.PhoneNumber,
+            Email = newTeacherPersonData.Email,
+            Addresses = newTeacherPersonData.Addresses,
+            SubjectFields = newTeacherData.SubjectFields,
+            TeachingCourses = newTeacherData.TeachingCourses
+        };
+        Thread.Sleep(550);
+        Console.WriteLine("....");
+        Thread.Sleep(550);
+        Console.WriteLine("Connecting to database...");
+        Thread.Sleep(550);
+        // add the new teacher to the teachers list
+        teachers.Add(newTeacher);
+        Console.WriteLine("....");
+        Thread.Sleep(550);
+        Console.WriteLine("Writing to disk...");
+        // write the new updated list to file
+        DatabaseHandler.SaveList("teachers.json", teachers);
+        Console.WriteLine($"{newTeacherPersonData.FirstName} {newTeacherPersonData.LastName} added to the teacher rolls in the database!");
+        MainMenu.ReturnToMenu();
+    }
 
     public static void AddNewStudent()
     {
         var students = DatabaseHandler.GetList<Student>("students.json"); // get a copy of the current student list for later
-        // ask the user for all new student info       
-        string firstName = Helper.PromptUserForStringInput("Enter students firstname: ");
-        string lastName = Helper.PromptUserForStringInput("Enter students lastname: ");
-        string email = Helper.PromptUserForStringInput("Enter students email: ");
-        string phone = Helper.PromptUserForStringInput("Enter students phonenumber: ");
-        string address = Helper.PromptUserForStringInput("Enter students address: ");
-        int pCode = Helper.PromptUserForIntInput("Enter students postal code: ");
-        string city = Helper.PromptUserForStringInput("Enter what city the student lives in: ");
+        Person personData = Helper.PromptForPerson("student");
         Console.Clear();
 
         Console.ForegroundColor = ConsoleColor.Cyan;
@@ -43,30 +154,41 @@ public class App
         {
             Console.ForegroundColor = ConsoleColor.Cyan;
             Console.Clear();
-            firstName = Helper.ValidateStringInput("Firstname", firstName);
-            Console.Clear();
-            lastName = Helper.ValidateStringInput("Lastname", lastName);
-            Console.Clear();
-            address = Helper.ValidateStringInput("Address", address);
-            Console.Clear();
-            pCode = Helper.ValidateIntInput("Postal code", pCode);
-            Console.Clear();
-            city = Helper.ValidateStringInput("City", city);
-            Console.Clear();
-            phone = Helper.ValidateStringInput("Phonenumber", phone);
-            Console.Clear();
-            email = Helper.ValidateStringInput("Email", email);
+
+            personData.FirstName = Helper.ValidateStringInput("Firstname", personData.FirstName);
             Console.Clear();
 
-            Console.WriteLine("NEW STUDENT FIELDS: ");
-            Console.WriteLine($"{firstName} {lastName}");
-            Console.WriteLine($"{address} {pCode} {city}");
-            Console.WriteLine($"{phone}");
-            Console.WriteLine($"{email}");
+            personData.LastName = Helper.ValidateStringInput("Lastname", personData.LastName);
+            Console.Clear();
+
+            personData.Addresses[0].StreetAddress =
+                Helper.ValidateStringInput("Address", personData.Addresses[0].StreetAddress);
+            Console.Clear();
+
+            personData.Addresses[0].PostalCode =
+                Helper.ValidateIntInput("Postal code", personData.Addresses[0].PostalCode);
+            Console.Clear();
+
+            personData.Addresses[0].City =
+                Helper.ValidateStringInput("City", personData.Addresses[0].City);
+            Console.Clear();
+
+            personData.PhoneNumber =
+                Helper.ValidateStringInput("Phonenumber", personData.PhoneNumber);
+            Console.Clear();
+
+            personData.Email =
+                Helper.ValidateStringInput("Email", personData.Email ?? ""); // its allowed for a person to not have an email, so leave it empty if they dont have one
+            Console.Clear();
+
+            Console.WriteLine("NEW STUDENT FIELDS:");
+            Console.WriteLine($"{personData.FirstName} {personData.LastName}");
+            Console.WriteLine($"{personData.Addresses[0].StreetAddress} {personData.Addresses[0].PostalCode} {personData.Addresses[0].City}");
+            Console.WriteLine(personData.PhoneNumber);
+            Console.WriteLine(personData.Email);
 
             allFieldsCorrect = Helper.ConfirmInput();
         }
-
 
         Console.Clear();
         Console.ForegroundColor = ConsoleColor.Cyan;
@@ -75,50 +197,45 @@ public class App
         Guid id = Helper.GenerateGuid();
         Console.WriteLine($" StudentId created: {id}. Press any key to add the new student into the database...");
         Console.ReadKey();
+        Thread.Sleep(550);
         Console.WriteLine("Please wait while the system adds the student to the database...");
-        Thread.Sleep(450);
-        // construct the new Student object with all the user input fields
+        Thread.Sleep(550);
+        // construct the new Student object with all the user inputted fields
         Student newStudent = new()
         {
-            FirstName = firstName,
-            LastName = lastName,
-            PhoneNumber = phone,
-            Email = email,
-            Addresses =
-            [
-                new Address
-                {
-                    StreetAddress = address,
-                    PostalCode = pCode,
-                    City = city
-                }
-            ],
-            StudentId = id
+            StudentId = id,
+            FirstName = personData.FirstName,
+            LastName = personData.LastName,
+            PhoneNumber = personData.PhoneNumber,
+            Email = personData.Email,
+            Addresses = personData.Addresses
         };
+        Thread.Sleep(550);
         Console.WriteLine("....");
-        Thread.Sleep(450);
+        Thread.Sleep(550);
         Console.WriteLine("Connecting to database...");
-        Thread.Sleep(450);
+        Thread.Sleep(550);
         // add the new student to the students list
         students.Add(newStudent);
         Console.WriteLine("....");
-        Thread.Sleep(450);
+        Thread.Sleep(550);
         Console.WriteLine("Writing to disk...");
         // write the new updated list to file
         DatabaseHandler.SaveList("students.json", students);
-        Console.WriteLine("Student added to the rolls in the database!");
+        Console.WriteLine($"{personData.FirstName} {personData.LastName} added to the rolls in the database!");
         MainMenu.ReturnToMenu();
 
     }
 
     public static void AddNewCourse()
     {
+        var teachers = DatabaseHandler.GetList<Teacher>("teachers.json");
         var courses = DatabaseHandler.GetList<Course>("courses.json");
         string title = Helper.PromptUserForStringInput("Enter Title of course: ");
         int courseLngth = Helper.PromptUserForIntInput("Enter length of course in weeks: ");
         DateTime strtDate = Helper.PromptUserForDateInput("Enter the startdate: ");
         DateTime endDate = Helper.PromptUserForDateInput("Enter the enddate: ");
-        Guid teacherId = Helper.SelectTeacher();
+        Guid teacherId = Helper.SelectTeacher(teachers);
 
         Console.Clear();
 
@@ -177,9 +294,8 @@ public class App
         Console.WriteLine("Writing to disk...");
         // write the new updated list to file
         DatabaseHandler.SaveList("courses.json", courses);
-        Console.WriteLine("Student added to the rolls in the database!");
+        Console.WriteLine($"{newCourse.Title} added to the rolls in the database!");
         MainMenu.ReturnToMenu();
-
     }
     public static void ListAllCourses()
     {

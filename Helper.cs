@@ -1,4 +1,5 @@
 using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace WestCoastEducation;
 
@@ -245,10 +246,71 @@ public class Helper
         }
     }
 
-
-    public static Guid SelectTeacher()
+    public static Person PromptForPerson(string nameOfObject)
     {
-        var teachers = DatabaseHandler.GetList<Teacher>("teachers.json");
+        string firstName = PromptUserForStringInput($"Enter {nameOfObject} firstname: ");
+        string lastName = PromptUserForStringInput($"Enter {nameOfObject} lastname: ");
+        string email = PromptUserForStringInput($"Enter {nameOfObject} email: ");
+        string phone = PromptUserForStringInput($"Enter {nameOfObject} phonenumber: ");
+        string address = PromptUserForStringInput($"Enter {nameOfObject} address: ");
+        int pCode = PromptUserForIntInput($"Enter {nameOfObject} postal code: ");
+        string city = PromptUserForStringInput($"Enter what city the {nameOfObject} lives in: ");
+
+        return new Person
+        {
+            FirstName = firstName,
+            LastName = lastName,
+            Email = email,
+            PhoneNumber = phone,
+            Addresses =
+            [
+                new Address
+            {
+                StreetAddress = address,
+                PostalCode = pCode,
+                City = city
+            }
+            ]
+        };
+    }
+
+    public static Teacher PromptForTeacher()
+    {
+        FieldOfKnowledge[] subjectFields = PromptForSubjectFields();
+
+        List<Course> teachingCourses = SelectCourses();
+
+        return new Teacher
+        {
+            SubjectFields = subjectFields,
+            TeachingCourses = teachingCourses.ToArray()
+        };
+    }
+
+    public static FieldOfKnowledge[] PromptForSubjectFields()
+    {
+        List<FieldOfKnowledge> subjectFields = [];
+
+        bool addMore = true;
+
+        while (addMore)
+        {
+            string subject = PromptUserForStringInput(
+                "Enter a subject field for the teacher: ");
+
+            subjectFields.Add(new FieldOfKnowledge
+            {
+                NameOfSubject = subject
+            });
+
+            addMore = ConfirmInput();
+        }
+
+        return subjectFields.ToArray();
+    }
+
+    public static Guid SelectTeacher(List<Teacher> teachers)
+    {
 
         for (int i = 0; i < teachers.Count; i++)
         {
@@ -271,4 +333,47 @@ public class Helper
         }
     }
 
+    public static List<Course> SelectCourses()
+    {
+        var courses = DatabaseHandler.GetList<Course>("courses.json");
+        List<Course> selectedCourses = [];
+
+        for (int i = 0; i < courses.Count; i++)
+        {
+            Console.WriteLine($"{i + 1}. {courses[i].Title}");
+        }
+
+        bool selectMore = true;
+
+        while (selectMore)
+        {
+            Console.Write("\nSelect a course by number: ");
+            string? input = Console.ReadLine();
+
+            if (int.TryParse(input, out int selection) &&
+                selection >= 1 &&
+                selection <= courses.Count)
+            {
+                Course selectedCourse = courses[selection - 1];
+
+                if (!selectedCourses.Contains(selectedCourse))
+                {
+                    selectedCourses.Add(selectedCourse);
+                    Console.WriteLine($"{selectedCourse.Title} added.");
+                }
+                else
+                {
+                    Console.WriteLine("Course already selected.");
+                }
+
+                selectMore = ConfirmInput();
+            }
+            else
+            {
+                Console.WriteLine("Invalid selection. Please try again.");
+            }
+        }
+
+        return selectedCourses;
+    }
 }

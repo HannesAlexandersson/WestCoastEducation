@@ -1,7 +1,3 @@
-
-
-using WestCoastEducation.Storage;
-
 namespace WestCoastEducation;
 
 public class Course
@@ -11,6 +7,6 @@ public class Course
     public int CourseLength { get; set; }
     public DateTime StartDate { get; set; }
     public DateTime EndDate { get; set; }
-    public required Guid CourseTeacherId { get; set; }
+    public Guid CourseTeacherId { get; set; }
 
 }
