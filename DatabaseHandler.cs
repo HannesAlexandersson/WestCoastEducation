@@ -9,8 +9,7 @@ public class DatabaseHandler
     {
         var db = new DataBase<T>();
         var path = string.Concat(Environment.CurrentDirectory, "/Data/", fileName);
-        Console.WriteLine($"Reading file: {path}");
-        Console.WriteLine($"Reading file: {path} | Type: {typeof(T).Name}");
+
         return db.Read(path);
     }
 

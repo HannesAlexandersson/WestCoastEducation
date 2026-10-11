@@ -274,7 +274,7 @@ public class App
         Console.WriteLine($" CourseId created: {id}. Press any key to add the new course into the database...");
         Console.ReadKey();
         Console.WriteLine("Please wait while the system adds the course to the database...");
-        Thread.Sleep(450);
+        Thread.Sleep(550);
         Course newCourse = new()
         {
             CourseId = id,
@@ -285,12 +285,12 @@ public class App
             CourseTeacherId = teacherId
         };
         Console.WriteLine("....");
-        Thread.Sleep(450);
+        Thread.Sleep(550);
         Console.WriteLine("Connecting to database...");
-        Thread.Sleep(450);
+        Thread.Sleep(550);
         courses.Add(newCourse);
         Console.WriteLine("....");
-        Thread.Sleep(450);
+        Thread.Sleep(550);
         Console.WriteLine("Writing to disk...");
         // write the new updated list to file
         DatabaseHandler.SaveList("courses.json", courses);

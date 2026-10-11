@@ -277,7 +277,7 @@ public class Helper
     public static Teacher PromptForTeacher()
     {
         FieldOfKnowledge[] subjectFields = PromptForSubjectFields();
-
+        Console.WriteLine("Select the course/courses that the new teacher is teaching...");
         List<Course> teachingCourses = SelectCourses();
 
         return new Teacher
@@ -302,8 +302,32 @@ public class Helper
             {
                 NameOfSubject = subject
             });
-
-            addMore = ConfirmInput();
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.WriteLine("Add more subject fields? Y/N");
+            Console.ForegroundColor = ConsoleColor.Green;
+            var userCheck = Console.ReadLine()?.Trim().ToLower();
+            if (string.IsNullOrWhiteSpace(userCheck))
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Incorrect input value! Please answer with Y for yes or N for no!");
+                Console.ResetColor();
+                continue;
+            }
+            else if (userCheck != "y" && userCheck != "n")
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Please only answer with 'Y' or 'N'");
+                Console.ResetColor();
+                continue;
+            }
+            else if (userCheck == "y")
+            {
+                continue;
+            }
+            else if (userCheck == "n")
+            {
+                addMore = false;
+            }
         }
 
         return subjectFields.ToArray();
@@ -319,7 +343,7 @@ public class Helper
 
         while (true)
         {
-            Console.Write("\nSelect a teacher by number: ");
+            Console.WriteLine("Select a teacher by number: ");
             string? input = Console.ReadLine();
 
             if (int.TryParse(input, out int selection) &&
@@ -337,7 +361,7 @@ public class Helper
     {
         var courses = DatabaseHandler.GetList<Course>("courses.json");
         List<Course> selectedCourses = [];
-
+        Console.ForegroundColor = ConsoleColor.Cyan;
         for (int i = 0; i < courses.Count; i++)
         {
             Console.WriteLine($"{i + 1}. {courses[i].Title}");
@@ -347,7 +371,7 @@ public class Helper
 
         while (selectMore)
         {
-            Console.Write("\nSelect a course by number: ");
+            Console.WriteLine("Select a course by number: ");
             string? input = Console.ReadLine();
 
             if (int.TryParse(input, out int selection) &&
@@ -366,7 +390,31 @@ public class Helper
                     Console.WriteLine("Course already selected.");
                 }
 
-                selectMore = ConfirmInput();
+                Console.WriteLine("Add more subject fields? Y/N");
+                Console.ForegroundColor = ConsoleColor.Green;
+                var userCheck = Console.ReadLine()?.Trim().ToLower();
+                if (string.IsNullOrWhiteSpace(userCheck))
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("Incorrect input value! Please answer with Y for yes or N for no!");
+                    Console.ResetColor();
+                    continue;
+                }
+                else if (userCheck != "y" && userCheck != "n")
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("Please only answer with 'Y' or 'N'");
+                    Console.ResetColor();
+                    continue;
+                }
+                else if (userCheck == "y")
+                {
+                    continue;
+                }
+                else if (userCheck == "n")
+                {
+                    selectMore = false;
+                }
             }
             else
             {
