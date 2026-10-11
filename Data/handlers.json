@@ -66,7 +66,8 @@
         "endDate": "2026-12-12T00:00:00",
         "coursePersonnelIds": [
           "01b5bef7-f030-4815-adbe-c3bf2c49bb59"
-        ]
+        ],
+        "courseType": 0
       }
     ],
     "teacherId": "63a0a18f-d7bc-4493-97a5-89f2e12b07df",
@@ -81,5 +82,38 @@
       }
     ],
     "email": "ffss"
+  },
+  {
+    "dateOfEmployment": "2026-01-12T00:00:00",
+    "subjectFields": [
+      {
+        "nameOfSubject": "dgdfg"
+      }
+    ],
+    "teachingCourses": [
+      {
+        "courseId": "830ddc39-5d96-48df-9b7b-8d3f25072316",
+        "title": "Introduction to TypeScript",
+        "courseLength": 4,
+        "startDate": "2026-11-01T00:00:00",
+        "endDate": "2026-12-01T00:00:00",
+        "coursePersonnelIds": [
+          "6f8a2c41-9d73-4b56-a102-7e5c3f8d6b90"
+        ],
+        "courseType": 0
+      }
+    ],
+    "teacherId": "07d73318-32c4-400e-b4cb-ceb0ec6592f4",
+    "firstName": "dgdf",
+    "lastName": "dfgdf",
+    "phoneNumber": "4546456545",
+    "addresses": [
+      {
+        "streetAddress": "dgfdgdfgd",
+        "postalCode": 54654,
+        "city": "dfgfdg"
+      }
+    ],
+    "email": "fdgdfg"
   }
 ]
