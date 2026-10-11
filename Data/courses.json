@@ -5,7 +5,9 @@
     "courseLength": 8,
     "startDate": "2026-01-12T00:00:00",
     "endDate": "2026-03-09T00:00:00",
-    "courseTeacherId": "6f8a2c41-9d73-4b56-a102-7e5c3f8d6b90"
+    "coursePersonnelIds": [
+      "6f8a2c41-9d73-4b56-a102-7e5c3f8d6b90"
+    ]
   },
   {
     "courseId": "b7d3f9a2-1c64-4e8b-9f52-3a6e0d8c1b47",
@@ -13,7 +15,9 @@
     "courseLength": 10,
     "startDate": "2026-01-19T00:00:00",
     "endDate": "2026-03-30T00:00:00",
-    "courseTeacherId": "6f8a2c41-9d73-4b56-a102-7e5c3f8d6b90"
+    "coursePersonnelIds": [
+      "6f8a2c41-9d73-4b56-a102-7e5c3f8d6b90"
+    ]
   },
   {
     "courseId": "c2e6a1b8-5d47-4f93-8c20-7b9e3d6a1f54",
@@ -21,7 +25,9 @@
     "courseLength": 6,
     "startDate": "2026-02-02T00:00:00",
     "endDate": "2026-03-16T00:00:00",
-    "courseTeacherId": "2b7e4d19-8c65-43a1-b902-5f6d7e3a8c41"
+    "coursePersonnelIds": [
+      "2b7e4d19-8c65-43a1-b902-5f6d7e3a8c41"
+    ]
   },
   {
     "courseId": "d9f4b2c7-3a81-46e5-a927-1c6d8b0e4f63",
@@ -29,7 +35,9 @@
     "courseLength": 6,
     "startDate": "2026-02-09T00:00:00",
     "endDate": "2026-03-23T00:00:00",
-    "courseTeacherId": "9c3a6f52-1e84-47d2-a615-8b4f0c7e9d23"
+    "coursePersonnelIds": [
+      "9c3a6f52-1e84-47d2-a615-8b4f0c7e9d23"
+    ]
   },
   {
     "courseId": "e1a7c5d9-8b32-4f64-b013-6d2e9a7c4b85",
@@ -37,7 +45,9 @@
     "courseLength": 8,
     "startDate": "2026-03-02T00:00:00",
     "endDate": "2026-04-27T00:00:00",
-    "courseTeacherId": "9c3a6f52-1e84-47d2-a615-8b4f0c7e9d23"
+    "coursePersonnelIds": [
+      "9c3a6f52-1e84-47d2-a615-8b4f0c7e9d23"
+    ]
   },
   {
     "courseId": "f6b2d8a4-9c15-43e7-8a61-2d5b0e9c7f34",
@@ -45,7 +55,9 @@
     "courseLength": 10,
     "startDate": "2026-03-16T00:00:00",
     "endDate": "2026-05-25T00:00:00",
-    "courseTeacherId": "4d1f8b67-3a92-45e6-b804-2c7d9f1a5e38"
+    "coursePersonnelIds": [
+      "4d1f8b67-3a92-45e6-b804-2c7d9f1a5e38"
+    ]
   },
   {
     "courseId": "17c9e4b6-2a53-48d1-b705-9f3e6c8a2d41",
@@ -53,7 +65,9 @@
     "courseLength": 6,
     "startDate": "2026-04-06T00:00:00",
     "endDate": "2026-05-18T00:00:00",
-    "courseTeacherId": "2b7e4d19-8c65-43a1-b902-5f6d7e3a8c41"
+    "coursePersonnelIds": [
+      "2b7e4d19-8c65-43a1-b902-5f6d7e3a8c41"
+    ]
   },
   {
     "courseId": "28d5a7c1-6e94-4b32-9f08-3c1e7d6a5b42",
@@ -61,7 +75,9 @@
     "courseLength": 5,
     "startDate": "2026-04-13T00:00:00",
     "endDate": "2026-05-18T00:00:00",
-    "courseTeacherId": "7a5e2c93-6b14-48f1-9d30-4e8c1a6b7f52"
+    "coursePersonnelIds": [
+      "7a5e2c93-6b14-48f1-9d30-4e8c1a6b7f52"
+    ]
   },
   {
     "courseId": "39e1b6d4-7a82-45c9-a316-8d2f0b5e7c64",
@@ -69,7 +85,9 @@
     "courseLength": 8,
     "startDate": "2026-05-04T00:00:00",
     "endDate": "2026-06-29T00:00:00",
-    "courseTeacherId": "4d1f8b67-3a92-45e6-b804-2c7d9f1a5e38"
+    "coursePersonnelIds": [
+      "4d1f8b67-3a92-45e6-b804-2c7d9f1a5e38"
+    ]
   },
   {
     "courseId": "4a6f2c8d-1b75-49e3-8d20-5c7a9f1e6b83",
@@ -77,7 +95,9 @@
     "courseLength": 3,
     "startDate": "2026-05-11T00:00:00",
     "endDate": "2026-06-01T00:00:00",
-    "courseTeacherId": "7a5e2c93-6b14-48f1-9d30-4e8c1a6b7f52"
+    "coursePersonnelIds": [
+      "7a5e2c93-6b14-48f1-9d30-4e8c1a6b7f52"
+    ]
   },
   {
     "courseId": "830ddc39-5d96-48df-9b7b-8d3f25072316",
@@ -85,6 +105,18 @@
     "courseLength": 4,
     "startDate": "2026-11-01T00:00:00",
     "endDate": "2026-12-01T00:00:00",
-    "courseTeacherId": "6f8a2c41-9d73-4b56-a102-7e5c3f8d6b90"
+    "coursePersonnelIds": [
+      "6f8a2c41-9d73-4b56-a102-7e5c3f8d6b90"
+    ]
+  },
+  {
+    "courseId": "3039a2b1-20e3-498a-83fb-49c2e247dfab",
+    "title": "fsfd",
+    "courseLength": 4,
+    "startDate": "2025-12-11T00:00:00",
+    "endDate": "2026-12-12T00:00:00",
+    "coursePersonnelIds": [
+      "01b5bef7-f030-4815-adbe-c3bf2c49bb59"
+    ]
   }
 ]

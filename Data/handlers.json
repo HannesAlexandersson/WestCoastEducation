@@ -1,0 +1,85 @@
+[
+  {
+    "dateOfEmployment": "0001-01-01T00:00:00",
+    "subjectFields": [],
+    "teachingCourses": [],
+    "teacherId": "00000000-0000-0000-0000-000000000000",
+    "firstName": "Erik",
+    "lastName": "Lindberg",
+    "phoneNumber": "0701234501",
+    "addresses": [
+      {
+        "streetAddress": "Storgatan 14",
+        "postalCode": 41120,
+        "city": "Göteborg"
+      }
+    ],
+    "email": "erik.lindberg@example.com"
+  },
+  {
+    "dateOfEmployment": "0001-01-01T00:00:00",
+    "subjectFields": [],
+    "teachingCourses": [],
+    "teacherId": "00000000-0000-0000-0000-000000000000",
+    "firstName": "Sara",
+    "lastName": "Andersson",
+    "phoneNumber": "0701234502",
+    "addresses": [
+      {
+        "streetAddress": "Kungsgatan 22",
+        "postalCode": 41119,
+        "city": "Göteborg"
+      }
+    ],
+    "email": "sara.andersson@example.com"
+  },
+  {
+    "dateOfEmployment": "0001-01-01T00:00:00",
+    "subjectFields": [],
+    "teachingCourses": [],
+    "teacherId": "00000000-0000-0000-0000-000000000000",
+    "firstName": "Johan",
+    "lastName": "Bergström",
+    "phoneNumber": "0701234503",
+    "addresses": [
+      {
+        "streetAddress": "Parkgatan 8",
+        "postalCode": 41254,
+        "city": "Göteborg"
+      }
+    ],
+    "email": "johan.bergstrom@example.com"
+  },
+  {
+    "dateOfEmployment": "2026-12-14T00:00:00",
+    "subjectFields": [
+      {
+        "nameOfSubject": "dasdaa"
+      }
+    ],
+    "teachingCourses": [
+      {
+        "courseId": "3039a2b1-20e3-498a-83fb-49c2e247dfab",
+        "title": "fsfd",
+        "courseLength": 4,
+        "startDate": "2025-12-11T00:00:00",
+        "endDate": "2026-12-12T00:00:00",
+        "coursePersonnelIds": [
+          "01b5bef7-f030-4815-adbe-c3bf2c49bb59"
+        ]
+      }
+    ],
+    "teacherId": "63a0a18f-d7bc-4493-97a5-89f2e12b07df",
+    "firstName": "gg",
+    "lastName": "ff",
+    "phoneNumber": "5421354",
+    "addresses": [
+      {
+        "streetAddress": "adas21",
+        "postalCode": 445588,
+        "city": "sdadas"
+      }
+    ],
+    "email": "ffss"
+  }
+]
