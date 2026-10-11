@@ -2,6 +2,6 @@
 
 public class Teacher : Person
 {
-    public string? Subject { get; set; }
+    public FieldOfKnowledge[] SubjectFields { get; set; } = [];
     public Course[] TeachingCourses { get; set; } = [];
 }

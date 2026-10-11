@@ -377,7 +377,7 @@ public class MainMenu
                         foreach (var student in students)
                         {
                             counter++;
-                            Console.WriteLine($"{counter}. {student.StudentId} - {student.Address}");
+                            Console.WriteLine($"{counter}. {student.StudentId} - {student.Addresses}");
                         }
                         ReturnToMenu();
                         break;

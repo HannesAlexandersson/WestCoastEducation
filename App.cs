@@ -113,9 +113,15 @@ public class App
             LastName = lastName,
             PhoneNumber = phone,
             Email = email,
-            Address = address,
-            PostalCode = pCode,
-            City = city,
+            Addresses =
+            [
+                new Address
+                {
+                    StreetAddress = address,
+                    PostalCode = pCode,
+                    City = city
+                }
+            ],
             StudentId = id
         };
         Console.WriteLine("....");
