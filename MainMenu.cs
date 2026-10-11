@@ -371,12 +371,17 @@ public class MainMenu
                         ReturnToMenu();
                         break;
                     case 3:
-                        // list addressess
+                        // List addresses
                         counter = 0;
                         foreach (var student in students)
                         {
                             counter++;
-                            Console.WriteLine($"{counter}. {student.StudentId} - {student.Addresses}");
+                            Console.WriteLine($"{counter}. {student.StudentId}-");
+                            foreach (var address in student.Addresses)
+                            {
+                                Console.Write(
+                                    $" {address.StreetAddress}, {address.PostalCode} {address.City}");
+                            }
                         }
                         ReturnToMenu();
                         break;

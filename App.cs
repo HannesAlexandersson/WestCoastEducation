@@ -182,7 +182,7 @@ public class App
         DateTime strtDate = Helper.PromptUserForDateInput("Enter the startdate: ");
         DateTime endDate = Helper.PromptUserForDateInput("Enter the enddate: ");
         Guid[] teacherId = Helper.SelectTeacher(teachers);
-
+        CourseType courseType = Helper.PromptForCourseType();
         Console.Clear();
 
         Console.ForegroundColor = ConsoleColor.Cyan;
@@ -199,17 +199,20 @@ public class App
             Console.Clear();
             strtDate = Helper.ValidateDateInput("Start Date", strtDate);
             Console.Clear();
-            endDate = Helper.ValidateDateInput("Start Date", endDate);
+            endDate = Helper.ValidateDateInput("End Date", endDate);
             Console.Clear();
-
-
+            if (Helper.ValidateCourseType("Course type", courseType))
+            {
+                courseType = Helper.PromptForCourseType();
+            }
+            Console.Clear();
+            Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine("NEW COURSE FIELDS: ");
             Console.WriteLine($"{title}");
             Console.WriteLine($"{courseLngth} weeks");
             Console.WriteLine($"{strtDate} - {endDate}");
-
+            Console.WriteLine($"Course type: {courseType}");
             allFieldsCorrect = Helper.ConfirmInput(); // confirm all input
-
         }
 
         Console.Clear();
@@ -228,7 +231,8 @@ public class App
             StartDate = strtDate,
             EndDate = endDate,
             CourseLength = courseLngth,
-            CoursePersonnelIds = teacherId
+            CoursePersonnelIds = teacherId,
+            CourseType = courseType
         };
         Console.WriteLine("....");
         Thread.Sleep(550);
@@ -250,7 +254,7 @@ public class App
         foreach (var course in courses)
         {
             counter++;
-            Console.WriteLine(counter + "." + " " + course.Title);
+            Console.WriteLine($"{counter}. {course.Title} => {course.CourseType}"); // Display all courses with name and type (classroom or ditance)
         }
         MainMenu.ReturnToMenu();
     }

@@ -8,7 +8,10 @@
         "courseLength": 8,
         "startDate": "2026-01-12T00:00:00",
         "endDate": "2026-03-09T00:00:00",
-        "coursePersonnelIds": []
+        "coursePersonnelIds": [
+          "6f8a2c41-9d73-4b56-a102-7e5c3f8d6b90"
+        ],
+        "courseType": 1
       },
       {
         "courseId": "b7d3f9a2-1c64-4e8b-9f52-3a6e0d8c1b47",
@@ -16,13 +19,22 @@
         "courseLength": 10,
         "startDate": "2026-01-19T00:00:00",
         "endDate": "2026-03-30T00:00:00",
-        "coursePersonnelIds": []
+        "coursePersonnelIds": [
+          "6f8a2c41-9d73-4b56-a102-7e5c3f8d6b90"
+        ],
+        "courseType": 0
       }
     ],
     "firstName": "Emma",
     "lastName": "Andersson",
     "phoneNumber": "0701-234567",
-    "addresses": [],
+    "addresses": [
+      {
+        "streetAddress": "Storgatan 12",
+        "postalCode": 11451,
+        "city": "Stockholm"
+      }
+    ],
     "email": "emma.andersson@example.com"
   },
   {
@@ -34,7 +46,10 @@
         "courseLength": 6,
         "startDate": "2026-02-02T00:00:00",
         "endDate": "2026-03-16T00:00:00",
-        "coursePersonnelIds": []
+        "coursePersonnelIds": [
+          "2b7e4d19-8c65-43a1-b902-5f6d7e3a8c41"
+        ],
+        "courseType": 0
       },
       {
         "courseId": "17c9e4b6-2a53-48d1-b705-9f3e6c8a2d41",
@@ -42,13 +57,22 @@
         "courseLength": 6,
         "startDate": "2026-04-06T00:00:00",
         "endDate": "2026-05-18T00:00:00",
-        "coursePersonnelIds": []
+        "coursePersonnelIds": [
+          "2b7e4d19-8c65-43a1-b902-5f6d7e3a8c41"
+        ],
+        "courseType": 1
       }
     ],
     "firstName": "Oscar",
     "lastName": "Johansson",
     "phoneNumber": "0722-345678",
-    "addresses": [],
+    "addresses": [
+      {
+        "streetAddress": "Lindholmsallén 8",
+        "postalCode": 41755,
+        "city": "Göteborg"
+      }
+    ],
     "email": "oscar.johansson@example.com"
   },
   {
@@ -60,13 +84,22 @@
         "courseLength": 6,
         "startDate": "2026-02-09T00:00:00",
         "endDate": "2026-03-23T00:00:00",
-        "coursePersonnelIds": []
+        "coursePersonnelIds": [
+          "9c3a6f52-1e84-47d2-a615-8b4f0c7e9d23"
+        ],
+        "courseType": 1
       }
     ],
     "firstName": "William",
     "lastName": "Karlsson",
     "phoneNumber": "0733-456789",
-    "addresses": [],
+    "addresses": [
+      {
+        "streetAddress": "Västra Vallgatan 21",
+        "postalCode": 43241,
+        "city": "Varberg"
+      }
+    ],
     "email": "william.karlsson@example.com"
   },
   {
@@ -78,7 +111,10 @@
         "courseLength": 8,
         "startDate": "2026-03-02T00:00:00",
         "endDate": "2026-04-27T00:00:00",
-        "coursePersonnelIds": []
+        "coursePersonnelIds": [
+          "9c3a6f52-1e84-47d2-a615-8b4f0c7e9d23"
+        ],
+        "courseType": 0
       },
       {
         "courseId": "39e1b6d4-7a82-45c9-a316-8d2f0b5e7c64",
@@ -86,13 +122,22 @@
         "courseLength": 8,
         "startDate": "2026-05-04T00:00:00",
         "endDate": "2026-06-29T00:00:00",
-        "coursePersonnelIds": []
+        "coursePersonnelIds": [
+          "4d1f8b67-3a92-45e6-b804-2c7d9f1a5e38"
+        ],
+        "courseType": 0
       }
     ],
     "firstName": "Alice",
     "lastName": "Nilsson",
     "phoneNumber": "0704-567890",
-    "addresses": [],
+    "addresses": [
+      {
+        "streetAddress": "Drottninggatan 34",
+        "postalCode": 25221,
+        "city": "Helsingborg"
+      }
+    ],
     "email": "alice.nilsson@example.com"
   },
   {
@@ -104,13 +149,22 @@
         "courseLength": 10,
         "startDate": "2026-03-16T00:00:00",
         "endDate": "2026-05-25T00:00:00",
-        "coursePersonnelIds": []
+        "coursePersonnelIds": [
+          "4d1f8b67-3a92-45e6-b804-2c7d9f1a5e38"
+        ],
+        "courseType": 0
       }
     ],
     "firstName": "Lucas",
     "lastName": "Eriksson",
     "phoneNumber": "0725-678901",
-    "addresses": [],
+    "addresses": [
+      {
+        "streetAddress": "Kungsgatan 17",
+        "postalCode": 90326,
+        "city": "Umeå"
+      }
+    ],
     "email": "lucas.eriksson@example.com"
   },
   {
@@ -122,7 +176,10 @@
         "courseLength": 5,
         "startDate": "2026-04-13T00:00:00",
         "endDate": "2026-05-18T00:00:00",
-        "coursePersonnelIds": []
+        "coursePersonnelIds": [
+          "7a5e2c93-6b14-48f1-9d30-4e8c1a6b7f52"
+        ],
+        "courseType": 0
       },
       {
         "courseId": "4a6f2c8d-1b75-49e3-8d20-5c7a9f1e6b83",
@@ -130,13 +187,22 @@
         "courseLength": 3,
         "startDate": "2026-05-11T00:00:00",
         "endDate": "2026-06-01T00:00:00",
-        "coursePersonnelIds": []
+        "coursePersonnelIds": [
+          "7a5e2c93-6b14-48f1-9d30-4e8c1a6b7f52"
+        ],
+        "courseType": 1
       }
     ],
     "firstName": "Maja",
     "lastName": "Larsson",
     "phoneNumber": "0736-789012",
-    "addresses": [],
+    "addresses": [
+      {
+        "streetAddress": "Storgatan 6",
+        "postalCode": 90325,
+        "city": "Umeå"
+      }
+    ],
     "email": "maja.larsson@example.com"
   },
   {
@@ -148,7 +214,10 @@
         "courseLength": 8,
         "startDate": "2026-01-12T00:00:00",
         "endDate": "2026-03-09T00:00:00",
-        "coursePersonnelIds": []
+        "coursePersonnelIds": [
+          "6f8a2c41-9d73-4b56-a102-7e5c3f8d6b90"
+        ],
+        "courseType": 1
       },
       {
         "courseId": "f6b2d8a4-9c15-43e7-8a61-2d5b0e9c7f34",
@@ -156,13 +225,22 @@
         "courseLength": 10,
         "startDate": "2026-03-16T00:00:00",
         "endDate": "2026-05-25T00:00:00",
-        "coursePersonnelIds": []
+        "coursePersonnelIds": [
+          "4d1f8b67-3a92-45e6-b804-2c7d9f1a5e38"
+        ],
+        "courseType": 0
       }
     ],
     "firstName": "Elias",
     "lastName": "Olsson",
     "phoneNumber": "0707-890123",
-    "addresses": [],
+    "addresses": [
+      {
+        "streetAddress": "Södra Förstadsgatan 44",
+        "postalCode": 21143,
+        "city": "Malmö"
+      }
+    ],
     "email": "elias.olsson@example.com"
   },
   {
@@ -174,13 +252,22 @@
         "courseLength": 10,
         "startDate": "2026-01-19T00:00:00",
         "endDate": "2026-03-30T00:00:00",
-        "coursePersonnelIds": []
+        "coursePersonnelIds": [
+          "6f8a2c41-9d73-4b56-a102-7e5c3f8d6b90"
+        ],
+        "courseType": 0
       }
     ],
     "firstName": "Julia",
     "lastName": "Persson",
     "phoneNumber": "0728-901234",
-    "addresses": [],
+    "addresses": [
+      {
+        "streetAddress": "Södra Vägen 9",
+        "postalCode": 41254,
+        "city": "Göteborg"
+      }
+    ],
     "email": "julia.persson@example.com"
   },
   {
@@ -192,7 +279,10 @@
         "courseLength": 6,
         "startDate": "2026-02-02T00:00:00",
         "endDate": "2026-03-16T00:00:00",
-        "coursePersonnelIds": []
+        "coursePersonnelIds": [
+          "2b7e4d19-8c65-43a1-b902-5f6d7e3a8c41"
+        ],
+        "courseType": 0
       },
       {
         "courseId": "e1a7c5d9-8b32-4f64-b013-6d2e9a7c4b85",
@@ -200,13 +290,22 @@
         "courseLength": 8,
         "startDate": "2026-03-02T00:00:00",
         "endDate": "2026-04-27T00:00:00",
-        "coursePersonnelIds": []
+        "coursePersonnelIds": [
+          "9c3a6f52-1e84-47d2-a615-8b4f0c7e9d23"
+        ],
+        "courseType": 0
       }
     ],
     "firstName": "Alexander",
     "lastName": "Svensson",
     "phoneNumber": "0739-012345",
-    "addresses": [],
+    "addresses": [
+      {
+        "streetAddress": "Kyrkogatan 15",
+        "postalCode": 22222,
+        "city": "Lund"
+      }
+    ],
     "email": "alexander.svensson@example.com"
   },
   {
@@ -218,7 +317,10 @@
         "courseLength": 6,
         "startDate": "2026-02-09T00:00:00",
         "endDate": "2026-03-23T00:00:00",
-        "coursePersonnelIds": []
+        "coursePersonnelIds": [
+          "9c3a6f52-1e84-47d2-a615-8b4f0c7e9d23"
+        ],
+        "courseType": 1
       },
       {
         "courseId": "17c9e4b6-2a53-48d1-b705-9f3e6c8a2d41",
@@ -226,37 +328,37 @@
         "courseLength": 6,
         "startDate": "2026-04-06T00:00:00",
         "endDate": "2026-05-18T00:00:00",
-        "coursePersonnelIds": []
+        "coursePersonnelIds": [
+          "2b7e4d19-8c65-43a1-b902-5f6d7e3a8c41"
+        ],
+        "courseType": 1
       }
     ],
     "firstName": "Ella",
     "lastName": "Gustafsson",
     "phoneNumber": "0702-123456",
-    "addresses": [],
+    "addresses": [
+      {
+        "streetAddress": "Östra Storgatan 23",
+        "postalCode": 55321,
+        "city": "Jönköping"
+      }
+    ],
     "email": "ella.gustafsson@example.com"
   },
   {
-    "studentId": "70c6adbb-3829-4e5f-8554-1d2f0efb6b85",
+    "studentId": "efad1c4d-390c-4d99-ad5a-1a0333d65990",
     "enrolledCourses": [],
-    "firstName": "Hannes",
-    "lastName": "Alexandersson",
-    "phoneNumber": "0790112009",
-    "addresses": [],
-    "email": "s103154@gmail.com"
-  },
-  {
-    "studentId": "537c1332-b365-4d18-ad2a-a8af204fc9de",
-    "enrolledCourses": [],
-    "firstName": "dfgfdg",
-    "lastName": "dfgdfgd",
-    "phoneNumber": "556456",
+    "firstName": "sdfdsfs",
+    "lastName": "sdfsdfsd",
+    "phoneNumber": "546546545",
     "addresses": [
       {
-        "streetAddress": "fghfh6",
-        "postalCode": 674756,
-        "city": "fghgf"
+        "streetAddress": "sdfsdf",
+        "postalCode": 545454,
+        "city": "dsfsdf"
       }
     ],
-    "email": "ghfghr"
+    "email": "sdfsdfds"
   }
 ]

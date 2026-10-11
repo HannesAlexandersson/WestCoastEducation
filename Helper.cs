@@ -1,6 +1,3 @@
-using System;
-using System.ComponentModel.DataAnnotations;
-
 namespace WestCoastEducation;
 
 public class Helper
@@ -471,9 +468,41 @@ public class Helper
         return subjectFields.ToArray();
     }
 
+
+    public static CourseType PromptForCourseType()
+    {
+        while (true)
+        {
+            Console.Clear();
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.WriteLine("Select the course type:");
+            Console.WriteLine("1. Classroom");
+            Console.WriteLine("2. Distance");
+
+            Console.ForegroundColor = ConsoleColor.Green;
+            string? input = Console.ReadLine()?.Trim();
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            switch (input)
+            {
+                case "1":
+                    return CourseType.Classroom;
+
+                case "2":
+                    return CourseType.Distance;
+
+                default:
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("Invalid choice. Please enter 1 or 2.");
+                    Console.ResetColor();
+                    Console.ReadKey();
+                    break;
+            }
+        }
+    }
+
     public static Guid[] SelectTeacher(List<Teacher> teachers)
     {
-
+        Console.ForegroundColor = ConsoleColor.Cyan;
         for (int i = 0; i < teachers.Count; i++)
         {
             Console.WriteLine($"{i + 1}. {teachers[i].FirstName} {teachers[i].LastName}");
@@ -482,15 +511,16 @@ public class Helper
         while (true)
         {
             Console.WriteLine("Select a teacher by number: ");
+            Console.ForegroundColor = ConsoleColor.Green;
             string? input = Console.ReadLine();
-
+            Console.ForegroundColor = ConsoleColor.Cyan;
             if (int.TryParse(input, out int selection) &&
                 selection >= 1 &&
                 selection <= teachers.Count)
             {
                 return [teachers[selection - 1].TeacherId];
             }
-
+            Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine("Invalid selection. Please try again.");
         }
     }
@@ -550,10 +580,12 @@ public class Helper
                 }
                 else if (userCheck == "y")
                 {
+                    Console.ResetColor();
                     continue;
                 }
                 else if (userCheck == "n")
                 {
+                    Console.ResetColor();
                     selectMore = false;
                 }
             }
@@ -566,22 +598,41 @@ public class Helper
         return selectedCourses;
     }
 
-    public static bool ValidateInputs(Dictionary<string, object> fields)
+    public static bool ValidateCourseType(string nameOfInput, CourseType input)
     {
-        foreach (var field in fields.Keys.ToList())
+
+        while (true)
         {
-            Console.Clear();
-            if (fields[field] is string stringValue)
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine($"{nameOfInput}: {input}");
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.WriteLine($"If {nameOfInput} is correct, press 'Y'. To change the {nameOfInput} press 'N' ");
+            Console.ForegroundColor = ConsoleColor.Green;
+            var userInput = Console.ReadLine()?.Trim().ToLower();
+            if (string.IsNullOrWhiteSpace(userInput))
             {
-                fields[field] = ValidateStringInput(field, stringValue);
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Incorrect input, please press a key");
+                Console.ResetColor();
+                continue;
             }
-            else if (fields[field] is int intValue)
+            else if (userInput != "n" && userInput != "y")
             {
-                fields[field] = ValidateIntInput(field, intValue);
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Please only answer with 'Y' or 'N'");
+                Console.ResetColor();
+                continue;
+            }
+            else if (userInput == "y")
+            {
+                return false;
+            }
+            else if (userInput == "n")
+            {
+                return true;
+
             }
         }
-
-        return ConfirmInput();
     }
 
     public static void SimulateInsertToDb(string fName, string lName)

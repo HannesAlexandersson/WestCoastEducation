@@ -1,58 +1,103 @@
 [
-    {
-        "adminId": "d4f0b375-8e96-40b3-c254-9b1d6e0f7a43",
-        "firstName": "Anna",
-        "lastName": "Svensson",
-        "phoneNumber": "0701234601",
-        "addresses": [
-            {
-                "streetAddress": "Drottninggatan 31",
-                "postalCode": 41114,
-                "city": "Göteborg"
-            }
+  {
+    "dateOfEmployment": "0001-01-01T00:00:00",
+    "subjectFields": [],
+    "teachingCourses": [],
+    "teacherId": "00000000-0000-0000-0000-000000000000",
+    "firstName": "Anna",
+    "lastName": "Svensson",
+    "phoneNumber": "0701234601",
+    "addresses": [
+      {
+        "streetAddress": "Drottninggatan 31",
+        "postalCode": 41114,
+        "city": "Göteborg"
+      }
+    ],
+    "email": "anna.svensson@example.com"
+  },
+  {
+    "dateOfEmployment": "0001-01-01T00:00:00",
+    "subjectFields": [],
+    "teachingCourses": [],
+    "teacherId": "00000000-0000-0000-0000-000000000000",
+    "firstName": "Marcus",
+    "lastName": "Johansson",
+    "phoneNumber": "0701234602",
+    "addresses": [
+      {
+        "streetAddress": "Vasagatan 17",
+        "postalCode": 41124,
+        "city": "Göteborg"
+      }
+    ],
+    "email": "marcus.johansson@example.com"
+  },
+  {
+    "dateOfEmployment": "0001-01-01T00:00:00",
+    "subjectFields": [],
+    "teachingCourses": [],
+    "teacherId": "00000000-0000-0000-0000-000000000000",
+    "firstName": "Linda",
+    "lastName": "Nilsson",
+    "phoneNumber": "0701234603",
+    "addresses": [
+      {
+        "streetAddress": "Södra Vägen 45",
+        "postalCode": 41254,
+        "city": "Göteborg"
+      }
+    ],
+    "email": "linda.nilsson@example.com"
+  },
+  {
+    "dateOfEmployment": "0001-01-01T00:00:00",
+    "subjectFields": [],
+    "teachingCourses": [],
+    "teacherId": "00000000-0000-0000-0000-000000000000",
+    "firstName": "Peter",
+    "lastName": "Eriksson",
+    "phoneNumber": "0701234604",
+    "addresses": [
+      {
+        "streetAddress": "Östra Hamngatan 12",
+        "postalCode": 41110,
+        "city": "Göteborg"
+      }
+    ],
+    "email": "peter.eriksson@example.com"
+  },
+  {
+    "dateOfEmployment": "2026-12-01T00:00:00",
+    "subjectFields": [
+      {
+        "nameOfSubject": "dsf"
+      }
+    ],
+    "teachingCourses": [
+      {
+        "courseId": "830ddc39-5d96-48df-9b7b-8d3f25072316",
+        "title": "Introduction to TypeScript",
+        "courseLength": 4,
+        "startDate": "2026-11-01T00:00:00",
+        "endDate": "2026-12-01T00:00:00",
+        "coursePersonnelIds": [
+          "6f8a2c41-9d73-4b56-a102-7e5c3f8d6b90"
         ],
-        "email": "anna.svensson@example.com"
-    },
-    {
-        "adminId": "e5a1c486-9fa7-41c4-d365-0c2e7f1a8b54",
-        "firstName": "Marcus",
-        "lastName": "Johansson",
-        "phoneNumber": "0701234602",
-        "addresses": [
-            {
-                "streetAddress": "Vasagatan 17",
-                "postalCode": 41124,
-                "city": "Göteborg"
-            }
-        ],
-        "email": "marcus.johansson@example.com"
-    },
-    {
-        "adminId": "f6b2d597-a0b8-42d5-e476-1d3f8a2b9c65",
-        "firstName": "Linda",
-        "lastName": "Nilsson",
-        "phoneNumber": "0701234603",
-        "addresses": [
-            {
-                "streetAddress": "Södra Vägen 45",
-                "postalCode": 41254,
-                "city": "Göteborg"
-            }
-        ],
-        "email": "linda.nilsson@example.com"
-    },
-    {
-        "adminId": "07c3e6a8-b1c9-43e6-f587-2e4a9b3c0d76",
-        "firstName": "Peter",
-        "lastName": "Eriksson",
-        "phoneNumber": "0701234604",
-        "addresses": [
-            {
-                "streetAddress": "Östra Hamngatan 12",
-                "postalCode": 41110,
-                "city": "Göteborg"
-            }
-        ],
-        "email": "peter.eriksson@example.com"
-    }
+        "courseType": 0
+      }
+    ],
+    "teacherId": "f5c05535-f9aa-4a35-8581-715c554914a5",
+    "firstName": "sadas",
+    "lastName": "asdas",
+    "phoneNumber": "d54544",
+    "addresses": [
+      {
+        "streetAddress": "sdfsdf",
+        "postalCode": 4455,
+        "city": "sdfdsf"
+      }
+    ],
+    "email": "dsfdsf"
+  }
 ]
