@@ -5,13 +5,21 @@ using WestCoastEducation.Managers;
 namespace WestCoastEducation;
 
 public class Menu
-{
+{   // menus backingfields
     private readonly App _app;
     private readonly StudentManager _studentManager;
-    public Menu(App app, StudentManager studentManager)
+    private readonly TeacherManager _teacherManager;
+    private readonly AdminManager _adminManager;
+    private readonly HandlerManager _handlerManager;
+    private readonly CourseManager _courseManager;
+    public Menu(App app, StudentManager studentManager, TeacherManager teacherManager, AdminManager adminManager, HandlerManager handlerManager, CourseManager courseManager)
     {
         _app = app;
         _studentManager = studentManager;
+        _teacherManager = teacherManager;
+        _adminManager = adminManager;
+        _handlerManager = handlerManager;
+        _courseManager = courseManager;
     }
     public void RunMenu()
     {
@@ -217,22 +225,22 @@ public class Menu
                 switch (menuSelect)// whatever the index of menuSelect that the user was on when they pressed enter, that correlating method we call
                 {
                     case 0:
-                        _app.AddNewCourse();
+                        _courseManager.AddNewCourse();
                         break;
                     case 1:
-                        _app.AddNewTeacher();
+                        _teacherManager.AddNewTeacher();
                         break;
                     case 2:
                         _studentManager.AddNewStudent();
                         break;
                     case 3:
-                        _app.AddNewHandler();
+                        _handlerManager.AddNewHandler();
                         break;
                     case 4:
-                        _app.AddNewAdmin();
+                        _adminManager.AddNewAdmin();
                         break;
                     case 5:
-                        _app.ListAllCourses();
+                        _courseManager.ListAllCourses();
                         break;
                     case 6:
                         HandleStudentSubMenu();
