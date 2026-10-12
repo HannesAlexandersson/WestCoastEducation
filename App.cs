@@ -1,14 +1,35 @@
+using WestCoastEducation.Managers;
+
 namespace WestCoastEducation;
 
 public class App
 {
-    public MainMenu Menu = new();
+    private Menu _menu;
+    public List<Student> Students { get; set; }
+    public List<Teacher> Teachers { get; set; }
+    public List<Course> Courses { get; set; }
+    public List<AdminPersonel> Admins { get; set; }
+    public List<Handler> Handlers { get; set; }
+
+    private StudentManager _studentManager;
+
+    public App()
+    {
+        // create lists for all the types. One list for each that gets used throughout the app. Only ever one that lives and dies with App instance
+        Students = DatabaseHandler.GetList<Student>("students.json");
+        Teachers = DatabaseHandler.GetList<Teacher>("teachers.json");
+        Courses = DatabaseHandler.GetList<Course>("courses.json");
+        Admins = DatabaseHandler.GetList<AdminPersonel>("admins.json");
+        Handlers = DatabaseHandler.GetList<Handler>("handler.json");
+        _studentManager = new StudentManager(Students); // send the list of students to the manager so we always only use the one list
+        _menu = new Menu(this, _studentManager); // create the menu with the current instance of App to avoid circular dependencies with App creating Menu, and in Menu we create an App object. 
+    }
 
     public void Run()
     {
         try
         {
-            Menu.RunMenu();
+            _menu.RunMenu();
         }
         catch (Exception ex)
         {
@@ -16,9 +37,8 @@ public class App
         }
     }
 
-    public static void AddNewTeacher()
+    public void AddNewTeacher()
     {
-        var teachers = DatabaseHandler.GetList<Teacher>("teachers.json");
         Teacher newTeacher = Helper.PromptForPersonell("Teacher");
         Console.Clear();
         Console.ForegroundColor = ConsoleColor.Cyan;
@@ -35,30 +55,29 @@ public class App
         Console.WriteLine("Connecting to database...");
         Thread.Sleep(550);
         // add the new teacher to the teachers list
-        teachers.Add(newTeacher);
+        Teachers.Add(newTeacher);
         Console.WriteLine("....");
         Thread.Sleep(550);
         Console.WriteLine("Writing to disk...");
         // write the new updated list to file
-        DatabaseHandler.SaveList("teachers.json", teachers);
+        DatabaseHandler.SaveList("teachers.json", Teachers);
         Thread.Sleep(550);
         Console.WriteLine($"{newTeacher.FirstName} {newTeacher.LastName} added to the teacher rolls in the database!");
-        MainMenu.ReturnToMenu();
+        Menu.ReturnToMenu();
     }
 
-    public static void AddNewAdmin()
+    public void AddNewAdmin()
     {
-        AddNewPersonnel<AdminPersonel>("admins.json", "Admin"); // use the genric method of adding new adminsitrive personell
+        AddNewPersonnel(Admins, "admins.json", "Admin"); // use the new genric method of adding new adminsitrive personell
     }
-    public static void AddNewHandler()
+    public void AddNewHandler()
     {
-        AddNewPersonnel<Handler>("handlers.json", "Handler");
+        AddNewPersonnel(Handlers, "handlers.json", "Handler"); // use the new genric method of adding new adminsitrive personell
     }
 
-    // this was also really really hard, I thought long and hard on how to create a generic ethod to add in handler AND admin personell
-    public static void AddNewPersonnel<T>(string fileName, string position) where T : Handler, new()
+    // since pretty much all these methods does the same thing exept for names and small details i tried to make a genereic method to handle all adminpersonell
+    public void AddNewPersonnel<T>(List<T> personnelList, string fileName, string position) where T : Handler, new()
     {
-        var personnel = DatabaseHandler.GetList<T>(fileName);
         var newTeacher = Helper.PromptForPersonell(position);
         var dateOfEmployment = Helper.PromptUserForDateInput("Enter the startdate of the employment: ");
         // map all shared propertys & add in the specific from handler class
@@ -82,106 +101,19 @@ public class App
         Console.ReadKey();
         Console.Clear();
         Helper.SimulateInsertToDb(newPerson.FirstName, newPerson.LastName);
-        personnel.Add(newPerson);
-        DatabaseHandler.SaveList(fileName, personnel);
-        MainMenu.ReturnToMenu();
-    }
-    public static void AddNewStudent()
-    {
-        var students = DatabaseHandler.GetList<Student>("students.json"); // get a copy of the current student list for later
-        Person personData = Helper.PromptForPerson("student");
-        Console.Clear();
-
-        Console.ForegroundColor = ConsoleColor.Cyan;
-        Console.WriteLine("please make sure that all info is correct before proceeding...");
-        Console.ReadKey();
-        bool allFieldsCorrect = false;
-        while (!allFieldsCorrect)
-        {
-            Console.ForegroundColor = ConsoleColor.Cyan;
-            Console.Clear();
-
-            personData.FirstName = Helper.ValidateStringInput("Firstname", personData.FirstName);
-            Console.Clear();
-
-            personData.LastName = Helper.ValidateStringInput("Lastname", personData.LastName);
-            Console.Clear();
-
-            personData.Addresses[0].StreetAddress =
-                Helper.ValidateStringInput("Address", personData.Addresses[0].StreetAddress);
-            Console.Clear();
-
-            personData.Addresses[0].PostalCode =
-                Helper.ValidateIntInput("Postal code", personData.Addresses[0].PostalCode);
-            Console.Clear();
-
-            personData.Addresses[0].City =
-                Helper.ValidateStringInput("City", personData.Addresses[0].City);
-            Console.Clear();
-
-            personData.PhoneNumber =
-                Helper.ValidateStringInput("Phonenumber", personData.PhoneNumber);
-            Console.Clear();
-
-            personData.Email =
-                Helper.ValidateStringInput("Email", personData.Email ?? ""); // its allowed for a person to not have an email, so leave it empty if they dont have one
-            Console.Clear();
-
-            Console.WriteLine("NEW STUDENT FIELDS:");
-            Console.WriteLine($"{personData.FirstName} {personData.LastName}");
-            Console.WriteLine($"{personData.Addresses[0].StreetAddress} {personData.Addresses[0].PostalCode} {personData.Addresses[0].City}");
-            Console.WriteLine(personData.PhoneNumber);
-            Console.WriteLine(personData.Email);
-
-            allFieldsCorrect = Helper.ConfirmInput();
-        }
-
-        Console.Clear();
-        Console.ForegroundColor = ConsoleColor.Cyan;
-        Console.WriteLine("Press any key to generate a studentId for the student");
-        Console.ReadKey();
-        Guid id = Helper.GenerateGuid();
-        Console.WriteLine($" StudentId created: {id}. Press any key to add the new student into the database...");
-        Console.ReadKey();
-        Thread.Sleep(550);
-        Console.WriteLine("Please wait while the system adds the student to the database...");
-        Thread.Sleep(550);
-        // construct the new Student object with all the user inputted fields
-        Student newStudent = new()
-        {
-            StudentId = id,
-            FirstName = personData.FirstName,
-            LastName = personData.LastName,
-            PhoneNumber = personData.PhoneNumber,
-            Email = personData.Email,
-            Addresses = personData.Addresses
-        };
-        Thread.Sleep(550);
-        Console.WriteLine("....");
-        Thread.Sleep(550);
-        Console.WriteLine("Connecting to database...");
-        Thread.Sleep(550);
-        // add the new student to the students list
-        students.Add(newStudent);
-        Console.WriteLine("....");
-        Thread.Sleep(550);
-        Console.WriteLine("Writing to disk...");
-        // write the new updated list to file
-        DatabaseHandler.SaveList("students.json", students);
-        Console.WriteLine($"{personData.FirstName} {personData.LastName} added to the rolls in the database!");
-        MainMenu.ReturnToMenu();
-
+        personnelList.Add(newPerson);
+        DatabaseHandler.SaveList(fileName, personnelList);
+        Menu.ReturnToMenu();
     }
 
-    public static void AddNewCourse()
+
+    public void AddNewCourse()
     {
-        var teachers = DatabaseHandler.GetList<Teacher>("teachers.json");
-        var courses = DatabaseHandler.GetList<Course>("courses.json");
         string title = Helper.PromptUserForStringInput("Enter Title of course: ");
         int courseLngth = Helper.PromptUserForIntInput("Enter length of course in weeks: ");
         DateTime strtDate = Helper.PromptUserForDateInput("Enter the startdate: ");
         DateTime endDate = Helper.PromptUserForDateInput("Enter the enddate: ");
-        Guid[] teacherId = Helper.SelectTeacher(teachers);
+        Guid[] teacherId = Helper.SelectTeacher(Teachers);
         CourseType courseType = Helper.PromptForCourseType();
         Console.Clear();
 
@@ -238,24 +170,23 @@ public class App
         Thread.Sleep(550);
         Console.WriteLine("Connecting to database...");
         Thread.Sleep(550);
-        courses.Add(newCourse);
+        Courses.Add(newCourse);
         Console.WriteLine("....");
         Thread.Sleep(550);
         Console.WriteLine("Writing to disk...");
         // write the new updated list to file
-        DatabaseHandler.SaveList("courses.json", courses);
+        DatabaseHandler.SaveList("courses.json", Courses);
         Console.WriteLine($"{newCourse.Title} added to the rolls in the database!");
-        MainMenu.ReturnToMenu();
+        Menu.ReturnToMenu();
     }
-    public static void ListAllCourses()
+    public void ListAllCourses()
     {
-        var courses = DatabaseHandler.GetList<Course>("courses.json");
         int counter = 0;
-        foreach (var course in courses)
+        foreach (var course in Courses)
         {
             counter++;
             Console.WriteLine($"{counter}. {course.Title} => {course.CourseType}"); // Display all courses with name and type (classroom or ditance)
         }
-        MainMenu.ReturnToMenu();
+        Menu.ReturnToMenu();
     }
 }
