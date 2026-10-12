@@ -1,10 +1,26 @@
 ﻿using Microsoft.VisualBasic;
 using WestCoastEducation.Storage;
+using WestCoastEducation.Managers;
 
 namespace WestCoastEducation;
 
-public class MainMenu
-{
+public class Menu
+{   // menus backingfields
+    private readonly App _app;
+    private readonly StudentManager _studentManager;
+    private readonly TeacherManager _teacherManager;
+    private readonly AdminManager _adminManager;
+    private readonly HandlerManager _handlerManager;
+    private readonly CourseManager _courseManager;
+    public Menu(App app, StudentManager studentManager, TeacherManager teacherManager, AdminManager adminManager, HandlerManager handlerManager, CourseManager courseManager)
+    {
+        _app = app;
+        _studentManager = studentManager;
+        _teacherManager = teacherManager;
+        _adminManager = adminManager;
+        _handlerManager = handlerManager;
+        _courseManager = courseManager;
+    }
     public void RunMenu()
     {
         string[] menuOptions = ["1. Add new course", "2. Add new teacher", "3. Add new student", "4. Add new handler", "5. Add new admins", "6. List all courses", "7. List all students", "8. Exit"];
@@ -209,25 +225,25 @@ public class MainMenu
                 switch (menuSelect)// whatever the index of menuSelect that the user was on when they pressed enter, that correlating method we call
                 {
                     case 0:
-                        App.AddNewCourse();
+                        _courseManager.AddNewCourse();
                         break;
                     case 1:
-                        App.AddNewTeacher();
+                        _teacherManager.AddNewTeacher();
                         break;
                     case 2:
-                        App.AddNewStudent();
+                        _studentManager.AddNewStudent();
                         break;
                     case 3:
-                        App.AddNewHandler();
+                        _handlerManager.AddNewHandler();
                         break;
                     case 4:
-                        App.AddNewAdmin();
+                        _adminManager.AddNewAdmin();
                         break;
                     case 5:
-                        App.ListAllCourses();
+                        _courseManager.ListAllCourses();
                         break;
                     case 6:
-                        HandleListStudents();
+                        HandleStudentSubMenu();
                         break;
                     case 7:
                         Helper.Terminate();
@@ -240,10 +256,9 @@ public class MainMenu
         }
     }
 
-    public void HandleListStudents()
+    public void HandleStudentSubMenu()
     {
         bool inStudentMenu = true;
-        var students = DatabaseHandler.GetList<Student>("students.json");
         string[] listStudentMenuIptions = ["1. List student names", "2. List student e-mails", "3. List students phonenumbers", "4. List students addressess", "5. Go back to main menu"];
         int studentMenuSelection = 0;
         while (inStudentMenu)
@@ -337,52 +352,26 @@ public class MainMenu
             }
             else if (keyPressed.Key == ConsoleKey.Enter)
             {
-                int counter;
                 switch (studentMenuSelection)
                 {
                     case 0:
                         // list names
-                        counter = 0;
-                        foreach (var student in students)
-                        {
-                            counter++;
-                            Console.WriteLine($"{counter}. {student.FirstName} {student.LastName} - id: {student.StudentId}.");
-                        }
+                        _studentManager.ListStudentData("name");
                         ReturnToMenu();
                         break;
                     case 1:
                         // list emails
-                        counter = 0;
-                        foreach (var student in students)
-                        {
-                            counter++;
-                            Console.WriteLine($"{counter}. {student.StudentId} - {student.Email}");
-                        }
+                        _studentManager.ListStudentData("email");
                         ReturnToMenu();
                         break;
                     case 2:
                         // list phone
-                        counter = 0;
-                        foreach (var student in students)
-                        {
-                            counter++;
-                            Console.WriteLine($"{counter}. {student.StudentId} - {student.PhoneNumber}");
-                        }
+                        _studentManager.ListStudentData("phone");
                         ReturnToMenu();
                         break;
                     case 3:
                         // List addresses
-                        counter = 0;
-                        foreach (var student in students)
-                        {
-                            counter++;
-                            Console.WriteLine($"{counter}. {student.FirstName} {student.LastName} -");
-                            foreach (var address in student.Addresses)
-                            {
-                                Console.WriteLine(
-                                    $" {address.StreetAddress}, {address.PostalCode} {address.City}");
-                            }
-                        }
+                        _studentManager.ListStudentData("address");
                         ReturnToMenu();
                         break;
                     case 4:
