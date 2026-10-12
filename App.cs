@@ -25,7 +25,7 @@ public class App
         Teachers = DatabaseHandler.GetList<Teacher>("teachers.json");
         Courses = DatabaseHandler.GetList<Course>("courses.json");
         Admins = DatabaseHandler.GetList<Admin>("admins.json");
-        Handlers = DatabaseHandler.GetList<Handler>("handler.json");
+        Handlers = DatabaseHandler.GetList<Handler>("handlers.json");
         _studentManager = new StudentManager(Students);
         _teacherManager = new TeacherManager(Teachers);
         _adminManager = new AdminManager(Admins);
