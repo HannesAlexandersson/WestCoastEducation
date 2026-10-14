@@ -355,7 +355,7 @@ public class Helper
                     item.SetValue(personData,
                         ValidateIntInput(item.Name, number));
                 }
-                else if (item.Name == nameof(personData.Addresses)) // this was really tricky, since Address is an collection of addresses and a class of ots own I needed to get the proeprtyname of Addresses and compare it to item.name so I dont have to hardcode the string to compare
+                else if (item.Name == nameof(personData.Addresses)) // we dont want to hardcode the string to compare
                 {
                     for (int i = 0; i < personData.Addresses.Count; i++)
                     {
@@ -368,7 +368,7 @@ public class Helper
                 Console.Clear();
             }
 
-            for (int i = 0; i < subjectFields.Length; i++) // this is more straightforward, I simply iterate thorugh the subjectField array and call the validation method for each iteration
+            for (int i = 0; i < subjectFields.Length; i++) //iterate thorugh the subjectField array and call the validation method for each iteration
             {
                 subjectFields[i].NameOfSubject =
                    ValidateStringInput(
@@ -659,42 +659,43 @@ public class Helper
     {
         foreach (T oldObject in list) // oldObject is the type of T IE whatever type of list we send into the methd
         {
-            if (typeof(T) == typeof(Student)) // check for type of the list.  instead of using a string like listType == "student" which could be accidently called with wrong string
+            if (oldObject is Person existingPerson &&
+            newObject is Person newPerson) // since all humanlike classes inherits from person its enough to compare the person propertys for matches
             {
-                if (oldObject is not Student existingStudent ||
-                newObject is not Student newStudent) // if neither the object in the list or the new object is of correct type then go on to next
+                if (existingPerson.FirstName == newPerson.FirstName &&
+                    existingPerson.LastName == newPerson.LastName &&
+                    existingPerson.PhoneNumber == newPerson.PhoneNumber &&
+                    existingPerson.Email == newPerson.Email &&
+                    existingPerson.Addresses.Count > 0 &&
+                    newPerson.Addresses.Count > 0 &&
+                    existingPerson.Addresses[0].StreetAddress ==
+                        newPerson.Addresses[0].StreetAddress &&
+                    existingPerson.Addresses[0].PostalCode ==
+                        newPerson.Addresses[0].PostalCode &&
+                    existingPerson.Addresses[0].City ==
+                        newPerson.Addresses[0].City)
                 {
-                    continue;
+                    return true; // if this was a real production level application i would have seperate checks for propertys that can and cant be shared. For example it is possible that people have the same name, but it isnt possible that people have the same email or phonenumber. 
                 }
-                // check for null references
-                if (existingStudent.Addresses == null ||
-                    newStudent.Addresses == null ||
-                    existingStudent.Addresses.Count == 0 ||
-                    newStudent.Addresses.Count == 0)
-                {
-                    continue;
-                }
-                // do the comparrision, in real production level application I would have special checks for only stuff that cannot be shared, like phonenumber and emails, but here all must match before we return true, we dont care for partial matches since people can have same names etc. 
-                if (existingStudent.FirstName == newStudent.FirstName &&
-                    existingStudent.LastName == newStudent.LastName &&
-                    existingStudent.PhoneNumber == newStudent.PhoneNumber &&
-                    existingStudent.Email == newStudent.Email &&
-                    existingStudent.Addresses[0].StreetAddress ==
-                        newStudent.Addresses[0].StreetAddress &&
-                    existingStudent.Addresses[0].PostalCode ==
-                        newStudent.Addresses[0].PostalCode &&
-                    existingStudent.Addresses[0].City ==
-                        newStudent.Addresses[0].City)
+            }
+            if (oldObject is Course existingCourse &&
+           newObject is Course newCourse)
+            {
+                if (existingCourse.Title == newCourse.Title &&
+                    existingCourse.CourseLength == newCourse.CourseLength &&
+                    existingCourse.StartDate == newCourse.StartDate &&
+                    existingCourse.EndDate == newCourse.EndDate &&
+                    existingCourse.CourseType == newCourse.CourseType &&
+                    existingCourse.CoursePersonnelIds.Length ==
+                        newCourse.CoursePersonnelIds.Length &&
+                    existingCourse.CoursePersonnelIds.All(id =>
+                        newCourse.CoursePersonnelIds.Contains(id)))
                 {
                     return true;
                 }
             }
-            else if (typeof(T) == typeof(Teacher))
-            {
-                // Compare teacher properties
-            }
         }
 
-        return false; // if we dont find a match return false
+        return false;
     }
 }

@@ -21,23 +21,23 @@ public class StudentManager
             counter++;
             if (prop == "name")
             {
-                Console.WriteLine($"{counter}. {student.FirstName} {student.LastName} - id: {student.StudentId}.");
+                Console.WriteLine($"\e[0;34m{counter}. \e[0;33m{student.FirstName} {student.LastName} \e[0;37m- \e[0;36mid: {student.StudentId}.\e[0m");
             }
             else if (prop == "email")
             {
-                Console.WriteLine($"{counter}. {student.StudentId} - {student.Email}");
+                Console.WriteLine($"\e[0;33m{counter}. \e[0;34m{student.StudentId} \e[0;37m- \e[0;36m{student.Email}\e[0m");
             }
             else if (prop == "phone")
             {
-                Console.WriteLine($"{counter}. {student.StudentId} - {student.PhoneNumber}");
+                Console.WriteLine($"\e[0;33m{counter}. \e[0;34m{student.StudentId} \e[0;37m- \e[0;36m{student.PhoneNumber}\e[0m");
             }
             else if (prop == "address")
             {
-                Console.WriteLine($"{counter}. {student.FirstName} {student.LastName} -");
+                Console.WriteLine($"\e[0;33m{counter}. \e[0;34m{student.FirstName} {student.LastName} \e[0;37m-");
                 foreach (var address in student.Addresses)
                 {
                     Console.WriteLine(
-                        $" {address.StreetAddress}, {address.PostalCode} {address.City}");
+                        $" \e[0;36m{address.StreetAddress}, {address.PostalCode} {address.City}\e[0m");
                 }
             }
         }
@@ -103,8 +103,9 @@ public class StudentManager
         // check for if student already exists in list
         if (Helper.CheckForDuplicates(_students, newStudent))
         {
-            Console.WriteLine("Student already exists in the rolls!");
-            return; // early return out of the method if we find a match
+            Console.WriteLine("ERROR!!! Student already exists in the rolls! Press any key to return to menu...");
+            Console.ReadLine();
+            return;
         }
         Console.Clear();
         Console.ForegroundColor = ConsoleColor.Cyan;
