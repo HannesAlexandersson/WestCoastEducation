@@ -27,7 +27,12 @@ public class PersonnelManager<T> where T : AdminPersonel, new() // T must inheri
             TeachingCourses = newTeacher.TeachingCourses,
             DateOfEmployment = dateOfEmployment
         };
-
+        if (Helper.CheckForDuplicates(_personnel, newPerson))
+        {
+            Console.WriteLine("ERROR!!! The personell already exist in the list!!! Press any key to return to menu...");
+            Console.ReadLine();
+            return;
+        }
         Console.Clear();
         Console.ForegroundColor = ConsoleColor.Cyan;
         Console.WriteLine($"Press any key to generate a Id for the new {position}");

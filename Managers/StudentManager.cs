@@ -1,4 +1,5 @@
 using System;
+using System.Reflection.Metadata.Ecma335;
 
 namespace WestCoastEducation.Managers;
 
@@ -20,23 +21,23 @@ public class StudentManager
             counter++;
             if (prop == "name")
             {
-                Console.WriteLine($"{counter}. {student.FirstName} {student.LastName} - id: {student.StudentId}.");
+                Console.WriteLine($"\e[0;34m{counter}. \e[0;33m{student.FirstName} {student.LastName} \e[0;37m- \e[0;36mid: {student.StudentId}.\e[0m");
             }
             else if (prop == "email")
             {
-                Console.WriteLine($"{counter}. {student.StudentId} - {student.Email}");
+                Console.WriteLine($"\e[0;33m{counter}. \e[0;34m{student.StudentId} \e[0;37m- \e[0;36m{student.Email}\e[0m");
             }
             else if (prop == "phone")
             {
-                Console.WriteLine($"{counter}. {student.StudentId} - {student.PhoneNumber}");
+                Console.WriteLine($"\e[0;33m{counter}. \e[0;34m{student.StudentId} \e[0;37m- \e[0;36m{student.PhoneNumber}\e[0m");
             }
             else if (prop == "address")
             {
-                Console.WriteLine($"{counter}. {student.FirstName} {student.LastName} -");
+                Console.WriteLine($"\e[0;33m{counter}. \e[0;34m{student.FirstName} {student.LastName} \e[0;37m-");
                 foreach (var address in student.Addresses)
                 {
                     Console.WriteLine(
-                        $" {address.StreetAddress}, {address.PostalCode} {address.City}");
+                        $" \e[0;36m{address.StreetAddress}, {address.PostalCode} {address.City}\e[0m");
                 }
             }
         }
@@ -90,7 +91,22 @@ public class StudentManager
 
             allFieldsCorrect = Helper.ConfirmInput();
         }
-
+        // if user confirm everything we construct the new Student object with all the user-inputted fields
+        Student newStudent = new()
+        {
+            FirstName = personData.FirstName,
+            LastName = personData.LastName,
+            PhoneNumber = personData.PhoneNumber,
+            Email = personData.Email,
+            Addresses = personData.Addresses
+        };
+        // check for if student already exists in list
+        if (Helper.CheckForDuplicates(_students, newStudent))
+        {
+            Console.WriteLine("ERROR!!! Student already exists in the rolls! Press any key to return to menu...");
+            Console.ReadLine();
+            return;
+        }
         Console.Clear();
         Console.ForegroundColor = ConsoleColor.Cyan;
         Console.WriteLine("Press any key to generate a studentId for the student");
@@ -101,16 +117,8 @@ public class StudentManager
         Thread.Sleep(550);
         Console.WriteLine("Please wait while the system adds the student to the database...");
         Thread.Sleep(550);
-        // construct the new Student object with all the user inputted fields
-        Student newStudent = new()
-        {
-            StudentId = id,
-            FirstName = personData.FirstName,
-            LastName = personData.LastName,
-            PhoneNumber = personData.PhoneNumber,
-            Email = personData.Email,
-            Addresses = personData.Addresses
-        };
+        // add the generated uuid to the student object
+        newStudent.StudentId = id;
         Thread.Sleep(550);
         Console.WriteLine("....");
         Thread.Sleep(550);

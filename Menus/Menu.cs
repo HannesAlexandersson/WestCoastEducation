@@ -5,7 +5,7 @@ using WestCoastEducation.Managers;
 namespace WestCoastEducation;
 
 public class Menu
-{   // menus backingfields
+{
     private readonly App _app;
     private readonly StudentManager _studentManager;
     private readonly TeacherManager _teacherManager;
@@ -355,22 +355,18 @@ public class Menu
                 switch (studentMenuSelection)
                 {
                     case 0:
-                        // list names
                         _studentManager.ListStudentData("name");
                         ReturnToMenu();
                         break;
                     case 1:
-                        // list emails
                         _studentManager.ListStudentData("email");
                         ReturnToMenu();
                         break;
                     case 2:
-                        // list phone
                         _studentManager.ListStudentData("phone");
                         ReturnToMenu();
                         break;
                     case 3:
-                        // List addresses
                         _studentManager.ListStudentData("address");
                         ReturnToMenu();
                         break;

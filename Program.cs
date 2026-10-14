@@ -4,7 +4,14 @@ class Program
 {
     static void Main()
     {
-        App app = new();
-        app.Run();
+        try
+        {
+            App app = new();
+            app.Run();
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
     }
 }

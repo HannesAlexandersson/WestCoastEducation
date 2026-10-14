@@ -19,7 +19,7 @@ public class CourseManager
         foreach (var course in _courses)
         {
             counter++;
-            Console.WriteLine($"{counter}. {course.Title} => {course.CourseType}"); // Display all courses with name and type (classroom or ditance)
+            Console.WriteLine($"\e[0;34m{counter}. {course.Title} =>   \e[0;33m{course.CourseType} \e[0m"); // Display all courses with name and type (classroom or ditance)
         }
         Menu.ReturnToMenu();
     }
@@ -63,7 +63,20 @@ public class CourseManager
             Console.WriteLine($"Course type: {courseType}");
             allFieldsCorrect = Helper.ConfirmInput(); // confirm all input
         }
-
+        Course newCourse = new()
+        {
+            Title = title,
+            StartDate = strtDate,
+            EndDate = endDate,
+            CourseLength = courseLngth,
+            CoursePersonnelIds = teacherId,
+            CourseType = courseType
+        };
+        if (Helper.CheckForDuplicates(_courses, newCourse))
+        {
+            Console.WriteLine("ERROR!!! The course you are trying to add already exists!!! Stand by while the system explodes... (press any key)");
+            return;
+        }
         Console.Clear();
         Console.ForegroundColor = ConsoleColor.Cyan;
         Console.WriteLine("Press any key to generate a CourseID for the Course");
@@ -73,16 +86,8 @@ public class CourseManager
         Console.ReadKey();
         Console.WriteLine("Please wait while the system adds the course to the database...");
         Thread.Sleep(550);
-        Course newCourse = new()
-        {
-            CourseId = id,
-            Title = title,
-            StartDate = strtDate,
-            EndDate = endDate,
-            CourseLength = courseLngth,
-            CoursePersonnelIds = teacherId,
-            CourseType = courseType
-        };
+        // add the id
+        newCourse.CourseId = id;
         Console.WriteLine("....");
         Thread.Sleep(550);
         Console.WriteLine("Connecting to database...");

@@ -14,6 +14,13 @@ public class TeacherManager
     public void AddNewTeacher()
     {
         Teacher newTeacher = Helper.PromptForPersonell("Teacher");
+        //check if the teachers 'Person' propertys already exists in the teachers lsit, if it does it means the teacher already in the list
+        if (Helper.CheckForDuplicates(_teachers, newTeacher))
+        {
+            Console.WriteLine("ERROR!!! The teacher is already in the list! Press any key to return to menu...");
+            Console.ReadLine();
+            return;
+        }
         Console.Clear();
         Console.ForegroundColor = ConsoleColor.Cyan;
         Console.WriteLine("Press any key to generate a TeacherId for the teacher");
