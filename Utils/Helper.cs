@@ -655,4 +655,46 @@ public class Helper
         Thread.Sleep(550);
         Console.WriteLine($"{fName} {lName} added to the teacher rolls in the database!");
     }
+    public static bool CheckForDuplicates<T>(List<T> list, T newObject) where T : class
+    {
+        foreach (T oldObject in list) // oldObject is the type of T IE whatever type of list we send into the methd
+        {
+            if (typeof(T) == typeof(Student)) // check for type of the list.  instead of using a string like listType == "student" which could be accidently called with wrong string
+            {
+                if (oldObject is not Student existingStudent ||
+                newObject is not Student newStudent) // if neither the object in the list or the new object is of correct type then go on to next
+                {
+                    continue;
+                }
+                // check for null references
+                if (existingStudent.Addresses == null ||
+                    newStudent.Addresses == null ||
+                    existingStudent.Addresses.Count == 0 ||
+                    newStudent.Addresses.Count == 0)
+                {
+                    continue;
+                }
+                // do the comparrision, in real production level application I would have special checks for only stuff that cannot be shared, like phonenumber and emails, but here all must match before we return true, we dont care for partial matches since people can have same names etc. 
+                if (existingStudent.FirstName == newStudent.FirstName &&
+                    existingStudent.LastName == newStudent.LastName &&
+                    existingStudent.PhoneNumber == newStudent.PhoneNumber &&
+                    existingStudent.Email == newStudent.Email &&
+                    existingStudent.Addresses[0].StreetAddress ==
+                        newStudent.Addresses[0].StreetAddress &&
+                    existingStudent.Addresses[0].PostalCode ==
+                        newStudent.Addresses[0].PostalCode &&
+                    existingStudent.Addresses[0].City ==
+                        newStudent.Addresses[0].City)
+                {
+                    return true;
+                }
+            }
+            else if (typeof(T) == typeof(Teacher))
+            {
+                // Compare teacher properties
+            }
+        }
+
+        return false; // if we dont find a match return false
+    }
 }

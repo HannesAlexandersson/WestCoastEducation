@@ -1,4 +1,5 @@
 using System;
+using System.Reflection.Metadata.Ecma335;
 
 namespace WestCoastEducation.Managers;
 
@@ -90,7 +91,21 @@ public class StudentManager
 
             allFieldsCorrect = Helper.ConfirmInput();
         }
-
+        // if user confirm everything we construct the new Student object with all the user-inputted fields
+        Student newStudent = new()
+        {
+            FirstName = personData.FirstName,
+            LastName = personData.LastName,
+            PhoneNumber = personData.PhoneNumber,
+            Email = personData.Email,
+            Addresses = personData.Addresses
+        };
+        // check for if student already exists in list
+        if (Helper.CheckForDuplicates(_students, newStudent))
+        {
+            Console.WriteLine("Student already exists in the rolls!");
+            return; // early return out of the method if we find a match
+        }
         Console.Clear();
         Console.ForegroundColor = ConsoleColor.Cyan;
         Console.WriteLine("Press any key to generate a studentId for the student");
@@ -101,16 +116,8 @@ public class StudentManager
         Thread.Sleep(550);
         Console.WriteLine("Please wait while the system adds the student to the database...");
         Thread.Sleep(550);
-        // construct the new Student object with all the user inputted fields
-        Student newStudent = new()
-        {
-            StudentId = id,
-            FirstName = personData.FirstName,
-            LastName = personData.LastName,
-            PhoneNumber = personData.PhoneNumber,
-            Email = personData.Email,
-            Addresses = personData.Addresses
-        };
+        // add the generated uuid to the student object
+        newStudent.StudentId = id;
         Thread.Sleep(550);
         Console.WriteLine("....");
         Thread.Sleep(550);
