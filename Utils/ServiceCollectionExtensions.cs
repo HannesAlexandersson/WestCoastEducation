@@ -28,5 +28,8 @@ public static class ServiceCollectionExtensions
         collection.AddTransient<IService<Course>, CourseServices>(); // IF anyone ever wants the Iservice then we give then the servoice
         collection.AddTransient<IService<Student>, StudentServices>();
         collection.AddTransient<IService<Teacher>, TeacherServices>();
+        collection.AddTransient<IService<Admin>, AdminServices>();
+        collection.AddTransient<IService<Handler>, HandlerServices>();
+
     }
 }

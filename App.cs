@@ -1,21 +1,10 @@
-using WestCoastEducation.Interfaces;
-using WestCoastEducation.Managers;
-using WestCoastEducation.Models;
-
 namespace WestCoastEducation;
 
 public class App
 {
     private readonly Menu _menu;
-
-    public List<Admin> Admins { get; set; }
-    public List<Handler> Handlers { get; set; }
-
     public App(Menu menu) // whenever a App is created an Menu is created
     {
-        Admins = DatabaseHandler.GetList<Admin>("admins.json");
-        Handlers = DatabaseHandler.GetList<Handler>("handlers.json");
-
         _menu = menu;
     }
 

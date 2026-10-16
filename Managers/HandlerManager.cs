@@ -1,14 +1,15 @@
 using System;
+using WestCoastEducation.Classes;
+using WestCoastEducation.Models;
 
 namespace WestCoastEducation.Managers;
 
 public class HandlerManager : PersonnelManager<Handler>
 {
-    private readonly List<Handler> _handlers;
-
-    public HandlerManager(List<Handler> handlers) : base(handlers)
+    private readonly ApplicationData _data;
+    public HandlerManager(ApplicationData data) : base(data.Handlers)
     {
-        _handlers = handlers;
+        _data = data;
     }
 
     public void AddNewHandler()

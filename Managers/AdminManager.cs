@@ -1,15 +1,15 @@
 using System;
+using WestCoastEducation.Classes;
 using WestCoastEducation.Models;
 
 namespace WestCoastEducation.Managers;
 
 public class AdminManager : PersonnelManager<Admin>
 {
-    private readonly List<Admin> _admins;
-
-    public AdminManager(List<Admin> admins) : base(admins) // base refers to the parent class, in this case the PersonnelManager
+    private readonly ApplicationData _data;
+    public AdminManager(ApplicationData data) : base(data.Admins) // base refers to the parent class, in this case the PersonnelManager
     {
-        _admins = admins;
+        _data = data;
     }
 
     public void AddNewAdmin()

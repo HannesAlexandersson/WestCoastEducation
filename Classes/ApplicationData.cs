@@ -10,9 +10,9 @@ public class ApplicationData
     public List<Teacher> Teachers { get; }
     public List<Student> Students { get; }
     public List<Handler> Handlers { get; }
-    public List<AdminPersonel> Admins { get; }
+    public List<Admin> Admins { get; }
 
-    public ApplicationData(IService<Course> courseService, IService<Student> studentService, IService<Teacher> teacherService, IService<AdminPersonel> adminService, IService<Handler> handlerService)
+    public ApplicationData(IService<Course> courseService, IService<Student> studentService, IService<Teacher> teacherService, IService<Admin> adminService, IService<Handler> handlerService)
     {
         Courses = courseService.GetList();
         Teachers = teacherService.GetList();

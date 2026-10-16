@@ -8,14 +8,10 @@ namespace WestCoastEducation;
 
 public class Menu
 {
-    private readonly AdminManager _adminManager;
-    private readonly HandlerManager _handlerManager;
     private readonly IServiceProvider _serviceProvider;
 
-    public Menu(AdminManager adminManager, HandlerManager handlerManager, IServiceProvider serviceProvider)
+    public Menu(IServiceProvider serviceProvider)
     {
-        _adminManager = adminManager;
-        _handlerManager = handlerManager;
         _serviceProvider = serviceProvider;
     }
     private T GetManager<T>() where T : class
@@ -47,6 +43,16 @@ public class Menu
     {
         var manager = GetManager<TeacherManager>();
         manager.AddNewTeacher();
+    }
+    private void NewAdmin()
+    {
+        var manager = GetManager<AdminManager>();
+        manager.AddNewAdmin();
+    }
+    private void NewHandler()
+    {
+        var manager = GetManager<HandlerManager>();
+        manager.AddNewHandler();
     }
     public void RunMenu()
     {
@@ -261,10 +267,10 @@ public class Menu
                         NewStudent();
                         break;
                     case 3:
-                        _handlerManager.AddNewHandler();
+                        NewHandler();
                         break;
                     case 4:
-                        _adminManager.AddNewAdmin();
+                        NewAdmin();
                         break;
                     case 5:
                         GetAllCourses();

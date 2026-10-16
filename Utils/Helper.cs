@@ -1,3 +1,5 @@
+using WestCoastEducation.Models;
+
 namespace WestCoastEducation;
 
 public class Helper

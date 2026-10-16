@@ -1,3 +1,5 @@
+using WestCoastEducation.Models;
+
 namespace WestCoastEducation.Managers;
 
 public class PersonnelManager<T> where T : AdminPersonel, new() // T must inherit from AdminPersonel and have a public parameterless constructor.
