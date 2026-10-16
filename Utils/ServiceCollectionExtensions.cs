@@ -1,0 +1,25 @@
+using System;
+using Microsoft.Extensions.DependencyInjection;
+using WestCoastEducation.Interfaces;
+using WestCoastEducation.Managers;
+using WestCoastEducation.Models;
+using WestCoastEducation.Services;
+
+namespace WestCoastEducation.Utils;
+
+public static class ServiceCollectionExtensions
+{
+    public static void AddServices(this IServiceCollection collection)
+    {
+        collection.AddSingleton<App>(); //we want an app that starts and lives for as long as the program runs
+        collection.AddTransient<Menu>(); // everytihng else we want to create when they are needed and discard when they arent needed
+        collection.AddTransient<StudentManager>();
+        collection.AddTransient<TeacherManager>();
+        collection.AddTransient<AdminManager>();
+        collection.AddTransient<HandlerManager>();
+        collection.AddTransient<CourseManager>();
+        //register all services 
+        collection.AddTransient<IService<Course>, CourseServices>(); // IF anyone ever wants the Iservice then we give then the servoice
+
+    }
+}

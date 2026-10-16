@@ -1,4 +1,5 @@
 using System;
+using WestCoastEducation.Models;
 
 namespace WestCoastEducation.Managers;
 

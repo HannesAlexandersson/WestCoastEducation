@@ -1,6 +1,6 @@
-namespace WestCoastEducation;
+namespace WestCoastEducation.Models;
 
-public class Course
+public record class Course
 {
     public Guid CourseId { get; set; }
     public required string Title { get; set; }
