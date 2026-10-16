@@ -1,5 +1,7 @@
 using System;
 using Microsoft.Extensions.DependencyInjection;
+using WestCoastEducation.Classes;
+using WestCoastEducation.Factories;
 using WestCoastEducation.Interfaces;
 using WestCoastEducation.Managers;
 using WestCoastEducation.Models;
@@ -12,12 +14,16 @@ public static class ServiceCollectionExtensions
     public static void AddServices(this IServiceCollection collection)
     {
         collection.AddSingleton<App>(); //we want an app that starts and lives for as long as the program runs
+        collection.AddSingleton<ApplicationData>(); // we also need the appdata as long as the app will live
+
         collection.AddTransient<Menu>(); // everytihng else we want to create when they are needed and discard when they arent needed
         collection.AddTransient<StudentManager>();
         collection.AddTransient<TeacherManager>();
         collection.AddTransient<AdminManager>();
         collection.AddTransient<HandlerManager>();
+
         collection.AddTransient<CourseManager>();
+        collection.AddTransient<ICourseFactory, CourseFactory>(); // when someone want to use the interface, give them the factory
         //register all services 
         collection.AddTransient<IService<Course>, CourseServices>(); // IF anyone ever wants the Iservice then we give then the servoice
 

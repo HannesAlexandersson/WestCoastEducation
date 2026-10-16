@@ -5,16 +5,16 @@ using WestCoastEducation.Managers;
 namespace WestCoastEducation;
 
 public class Menu
-{   // menus backingfields
-    private readonly App _app;
+{
     private readonly StudentManager _studentManager;
     private readonly TeacherManager _teacherManager;
     private readonly AdminManager _adminManager;
     private readonly HandlerManager _handlerManager;
     private readonly CourseManager _courseManager;
-    public Menu(App app, StudentManager studentManager, TeacherManager teacherManager, AdminManager adminManager, HandlerManager handlerManager, CourseManager courseManager)
+
+    public Menu(StudentManager studentManager, TeacherManager teacherManager, AdminManager adminManager, HandlerManager handlerManager, CourseManager courseManager)
     {
-        _app = app;
+
         _studentManager = studentManager;
         _teacherManager = teacherManager;
         _adminManager = adminManager;

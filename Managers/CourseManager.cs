@@ -1,23 +1,26 @@
 using System;
+using WestCoastEducation.Classes;
+using WestCoastEducation.Interfaces;
 using WestCoastEducation.Models;
 
 namespace WestCoastEducation.Managers;
 
 public class CourseManager
 {
-    private readonly List<Course> _courses;
-    private readonly List<Teacher> _teachers;
+    private readonly ApplicationData _data; // the manager now recives the shared object rather then individual lists 
+    private readonly ICourseFactory _courseFactory;
 
-    public CourseManager(List<Course> courses, List<Teacher> teachers)
+
+    public CourseManager(ApplicationData data, ICourseFactory courseFactory)
     {
-        _courses = courses;
-        _teachers = teachers;
+        _data = data;
+        _courseFactory = courseFactory;
     }
 
     public void ListAllCourses()
     {
         int counter = 0;
-        foreach (var course in _courses)
+        foreach (var course in _data.Courses)
         {
             counter++;
             Console.WriteLine($"{counter}. {course.Title} => {course.CourseType}"); // Display all courses with name and type (classroom or ditance)
@@ -31,7 +34,7 @@ public class CourseManager
         int courseLngth = Helper.PromptUserForIntInput("Enter length of course in weeks: ");
         DateTime strtDate = Helper.PromptUserForDateInput("Enter the startdate: ");
         DateTime endDate = Helper.PromptUserForDateInput("Enter the enddate: ");
-        Guid[] teacherId = Helper.SelectTeacher(_teachers);
+        Guid[] teacherId = Helper.SelectTeacher(_data.Teachers);
         CourseType courseType = Helper.PromptForCourseType();
         Console.Clear();
 
@@ -67,33 +70,29 @@ public class CourseManager
 
         Console.Clear();
         Console.ForegroundColor = ConsoleColor.Cyan;
-        Console.WriteLine("Press any key to generate a CourseID for the Course");
+        Console.WriteLine("Press any key to start the process of adding the course to the system database...");
         Console.ReadKey();
-        Guid id = Helper.GenerateGuid();
-        Console.WriteLine($" CourseId created: {id}. Press any key to add the new course into the database...");
-        Console.ReadKey();
+        Thread.Sleep(550);
         Console.WriteLine("Please wait while the system adds the course to the database...");
         Thread.Sleep(550);
-        Course newCourse = new()
-        {
-            CourseId = id,
-            Title = title,
-            StartDate = strtDate,
-            EndDate = endDate,
-            CourseLength = courseLngth,
-            CoursePersonnelIds = teacherId,
-            CourseType = courseType
-        };
+        // use the factory to create the new course
+        Course newCourse = _courseFactory.Create(
+            title,
+            courseLngth,
+            strtDate,
+            endDate,
+            teacherId,
+            courseType);
         Console.WriteLine("....");
         Thread.Sleep(550);
         Console.WriteLine("Connecting to database...");
         Thread.Sleep(550);
-        _courses.Add(newCourse);
+        _data.Courses.Add(newCourse);
         Console.WriteLine("....");
         Thread.Sleep(550);
         Console.WriteLine("Writing to disk...");
         // write the new updated list to file
-        DatabaseHandler.SaveList("courses.json", _courses);
+        DatabaseHandler.SaveList("courses.json", _data.Courses);
         Console.WriteLine($"{newCourse.Title} added to the rolls in the database!");
         Menu.ReturnToMenu();
     }
