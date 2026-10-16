@@ -1,40 +1,38 @@
+using WestCoastEducation.Factories;
+using WestCoastEducation.Interfaces;
+
 namespace WestCoastEducation.Managers;
 
-public class PersonnelManager<T> where T : AdminPersonel, new() // T must inherit from AdminPersonel and have a public parameterless constructor.
+public class PersonnelManager<T> where T : AdminPersonel, new()
 {
     private readonly List<T> _personnel;
+    private readonly List<Course> _courses;
+    private readonly IDatabase<T> _database;
+    private readonly IPersonnelFactory<T> _personnelFactory;
 
-    public PersonnelManager(List<T> personnel)
+    public PersonnelManager(
+        List<T> personnel,
+        List<Course> courses,
+        IDatabase<T> database,
+        IPersonnelFactory<T> personnelFactory)
     {
         _personnel = personnel;
+        _courses = courses;
+        _database = database;
+        _personnelFactory = personnelFactory;
     }
 
-    // since pretty much all these methods does the same thing exept for names and small details i tried to make a genereic method to handle all adminpersonell
     public void AddNewPersonnel(string fileName, string position)
     {
-        var newTeacher = Helper.PromptForPersonell(position);
+        var teacher = Helper.PromptForPersonell(position, _courses);
         var dateOfEmployment = Helper.PromptUserForDateInput("Enter the startdate of the employment: ");
-
-        // map all shared propertys & add in the specific from handler class
-        T newPerson = new()
-        {
-            FirstName = newTeacher.FirstName,
-            LastName = newTeacher.LastName,
-            Email = newTeacher.Email,
-            PhoneNumber = newTeacher.PhoneNumber,
-            Addresses = newTeacher.Addresses,
-            SubjectFields = newTeacher.SubjectFields,
-            TeachingCourses = newTeacher.TeachingCourses,
-            DateOfEmployment = dateOfEmployment
-        };
 
         Console.Clear();
         Console.ForegroundColor = ConsoleColor.Cyan;
         Console.WriteLine($"Press any key to generate a Id for the new {position}");
         Console.ReadKey();
 
-        newPerson.TeacherId = Helper.GenerateGuid();
-
+        T newPerson = _personnelFactory.Create(teacher, dateOfEmployment);
         Console.WriteLine($" Id created: {newPerson.TeacherId}. Press any key to add {newPerson.FirstName} {newPerson.LastName} into the database...");
         Console.ReadKey();
 
@@ -42,7 +40,7 @@ public class PersonnelManager<T> where T : AdminPersonel, new() // T must inheri
         Helper.SimulateInsertToDb(newPerson.FirstName, newPerson.LastName);
 
         _personnel.Add(newPerson);
-        DatabaseHandler.SaveList(fileName, _personnel);
+        _database.Write(fileName, _personnel);
 
         Menu.ReturnToMenu();
     }

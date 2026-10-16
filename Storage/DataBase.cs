@@ -6,6 +6,8 @@ namespace WestCoastEducation.Storage;
 
 public class DataBase<T> : IDatabase<T> where T : class
 {
+    private readonly IDataFilePathProvider _dataFilePathProvider;
+
     private static readonly JsonSerializerOptions options = new()
     {
         PropertyNamingPolicy = JsonNamingPolicy.CamelCase, //set to camelcase
@@ -14,10 +16,16 @@ public class DataBase<T> : IDatabase<T> where T : class
         PropertyNameCaseInsensitive = true // doenst care about capitals or small case
     };
 
-    public List<T> Read(string path)
+    public DataBase(IDataFilePathProvider dataFilePathProvider)
+    {
+        _dataFilePathProvider = dataFilePathProvider;
+    }
+
+    public List<T> Read(string fileName)
     {
         try
         {
+            string path = _dataFilePathProvider.GetPath(fileName);
             string data = File.ReadAllText(path);
             if (!string.IsNullOrEmpty(data) || !string.IsNullOrWhiteSpace(data))
             {
@@ -34,10 +42,11 @@ public class DataBase<T> : IDatabase<T> where T : class
         }
     }
 
-    public void Write(string path, List<T> data)
+    public void Write(string fileName, List<T> data)
     {
         try
         {
+            string path = _dataFilePathProvider.GetPath(fileName);
             string json = JsonSerializer.Serialize(data, options);
             File.WriteAllText(path, json);
         }

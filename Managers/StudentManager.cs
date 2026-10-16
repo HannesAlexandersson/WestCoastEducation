@@ -1,14 +1,23 @@
 using System;
+using WestCoastEducation.Factories;
+using WestCoastEducation.Interfaces;
 
 namespace WestCoastEducation.Managers;
 
 public class StudentManager
 {
     private readonly List<Student> _students;
+    private readonly IDatabase<Student> _database;
+    private readonly IStudentFactory _studentFactory;
 
-    public StudentManager(List<Student> students)
+    public StudentManager(
+        List<Student> students,
+        IDatabase<Student> database,
+        IStudentFactory studentFactory)
     {
-        _students = students; // we set the list of students that we get from App when we create the Studentmanager to its own backing field for use in this class
+        _students = students;
+        _database = database;
+        _studentFactory = studentFactory;
     }
 
     public void ListStudentData(string prop)
@@ -95,22 +104,12 @@ public class StudentManager
         Console.ForegroundColor = ConsoleColor.Cyan;
         Console.WriteLine("Press any key to generate a studentId for the student");
         Console.ReadKey();
-        Guid id = Helper.GenerateGuid();
-        Console.WriteLine($" StudentId created: {id}. Press any key to add the new student into the database...");
+        Student newStudent = _studentFactory.Create(personData);
+        Console.WriteLine($" StudentId created: {newStudent.StudentId}. Press any key to add the new student into the database...");
         Console.ReadKey();
         Thread.Sleep(550);
         Console.WriteLine("Please wait while the system adds the student to the database...");
         Thread.Sleep(550);
-        // construct the new Student object with all the user inputted fields
-        Student newStudent = new()
-        {
-            StudentId = id,
-            FirstName = personData.FirstName,
-            LastName = personData.LastName,
-            PhoneNumber = personData.PhoneNumber,
-            Email = personData.Email,
-            Addresses = personData.Addresses
-        };
         Thread.Sleep(550);
         Console.WriteLine("....");
         Thread.Sleep(550);
@@ -122,7 +121,7 @@ public class StudentManager
         Thread.Sleep(550);
         Console.WriteLine("Writing to disk...");
         // write the new updated list to file
-        DatabaseHandler.SaveList("students.json", _students);
+        _database.Write("students.json", _students);
         Console.WriteLine($"{personData.FirstName} {personData.LastName} added to the rolls in the database!");
         Menu.ReturnToMenu();
 

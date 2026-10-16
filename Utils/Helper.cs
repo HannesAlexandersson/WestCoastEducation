@@ -98,8 +98,7 @@ public class Helper
 
     public static Guid GenerateGuid()
     {
-        Guid newGuid = Guid.NewGuid();
-        return newGuid;
+        return Guid.NewGuid();
     }
 
     public static string ValidateStringInput(string nameOfInput, string input)
@@ -324,13 +323,13 @@ public class Helper
         };
     }
 
-    public static Teacher PromptForPersonell(string position)
+    public static Teacher PromptForPersonell(string position, List<Course> courses)
     {
         var personData = PromptForPerson(position);
         FieldOfKnowledge[] subjectFields = PromptForSubjectFields();
         Console.ForegroundColor = ConsoleColor.Cyan;
         Console.WriteLine($"Select the course/courses that the new {position} is handling...");
-        List<Course> teachingCourses = SelectCourses();
+        List<Course> teachingCourses = SelectCourses(courses);
 
         Console.ForegroundColor = ConsoleColor.Cyan;
         Console.WriteLine("please make sure that all info is correct before proceeding...");
@@ -525,9 +524,8 @@ public class Helper
         }
     }
 
-    public static List<Course> SelectCourses()
+    public static List<Course> SelectCourses(List<Course> courses)
     {
-        var courses = DatabaseHandler.GetList<Course>("courses.json");
         List<Course> selectedCourses = [];
         Console.ForegroundColor = ConsoleColor.Cyan;
         for (int i = 0; i < courses.Count; i++)

@@ -1,4 +1,6 @@
 using System;
+using WestCoastEducation.Factories;
+using WestCoastEducation.Interfaces;
 
 namespace WestCoastEducation.Managers;
 
@@ -6,11 +8,19 @@ public class CourseManager
 {
     private readonly List<Course> _courses;
     private readonly List<Teacher> _teachers;
+    private readonly IDatabase<Course> _database;
+    private readonly ICourseFactory _courseFactory;
 
-    public CourseManager(List<Course> courses, List<Teacher> teachers)
+    public CourseManager(
+        List<Course> courses,
+        List<Teacher> teachers,
+        IDatabase<Course> database,
+        ICourseFactory courseFactory)
     {
         _courses = courses;
         _teachers = teachers;
+        _database = database;
+        _courseFactory = courseFactory;
     }
 
     public void ListAllCourses()
@@ -68,21 +78,11 @@ public class CourseManager
         Console.ForegroundColor = ConsoleColor.Cyan;
         Console.WriteLine("Press any key to generate a CourseID for the Course");
         Console.ReadKey();
-        Guid id = Helper.GenerateGuid();
-        Console.WriteLine($" CourseId created: {id}. Press any key to add the new course into the database...");
+        Course newCourse = _courseFactory.Create(title, courseLngth, strtDate, endDate, teacherId, courseType);
+        Console.WriteLine($" CourseId created: {newCourse.CourseId}. Press any key to add the new course into the database...");
         Console.ReadKey();
         Console.WriteLine("Please wait while the system adds the course to the database...");
         Thread.Sleep(550);
-        Course newCourse = new()
-        {
-            CourseId = id,
-            Title = title,
-            StartDate = strtDate,
-            EndDate = endDate,
-            CourseLength = courseLngth,
-            CoursePersonnelIds = teacherId,
-            CourseType = courseType
-        };
         Console.WriteLine("....");
         Thread.Sleep(550);
         Console.WriteLine("Connecting to database...");
@@ -92,7 +92,7 @@ public class CourseManager
         Thread.Sleep(550);
         Console.WriteLine("Writing to disk...");
         // write the new updated list to file
-        DatabaseHandler.SaveList("courses.json", _courses);
+        _database.Write("courses.json", _courses);
         Console.WriteLine($"{newCourse.Title} added to the rolls in the database!");
         Menu.ReturnToMenu();
     }
