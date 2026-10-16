@@ -1,5 +1,7 @@
 using System;
 using WestCoastEducation.Classes;
+using WestCoastEducation.Factories;
+using WestCoastEducation.Interfaces;
 using WestCoastEducation.Models;
 
 namespace WestCoastEducation.Managers;
@@ -7,9 +9,12 @@ namespace WestCoastEducation.Managers;
 public class HandlerManager : PersonnelManager<Handler>
 {
     private readonly ApplicationData _data;
-    public HandlerManager(ApplicationData data) : base(data.Handlers)
+    private readonly IHandlerFactory _handlerFactory;
+
+    public HandlerManager(ApplicationData data, IHandlerFactory handlerFactory) : base(data.Handlers, data)
     {
         _data = data;
+        _handlerFactory = handlerFactory;
     }
 
     public void AddNewHandler()

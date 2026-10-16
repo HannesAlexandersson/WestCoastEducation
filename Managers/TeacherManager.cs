@@ -15,7 +15,7 @@ public class TeacherManager
 
     public void AddNewTeacher()
     {
-        Teacher newTeacher = Helper.PromptForPersonell("Teacher");
+        Teacher newTeacher = Helper.PromptForPersonell("Teacher", _data.Courses);
         Console.Clear();
         Console.ForegroundColor = ConsoleColor.Cyan;
         Console.WriteLine("Press any key to generate a TeacherId for the teacher");

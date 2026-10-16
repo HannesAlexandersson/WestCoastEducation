@@ -1,20 +1,27 @@
 using WestCoastEducation.Models;
+using WestCoastEducation.Interfaces;
+using WestCoastEducation.Classes;
 
 namespace WestCoastEducation.Managers;
 
 public class PersonnelManager<T> where T : AdminPersonel, new() // T must inherit from AdminPersonel and have a public parameterless constructor.
 {
+    private readonly ApplicationData _data;
     private readonly List<T> _personnel;
 
-    public PersonnelManager(List<T> personnel)
+    //private readonly Func<AdminPersonel, DateTime, T> _factory; // func is an address to a metod in memory that returns something and have the abiluty to accept arguments
+
+    public PersonnelManager(List<T> personnel, ApplicationData data) // Func<AdminPersonel, DateTime, T> factory
     {
         _personnel = personnel;
+        _data = data;
+
     }
 
     // since pretty much all these methods does the same thing exept for names and small details i tried to make a genereic method to handle all adminpersonell
     public void AddNewPersonnel(string fileName, string position)
     {
-        var newTeacher = Helper.PromptForPersonell(position);
+        var newTeacher = Helper.PromptForPersonell(position, _data.Courses);
         var dateOfEmployment = Helper.PromptUserForDateInput("Enter the startdate of the employment: ");
 
         // map all shared propertys & add in the specific from handler class
@@ -25,8 +32,6 @@ public class PersonnelManager<T> where T : AdminPersonel, new() // T must inheri
             Email = newTeacher.Email,
             PhoneNumber = newTeacher.PhoneNumber,
             Addresses = newTeacher.Addresses,
-            SubjectFields = newTeacher.SubjectFields,
-            TeachingCourses = newTeacher.TeachingCourses,
             DateOfEmployment = dateOfEmployment
         };
 

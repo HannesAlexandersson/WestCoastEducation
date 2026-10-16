@@ -17,14 +17,20 @@ public static class ServiceCollectionExtensions
         collection.AddSingleton<ApplicationData>(); // we also need the appdata as long as the app will live
 
         collection.AddTransient<Menu>(); // everytihng else we want to create when they are needed and discard when they arent needed
+
         collection.AddTransient<StudentManager>();
         collection.AddTransient<TeacherManager>();
         collection.AddTransient<AdminManager>();
         collection.AddTransient<HandlerManager>();
-
         collection.AddTransient<CourseManager>();
+
         collection.AddTransient<ICourseFactory, CourseFactory>(); // when someone want to use the interface, give them the factory
-        //register all services 
+        collection.AddTransient<IAdminFactory, AdminFactory>();
+        collection.AddTransient<ITeacherFactory, TeacherFactory>();
+        collection.AddTransient<IHandlerFactory, HandlerFactory>();
+        collection.AddTransient<IStudentFactory, StudentFactory>();
+
+
         collection.AddTransient<IService<Course>, CourseServices>(); // IF anyone ever wants the Iservice then we give then the servoice
         collection.AddTransient<IService<Student>, StudentServices>();
         collection.AddTransient<IService<Teacher>, TeacherServices>();

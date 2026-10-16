@@ -1,5 +1,6 @@
 using System;
 using WestCoastEducation.Classes;
+using WestCoastEducation.Interfaces;
 using WestCoastEducation.Models;
 
 namespace WestCoastEducation.Managers;
@@ -7,10 +8,11 @@ namespace WestCoastEducation.Managers;
 public class StudentManager
 {
     private readonly ApplicationData _data;
-
-    public StudentManager(ApplicationData data)
+    private readonly IStudentFactory _studentFactory;
+    public StudentManager(ApplicationData data, IStudentFactory studentFactory)
     {
         _data = data;
+        _studentFactory = studentFactory;
     }
 
     public void ListStudentData(string prop)
@@ -48,7 +50,8 @@ public class StudentManager
     {
         Person personData = Helper.PromptForPerson("student");
         Console.Clear();
-
+        List<Course> enrolledCourses = Helper.SelectCourses(_data.Courses);
+        Console.Clear();
         Console.ForegroundColor = ConsoleColor.Cyan;
         Console.WriteLine("please make sure that all info is correct before proceeding...");
         Console.ReadKey();
@@ -84,11 +87,25 @@ public class StudentManager
                 Helper.ValidateStringInput("Email", personData.Email ?? ""); // its allowed for a person to not have an email, so leave it empty if they dont have one
             Console.Clear();
 
+            for (int i = 0; i < enrolledCourses.Count; i++)
+            {
+                enrolledCourses[i].Title =
+                   Helper.ValidateStringInput(
+                        $"Course title {i + 1}",
+                        enrolledCourses[i].Title);
+                Console.Clear();
+            }
+
             Console.WriteLine("NEW STUDENT FIELDS:");
             Console.WriteLine($"{personData.FirstName} {personData.LastName}");
             Console.WriteLine($"{personData.Addresses[0].StreetAddress} {personData.Addresses[0].PostalCode} {personData.Addresses[0].City}");
             Console.WriteLine(personData.PhoneNumber);
             Console.WriteLine(personData.Email);
+            Console.WriteLine("Courses:");
+            foreach (var course in enrolledCourses)
+            {
+                Console.WriteLine(course.Title);
+            }
 
             allFieldsCorrect = Helper.ConfirmInput();
         }
@@ -103,16 +120,17 @@ public class StudentManager
         Thread.Sleep(550);
         Console.WriteLine("Please wait while the system adds the student to the database...");
         Thread.Sleep(550);
-        // construct the new Student object with all the user inputted fields
-        Student newStudent = new()
-        {
-            StudentId = id,
-            FirstName = personData.FirstName,
-            LastName = personData.LastName,
-            PhoneNumber = personData.PhoneNumber,
-            Email = personData.Email,
-            Addresses = personData.Addresses
-        };
+        // use the factory to create the new student
+        Student newStudent = _studentFactory.Create(
+
+            personData.FirstName,
+            personData.LastName,
+            personData.PhoneNumber,
+            personData.Addresses,
+            personData.Email,
+            id,
+            enrolledCourses
+        );
         Thread.Sleep(550);
         Console.WriteLine("....");
         Thread.Sleep(550);
