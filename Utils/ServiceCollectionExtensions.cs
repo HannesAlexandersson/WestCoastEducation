@@ -26,6 +26,6 @@ public static class ServiceCollectionExtensions
         collection.AddTransient<ICourseFactory, CourseFactory>(); // when someone want to use the interface, give them the factory
         //register all services 
         collection.AddTransient<IService<Course>, CourseServices>(); // IF anyone ever wants the Iservice then we give then the servoice
-
+        collection.AddTransient<IService<Student>, StudentServices>();
     }
 }

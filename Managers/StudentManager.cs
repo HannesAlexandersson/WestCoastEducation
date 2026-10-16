@@ -1,21 +1,23 @@
 using System;
+using WestCoastEducation.Classes;
+using WestCoastEducation.Models;
 
 namespace WestCoastEducation.Managers;
 
 public class StudentManager
 {
-    private readonly List<Student> _students;
+    private readonly ApplicationData _data;
 
-    public StudentManager(List<Student> students)
+    public StudentManager(ApplicationData data)
     {
-        _students = students; // we set the list of students that we get from App when we create the Studentmanager to its own backing field for use in this class
+        _data = data;
     }
 
     public void ListStudentData(string prop)
     {
         int counter;
         counter = 0;
-        foreach (var student in _students)
+        foreach (var student in _data.Students)
         {
             counter++;
             if (prop == "name")
@@ -117,12 +119,12 @@ public class StudentManager
         Console.WriteLine("Connecting to database...");
         Thread.Sleep(550);
         // add the new student to the students list
-        _students.Add(newStudent);
+        _data.Students.Add(newStudent);
         Console.WriteLine("....");
         Thread.Sleep(550);
         Console.WriteLine("Writing to disk...");
         // write the new updated list to file
-        DatabaseHandler.SaveList("students.json", _students);
+        DatabaseHandler.SaveList("students.json", _data.Students);
         Console.WriteLine($"{personData.FirstName} {personData.LastName} added to the rolls in the database!");
         Menu.ReturnToMenu();
 

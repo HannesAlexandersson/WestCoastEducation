@@ -1,25 +1,48 @@
 ﻿using Microsoft.VisualBasic;
 using WestCoastEducation.Storage;
 using WestCoastEducation.Managers;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace WestCoastEducation;
 
 public class Menu
 {
-    private readonly StudentManager _studentManager;
     private readonly TeacherManager _teacherManager;
     private readonly AdminManager _adminManager;
     private readonly HandlerManager _handlerManager;
-    private readonly CourseManager _courseManager;
+    private readonly IServiceProvider _serviceProvider;
 
-    public Menu(StudentManager studentManager, TeacherManager teacherManager, AdminManager adminManager, HandlerManager handlerManager, CourseManager courseManager)
+    public Menu(StudentManager studentManager, TeacherManager teacherManager, AdminManager adminManager, HandlerManager handlerManager, IServiceProvider serviceProvider)
     {
-
-        _studentManager = studentManager;
         _teacherManager = teacherManager;
         _adminManager = adminManager;
         _handlerManager = handlerManager;
-        _courseManager = courseManager;
+        _serviceProvider = serviceProvider;
+    }
+    private T GetManager<T>() where T : class
+    {
+        var manager = _serviceProvider.GetRequiredService<T>();
+        return manager;
+    }
+    private void NewCourse() // now use DI instead to create an manager when needed instead for from start
+    {
+        var manager = GetManager<CourseManager>();
+        manager.AddNewCourse();
+    }
+    private void GetAllCourses()
+    {
+        var manager = GetManager<CourseManager>();
+        manager.ListAllCourses();
+    }
+    private void NewStudent()
+    {
+        var manager = GetManager<StudentManager>();
+        manager.AddNewStudent();
+    }
+    private void GetStudentData(string nameOfData)
+    {
+        var manager = GetManager<StudentManager>();
+        manager.ListStudentData(nameOfData);
     }
     public void RunMenu()
     {
@@ -225,13 +248,13 @@ public class Menu
                 switch (menuSelect)// whatever the index of menuSelect that the user was on when they pressed enter, that correlating method we call
                 {
                     case 0:
-                        _courseManager.AddNewCourse();
+                        NewCourse();
                         break;
                     case 1:
                         _teacherManager.AddNewTeacher();
                         break;
                     case 2:
-                        _studentManager.AddNewStudent();
+                        NewStudent();
                         break;
                     case 3:
                         _handlerManager.AddNewHandler();
@@ -240,7 +263,7 @@ public class Menu
                         _adminManager.AddNewAdmin();
                         break;
                     case 5:
-                        _courseManager.ListAllCourses();
+                        GetAllCourses();
                         break;
                     case 6:
                         HandleStudentSubMenu();
@@ -356,22 +379,22 @@ public class Menu
                 {
                     case 0:
                         // list names
-                        _studentManager.ListStudentData("name");
+                        GetStudentData("name");
                         ReturnToMenu();
                         break;
                     case 1:
                         // list emails
-                        _studentManager.ListStudentData("email");
+                        GetStudentData("email");
                         ReturnToMenu();
                         break;
                     case 2:
                         // list phone
-                        _studentManager.ListStudentData("phone");
+                        GetStudentData("phone");
                         ReturnToMenu();
                         break;
                     case 3:
                         // List addresses
-                        _studentManager.ListStudentData("address");
+                        GetStudentData("address");
                         ReturnToMenu();
                         break;
                     case 4:
@@ -394,6 +417,5 @@ public class Menu
         Console.ResetColor();
         Console.ReadKey();
     }
-
 
 }
