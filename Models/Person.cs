@@ -1,4 +1,4 @@
-﻿namespace WestCoastEducation;
+﻿namespace WestCoastEducation.Models;
 
 public record class Person
 {

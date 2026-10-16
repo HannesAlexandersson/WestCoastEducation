@@ -1,14 +1,16 @@
 using System;
+using WestCoastEducation.Classes;
+using WestCoastEducation.Models;
 
 namespace WestCoastEducation.Managers;
 
 public class TeacherManager
 {
-    private readonly List<Teacher> _teachers;
+    private readonly ApplicationData _data;
 
-    public TeacherManager(List<Teacher> teachers)
+    public TeacherManager(ApplicationData data)
     {
-        _teachers = teachers;
+        _data = data;
     }
 
     public void AddNewTeacher()
@@ -29,12 +31,12 @@ public class TeacherManager
         Console.WriteLine("Connecting to database...");
         Thread.Sleep(550);
         // add the new teacher to the teachers list
-        _teachers.Add(newTeacher);
+        _data.Teachers.Add(newTeacher);
         Console.WriteLine("....");
         Thread.Sleep(550);
         Console.WriteLine("Writing to disk...");
         // write the new updated list to file
-        DatabaseHandler.SaveList("teachers.json", _teachers);
+        DatabaseHandler.SaveList("teachers.json", _data.Teachers);
         Thread.Sleep(550);
         Console.WriteLine($"{newTeacher.FirstName} {newTeacher.LastName} added to the teacher rolls in the database!");
         Menu.ReturnToMenu();

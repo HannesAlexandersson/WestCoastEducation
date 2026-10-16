@@ -27,5 +27,6 @@ public static class ServiceCollectionExtensions
         //register all services 
         collection.AddTransient<IService<Course>, CourseServices>(); // IF anyone ever wants the Iservice then we give then the servoice
         collection.AddTransient<IService<Student>, StudentServices>();
+        collection.AddTransient<IService<Teacher>, TeacherServices>();
     }
 }

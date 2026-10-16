@@ -2,19 +2,18 @@
 using WestCoastEducation.Storage;
 using WestCoastEducation.Managers;
 using Microsoft.Extensions.DependencyInjection;
+using WestCoastEducation.Models;
 
 namespace WestCoastEducation;
 
 public class Menu
 {
-    private readonly TeacherManager _teacherManager;
     private readonly AdminManager _adminManager;
     private readonly HandlerManager _handlerManager;
     private readonly IServiceProvider _serviceProvider;
 
-    public Menu(StudentManager studentManager, TeacherManager teacherManager, AdminManager adminManager, HandlerManager handlerManager, IServiceProvider serviceProvider)
+    public Menu(AdminManager adminManager, HandlerManager handlerManager, IServiceProvider serviceProvider)
     {
-        _teacherManager = teacherManager;
         _adminManager = adminManager;
         _handlerManager = handlerManager;
         _serviceProvider = serviceProvider;
@@ -43,6 +42,11 @@ public class Menu
     {
         var manager = GetManager<StudentManager>();
         manager.ListStudentData(nameOfData);
+    }
+    private void NewTeacher()
+    {
+        var manager = GetManager<TeacherManager>();
+        manager.AddNewTeacher();
     }
     public void RunMenu()
     {
@@ -251,7 +255,7 @@ public class Menu
                         NewCourse();
                         break;
                     case 1:
-                        _teacherManager.AddNewTeacher();
+                        NewTeacher();
                         break;
                     case 2:
                         NewStudent();

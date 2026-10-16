@@ -1,6 +1,6 @@
-﻿namespace WestCoastEducation;
+﻿namespace WestCoastEducation.Models;
 
-public class AdminPersonel : Teacher
+public record class AdminPersonel : Teacher
 {
     public DateTime DateOfEmployment { get; set; }
 }

@@ -11,7 +11,7 @@ public class StudentServices : IService<Student>
     {
         var db = new DataBase<Student>();
         var path = string.Concat(Environment.CurrentDirectory, "/Data/students.json");
-        var courses = db.Read(path);
-        return courses;
+        var students = db.Read(path);
+        return students;
     }
 }

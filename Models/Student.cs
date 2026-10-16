@@ -1,5 +1,4 @@
-﻿using WestCoastEducation.Storage;
-
+﻿
 namespace WestCoastEducation.Models;
 
 public record class Student : Person // Student inherits from the baseclass 'Person'
