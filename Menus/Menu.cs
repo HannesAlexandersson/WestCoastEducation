@@ -30,7 +30,7 @@ public class Menu
         manager.ListAllCourses();
     }
     private void NewStudent()
-    {
+
         var manager = GetManager<StudentManager>();
         manager.AddNewStudent();
     }

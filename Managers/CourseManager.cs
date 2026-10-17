@@ -85,6 +85,7 @@ public class CourseManager
             endDate,
             teacherId,
             courseType);
+
         Console.WriteLine("....");
         Thread.Sleep(550);
         Console.WriteLine("Connecting to database...");

@@ -4,6 +4,7 @@ using WestCoastEducation.Interfaces;
 using WestCoastEducation.Menus;
 using WestCoastEducation.Models;
 
+
 namespace WestCoastEducation.Managers;
 
 public class StudentManager
@@ -110,7 +111,22 @@ public class StudentManager
 
             allFieldsCorrect = Helper.ConfirmInput();
         }
-
+        // if user confirm everything we construct the new Student object with all the user-inputted fields
+        Student newStudent = new()
+        {
+            FirstName = personData.FirstName,
+            LastName = personData.LastName,
+            PhoneNumber = personData.PhoneNumber,
+            Email = personData.Email,
+            Addresses = personData.Addresses
+        };
+        // check for if student already exists in list
+        if (Helper.CheckForDuplicates(_students, newStudent))
+        {
+            Console.WriteLine("ERROR!!! Student already exists in the rolls! Press any key to return to menu...");
+            Console.ReadLine();
+            return;
+        }
         Console.Clear();
         Console.ForegroundColor = ConsoleColor.Cyan;
         Console.WriteLine("Press any key to generate a studentId for the student");

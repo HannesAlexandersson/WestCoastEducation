@@ -1,7 +1,7 @@
 using WestCoastEducation.Menus;
 
 namespace WestCoastEducation;
-
+// Apps responsibilty is to manage the lists via the managers and to run the menus
 public class App
 {
     private readonly Menu _menu;
@@ -10,7 +10,7 @@ public class App
         _menu = menu;
     }
 
-    public void Run()
+  public void Run()
     {
         try
         {
