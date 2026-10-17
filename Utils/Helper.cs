@@ -91,6 +91,34 @@ public class Helper
         }
     }
 
+    public static string PromptForOfficeLocation()
+    {
+        bool incorrect = true;
+        string userInput = "";
+
+        while (incorrect)
+        {
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.WriteLine("Enter the office location (format: Floor: 2, DoorNumber: 15): ");
+            userInput = Console.ReadLine()?.Trim() ?? "";
+
+            if (System.Text.RegularExpressions.Regex.IsMatch(
+                userInput,
+                @"^Floor:\s*\d+,\s*DoorNumber:\s*\d+$"))
+            {
+                incorrect = false;
+            }
+            else
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Invalid format. Example: Floor: 2, DoorNumber: 15");
+                Console.ResetColor();
+            }
+        }
+
+        return userInput;
+    }
+
     public static void CheckInput()
     {
         Console.ForegroundColor = ConsoleColor.Red;

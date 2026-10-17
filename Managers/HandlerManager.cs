@@ -19,6 +19,34 @@ public class HandlerManager : PersonnelManager<Handler>
 
     public void AddNewHandler()
     {
-        AddNewPersonnel("handlers.json", "Handler"); // use the new genric method of adding new adminsitrive personell
+        // get the shared propertys
+        var adminPersonalProps = AddNewPersonnel("Handler");
+        // get handler specefic propertys
+        var handlingCourses = Helper.SelectCourses(_data.Courses).ToArray();
+
+        var handler = _handlerFactory.Create(
+        adminPersonalProps.DateOfEmployment,
+        adminPersonalProps.OfficeLocation,
+        adminPersonalProps.FirstName,
+        adminPersonalProps.LastName,
+        adminPersonalProps.PhoneNumber,
+        adminPersonalProps.Addresses,
+        adminPersonalProps.Email,
+        adminPersonalProps.SubjectFields,
+        adminPersonalProps.TeachingCourses,
+        adminPersonalProps.TeacherId,
+        handlingCourses
+    );
+        Console.Clear();
+        Console.ForegroundColor = ConsoleColor.Cyan;
+        Console.WriteLine("Record created, press any key to add the new handler to the payrolls...");
+        Console.ReadLine();
+
+        Console.Clear();
+        Helper.SimulateInsertToDb(handler.FirstName, handler.LastName);
+
+        _data.Handlers.Add(handler);
+        DatabaseHandler.SaveList("handlers.json", _data.Handlers);
+        Menu.ReturnToMenu();
     }
 }
