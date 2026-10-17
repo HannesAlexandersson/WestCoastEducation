@@ -1,7 +1,8 @@
 using System;
 using WestCoastEducation.Classes;
-using WestCoastEducation.Factories;
+
 using WestCoastEducation.Interfaces;
+using WestCoastEducation.Menus;
 using WestCoastEducation.Models;
 
 namespace WestCoastEducation.Managers;
@@ -21,8 +22,6 @@ public class HandlerManager : PersonnelManager<Handler>
     {
         // get the shared propertys
         var adminPersonalProps = AddNewPersonnel("Handler");
-        // get handler specefic propertys
-        var handlingCourses = Helper.SelectCourses(_data.Courses).ToArray();
 
         var handler = _handlerFactory.Create(
         adminPersonalProps.DateOfEmployment,
@@ -35,7 +34,7 @@ public class HandlerManager : PersonnelManager<Handler>
         adminPersonalProps.SubjectFields,
         adminPersonalProps.TeachingCourses,
         adminPersonalProps.TeacherId,
-        handlingCourses
+        adminPersonalProps.TeachingCourses // this is not actually courses that the handler teaches but courses the handler is handling. it doesnt make any sence to me have the admin personall teach classes, but again the assignment says tha these types should have EVERYTHING the teachers have so my solution is to only ask for one set of courses and use that for what courses the educational leader/handler have responsibilty for
     );
         Console.Clear();
         Console.ForegroundColor = ConsoleColor.Cyan;

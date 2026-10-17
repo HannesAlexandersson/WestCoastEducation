@@ -1,6 +1,8 @@
 using System;
 using WestCoastEducation.Classes;
+using WestCoastEducation.Enums;
 using WestCoastEducation.Interfaces;
+using WestCoastEducation.Menus;
 using WestCoastEducation.Models;
 
 namespace WestCoastEducation.Managers;
@@ -23,7 +25,7 @@ public class CourseManager
         foreach (var course in _data.Courses)
         {
             counter++;
-            Console.WriteLine($"{counter}. {course.Title} => {course.CourseType}"); // Display all courses with name and type (classroom or ditance)
+            Console.WriteLine($"\e[0;34m{counter}. {course.Title} =>   \e[0;33m{course.CourseType} \e[0m");  // Display all courses with name and type (classroom or ditance)
         }
         Menu.ReturnToMenu();
     }

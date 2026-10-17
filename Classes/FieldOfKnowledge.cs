@@ -1,4 +1,4 @@
-﻿namespace WestCoastEducation.Models;
+﻿namespace WestCoastEducation.Classes;
 
 public class FieldOfKnowledge
 {

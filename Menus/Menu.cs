@@ -4,7 +4,7 @@ using WestCoastEducation.Managers;
 using Microsoft.Extensions.DependencyInjection;
 using WestCoastEducation.Models;
 
-namespace WestCoastEducation;
+namespace WestCoastEducation.Menus;
 
 public class Menu
 {

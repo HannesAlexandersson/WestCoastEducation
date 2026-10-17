@@ -1,3 +1,5 @@
+using WestCoastEducation.Enums;
+
 namespace WestCoastEducation.Models;
 
 public record class Course

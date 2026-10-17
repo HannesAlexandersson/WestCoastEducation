@@ -1,4 +1,6 @@
-﻿namespace WestCoastEducation.Models;
+﻿using WestCoastEducation.Classes;
+
+namespace WestCoastEducation.Models;
 
 public record class Teacher : Person // teacher inherits from the baseclass 'Person'
 {

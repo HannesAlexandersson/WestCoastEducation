@@ -1,6 +1,7 @@
 [
   {
     "dateOfEmployment": "0001-01-01T00:00:00",
+    "officeLocation": "",
     "subjectFields": [],
     "teachingCourses": [],
     "teacherId": "00000000-0000-0000-0000-000000000000",
@@ -18,6 +19,7 @@
   },
   {
     "dateOfEmployment": "0001-01-01T00:00:00",
+    "officeLocation": "",
     "subjectFields": [],
     "teachingCourses": [],
     "teacherId": "00000000-0000-0000-0000-000000000000",
@@ -35,6 +37,7 @@
   },
   {
     "dateOfEmployment": "0001-01-01T00:00:00",
+    "officeLocation": "",
     "subjectFields": [],
     "teachingCourses": [],
     "teacherId": "00000000-0000-0000-0000-000000000000",
@@ -52,6 +55,7 @@
   },
   {
     "dateOfEmployment": "0001-01-01T00:00:00",
+    "officeLocation": "",
     "subjectFields": [],
     "teachingCourses": [],
     "teacherId": "00000000-0000-0000-0000-000000000000",
@@ -66,38 +70,5 @@
       }
     ],
     "email": "peter.eriksson@example.com"
-  },
-  {
-    "dateOfEmployment": "2026-12-01T00:00:00",
-    "subjectFields": [
-      {
-        "nameOfSubject": "dsf"
-      }
-    ],
-    "teachingCourses": [
-      {
-        "courseId": "830ddc39-5d96-48df-9b7b-8d3f25072316",
-        "title": "Introduction to TypeScript",
-        "courseLength": 4,
-        "startDate": "2026-11-01T00:00:00",
-        "endDate": "2026-12-01T00:00:00",
-        "coursePersonnelIds": [
-          "6f8a2c41-9d73-4b56-a102-7e5c3f8d6b90"
-        ],
-        "courseType": 0
-      }
-    ],
-    "teacherId": "f5c05535-f9aa-4a35-8581-715c554914a5",
-    "firstName": "sadas",
-    "lastName": "asdas",
-    "phoneNumber": "d54544",
-    "addresses": [
-      {
-        "streetAddress": "sdfsdf",
-        "postalCode": 4455,
-        "city": "sdfdsf"
-      }
-    ],
-    "email": "dsfdsf"
   }
 ]

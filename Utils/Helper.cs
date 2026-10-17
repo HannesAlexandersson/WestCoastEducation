@@ -1,4 +1,5 @@
 using WestCoastEducation.Classes;
+using WestCoastEducation.Enums;
 using WestCoastEducation.Models;
 
 namespace WestCoastEducation;
@@ -100,6 +101,7 @@ public class Helper
         {
             Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine("Enter the office location (format: Floor: 2, DoorNumber: 15): ");
+            Console.ForegroundColor = ConsoleColor.Green;
             userInput = Console.ReadLine()?.Trim() ?? "";
 
             if (System.Text.RegularExpressions.Regex.IsMatch(
@@ -462,37 +464,35 @@ public class Helper
 
         while (addMore)
         {
-            string subject = PromptUserForStringInput($"Enter a subject fields: ");
+            string subject = PromptUserForStringInput("Enter a subject field:");
 
             subjectFields.Add(new FieldOfKnowledge
             {
                 NameOfSubject = subject
             });
-            Console.ForegroundColor = ConsoleColor.Cyan;
-            Console.WriteLine("Add more subject fields? Y/N");
-            Console.ForegroundColor = ConsoleColor.Green;
-            var userCheck = Console.ReadLine()?.Trim().ToLower();
-            if (string.IsNullOrWhiteSpace(userCheck))
+
+            while (true)
             {
+                Console.ForegroundColor = ConsoleColor.Cyan;
+                Console.WriteLine("Add more subject fields? Y/N");
+
+                Console.ForegroundColor = ConsoleColor.Green;
+                var userCheck = Console.ReadLine()?.Trim().ToLower();
+
+                if (userCheck == "y")
+                {
+                    break;
+                }
+
+                if (userCheck == "n")
+                {
+                    addMore = false;
+                    break;
+                }
+
                 Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("Incorrect input value! Please answer with Y for yes or N for no!");
+                Console.WriteLine("Invalid input! Please answer with Y or N.");
                 Console.ResetColor();
-                continue;
-            }
-            else if (userCheck != "y" && userCheck != "n")
-            {
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("Please only answer with 'Y' or 'N'");
-                Console.ResetColor();
-                continue;
-            }
-            else if (userCheck == "y")
-            {
-                continue;
-            }
-            else if (userCheck == "n")
-            {
-                addMore = false;
             }
         }
 
@@ -559,7 +559,9 @@ public class Helper
     public static List<Course> SelectCourses(List<Course> courses)
     {
         List<Course> selectedCourses = [];
+
         Console.ForegroundColor = ConsoleColor.Cyan;
+
         for (int i = 0; i < courses.Count; i++)
         {
             Console.WriteLine($"{i + 1}. {courses[i].Title}");
@@ -569,8 +571,10 @@ public class Helper
 
         while (selectMore)
         {
-            Console.WriteLine("Select a course by number: ");
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.WriteLine("Select a course by number:");
             Console.ForegroundColor = ConsoleColor.Green;
+
             string? input = Console.ReadLine();
 
             if (int.TryParse(input, out int selection) &&
@@ -590,41 +594,38 @@ public class Helper
                     Console.ForegroundColor = ConsoleColor.Cyan;
                     Console.WriteLine("Course already selected.");
                 }
-                Console.ForegroundColor = ConsoleColor.Cyan;
-                Console.WriteLine("Add more subject fields? Y/N");
-                Console.ForegroundColor = ConsoleColor.Green;
-                var userCheck = Console.ReadLine()?.Trim().ToLower();
-                if (string.IsNullOrWhiteSpace(userCheck))
+
+                while (true)
                 {
+                    Console.WriteLine("Add more courses? Y/N");
+                    Console.ForegroundColor = ConsoleColor.Green;
+
+                    var userCheck = Console.ReadLine()?.Trim().ToLower();
+
+                    if (userCheck == "y")
+                    {
+                        break;
+                    }
+
+                    if (userCheck == "n")
+                    {
+                        selectMore = false;
+                        break;
+                    }
+
                     Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("Incorrect input value! Please answer with Y for yes or N for no!");
+                    Console.WriteLine("Invalid input. Please answer with Y or N.");
                     Console.ResetColor();
-                    continue;
-                }
-                else if (userCheck != "y" && userCheck != "n")
-                {
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("Please only answer with 'Y' or 'N'");
-                    Console.ResetColor();
-                    continue;
-                }
-                else if (userCheck == "y")
-                {
-                    Console.ResetColor();
-                    continue;
-                }
-                else if (userCheck == "n")
-                {
-                    Console.ResetColor();
-                    selectMore = false;
                 }
             }
             else
             {
-                Console.WriteLine("Invalid selection. Please try again.");
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Invalid selection. Please enter a valid course number.");
             }
         }
 
+        Console.ResetColor();
         return selectedCourses;
     }
 
@@ -683,6 +684,6 @@ public class Helper
         Thread.Sleep(550);
         Console.WriteLine("Writing to disk...");
         Thread.Sleep(550);
-        Console.WriteLine($"{fName} {lName} added to the teacher rolls in the database!");
+        Console.WriteLine($"{fName} {lName} added to the database!");
     }
 }

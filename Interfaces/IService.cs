@@ -1,6 +1,3 @@
-using System;
-using WestCoastEducation.Models;
-
 namespace WestCoastEducation.Interfaces;
 
 public interface IService<T> where T : class

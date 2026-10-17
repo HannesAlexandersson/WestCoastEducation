@@ -1,3 +1,5 @@
+using WestCoastEducation.Menus;
+
 namespace WestCoastEducation;
 
 public class App

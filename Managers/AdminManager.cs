@@ -1,6 +1,7 @@
 using System;
 using WestCoastEducation.Classes;
 using WestCoastEducation.Interfaces;
+using WestCoastEducation.Menus;
 using WestCoastEducation.Models;
 
 namespace WestCoastEducation.Managers;
@@ -27,8 +28,8 @@ public class AdminManager : PersonnelManager<Admin>
         adminPersonalProps.PhoneNumber,
         adminPersonalProps.Addresses,
         adminPersonalProps.Email,
-        adminPersonalProps.SubjectFields,
-        adminPersonalProps.TeachingCourses,
+        adminPersonalProps.SubjectFields, // again, makes no sence to me but the assignment is very clear about this. They should have EVRYTHING an teacher has...
+        adminPersonalProps.TeachingCourses, // again, makes no sence to me but the assignment is very clear about this. They should have EVRYTHING an teacher has...
         adminPersonalProps.TeacherId
         //OBS!!!! TODO: add in the admin specefics propertys when they are added into the admin record!!
         );

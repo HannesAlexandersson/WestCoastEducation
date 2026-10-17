@@ -1,4 +1,5 @@
 using System;
+using WestCoastEducation.Enums;
 using WestCoastEducation.Models;
 
 namespace WestCoastEducation.Interfaces;

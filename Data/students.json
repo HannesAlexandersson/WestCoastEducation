@@ -345,20 +345,5 @@
       }
     ],
     "email": "ella.gustafsson@example.com"
-  },
-  {
-    "studentId": "efad1c4d-390c-4d99-ad5a-1a0333d65990",
-    "enrolledCourses": [],
-    "firstName": "sdfdsfs",
-    "lastName": "sdfsdfsd",
-    "phoneNumber": "546546545",
-    "addresses": [
-      {
-        "streetAddress": "sdfsdf",
-        "postalCode": 545454,
-        "city": "dsfsdf"
-      }
-    ],
-    "email": "sdfsdfds"
   }
 ]

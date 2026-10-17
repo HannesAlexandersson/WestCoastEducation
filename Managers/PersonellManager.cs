@@ -32,9 +32,6 @@ public class PersonnelManager<T> where T : AdminPersonel, new() // T must inheri
         Console.WriteLine($" Id created: {newTeacher.TeacherId}. Press any key to confirm the creation of {newTeacher.FirstName} {newTeacher.LastName} ...");
         Console.ReadKey();
 
-        Console.Clear();
-        Helper.SimulateInsertToDb(newTeacher.FirstName, newTeacher.LastName);
-
         return new AdminPersonel
         {
             FirstName = newTeacher.FirstName,

@@ -280,37 +280,5 @@
       }
     ],
     "email": "ewa.josefsson@gmail.com"
-  },
-  {
-    "subjectFields": [
-      {
-        "nameOfSubject": "sdfds"
-      }
-    ],
-    "teachingCourses": [
-      {
-        "courseId": "830ddc39-5d96-48df-9b7b-8d3f25072316",
-        "title": "Introduction to TypeScript",
-        "courseLength": 4,
-        "startDate": "2026-11-01T00:00:00",
-        "endDate": "2026-12-01T00:00:00",
-        "coursePersonnelIds": [
-          "6f8a2c41-9d73-4b56-a102-7e5c3f8d6b90"
-        ],
-        "courseType": 0
-      }
-    ],
-    "teacherId": "e92c81f4-a6a9-4729-a23e-1af686fa04b1",
-    "firstName": "sdsdfdsf",
-    "lastName": "sdfdsfs",
-    "phoneNumber": "54554",
-    "addresses": [
-      {
-        "streetAddress": "sdfsdf",
-        "postalCode": 545454,
-        "city": "sdfdsf"
-      }
-    ],
-    "email": "sdfsdf"
   }
 ]
