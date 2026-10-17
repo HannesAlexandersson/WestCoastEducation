@@ -1,22 +1,27 @@
 using System;
-using System.Reflection.Metadata.Ecma335;
+using WestCoastEducation.Classes;
+using WestCoastEducation.Interfaces;
+using WestCoastEducation.Menus;
+using WestCoastEducation.Models;
+
 
 namespace WestCoastEducation.Managers;
 
 public class StudentManager
 {
-    private readonly List<Student> _students;
-
-    public StudentManager(List<Student> students)
+    private readonly ApplicationData _data;
+    private readonly IStudentFactory _studentFactory;
+    public StudentManager(ApplicationData data, IStudentFactory studentFactory)
     {
-        _students = students; // we set the list of students that we get from App when we create the Studentmanager to its own backing field for use in this class
+        _data = data;
+        _studentFactory = studentFactory;
     }
 
     public void ListStudentData(string prop)
     {
         int counter;
         counter = 0;
-        foreach (var student in _students)
+        foreach (var student in _data.Students)
         {
             counter++;
             if (prop == "name")
@@ -37,7 +42,7 @@ public class StudentManager
                 foreach (var address in student.Addresses)
                 {
                     Console.WriteLine(
-                        $" \e[0;36m{address.StreetAddress}, {address.PostalCode} {address.City}\e[0m");
+                         $" \e[0;36m{address.StreetAddress}, {address.PostalCode} {address.City}\e[0m");
                 }
             }
         }
@@ -47,7 +52,8 @@ public class StudentManager
     {
         Person personData = Helper.PromptForPerson("student");
         Console.Clear();
-
+        List<Course> enrolledCourses = Helper.SelectCourses(_data.Courses);
+        Console.Clear();
         Console.ForegroundColor = ConsoleColor.Cyan;
         Console.WriteLine("please make sure that all info is correct before proceeding...");
         Console.ReadKey();
@@ -83,11 +89,25 @@ public class StudentManager
                 Helper.ValidateStringInput("Email", personData.Email ?? ""); // its allowed for a person to not have an email, so leave it empty if they dont have one
             Console.Clear();
 
+            for (int i = 0; i < enrolledCourses.Count; i++)
+            {
+                enrolledCourses[i].Title =
+                   Helper.ValidateStringInput(
+                        $"Course title {i + 1}",
+                        enrolledCourses[i].Title);
+                Console.Clear();
+            }
+
             Console.WriteLine("NEW STUDENT FIELDS:");
             Console.WriteLine($"{personData.FirstName} {personData.LastName}");
             Console.WriteLine($"{personData.Addresses[0].StreetAddress} {personData.Addresses[0].PostalCode} {personData.Addresses[0].City}");
             Console.WriteLine(personData.PhoneNumber);
             Console.WriteLine(personData.Email);
+            Console.WriteLine("Courses:");
+            foreach (var course in enrolledCourses)
+            {
+                Console.WriteLine(course.Title);
+            }
 
             allFieldsCorrect = Helper.ConfirmInput();
         }
@@ -117,20 +137,29 @@ public class StudentManager
         Thread.Sleep(550);
         Console.WriteLine("Please wait while the system adds the student to the database...");
         Thread.Sleep(550);
-        // add the generated uuid to the student object
-        newStudent.StudentId = id;
+        // use the factory to create the new student
+        Student newStudent = _studentFactory.Create(
+
+            personData.FirstName,
+            personData.LastName,
+            personData.PhoneNumber,
+            personData.Addresses,
+            personData.Email,
+            id,
+            enrolledCourses
+        );
         Thread.Sleep(550);
         Console.WriteLine("....");
         Thread.Sleep(550);
         Console.WriteLine("Connecting to database...");
         Thread.Sleep(550);
         // add the new student to the students list
-        _students.Add(newStudent);
+        _data.Students.Add(newStudent);
         Console.WriteLine("....");
         Thread.Sleep(550);
         Console.WriteLine("Writing to disk...");
         // write the new updated list to file
-        DatabaseHandler.SaveList("students.json", _students);
+        DatabaseHandler.SaveList("students.json", _data.Students);
         Console.WriteLine($"{personData.FirstName} {personData.LastName} added to the rolls in the database!");
         Menu.ReturnToMenu();
 

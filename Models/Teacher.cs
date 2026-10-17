@@ -1,6 +1,10 @@
-﻿namespace WestCoastEducation;
+﻿using WestCoastEducation.Classes;
 
-public class Teacher : Person
+
+namespace WestCoastEducation.Models;
+
+public record class Teacher : Person // teacher inherits from the baseclass 'Person'
+
 {
     public FieldOfKnowledge[] SubjectFields { get; set; } = []; // composition, the Subjectfields/FieldOfKnowledge doesnt exist anywhere without there first is a Teacher instance created
     public Course[] TeachingCourses { get; set; } = []; // aggregation, the courses exist without a teacher object

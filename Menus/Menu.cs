@@ -1,25 +1,58 @@
 ﻿using Microsoft.VisualBasic;
 using WestCoastEducation.Storage;
 using WestCoastEducation.Managers;
+using Microsoft.Extensions.DependencyInjection;
+using WestCoastEducation.Models;
 
-namespace WestCoastEducation;
+namespace WestCoastEducation.Menus;
 
 public class Menu
 {
-    private readonly App _app;
-    private readonly StudentManager _studentManager;
-    private readonly TeacherManager _teacherManager;
-    private readonly AdminManager _adminManager;
-    private readonly HandlerManager _handlerManager;
-    private readonly CourseManager _courseManager;
-    public Menu(App app, StudentManager studentManager, TeacherManager teacherManager, AdminManager adminManager, HandlerManager handlerManager, CourseManager courseManager)
+    private readonly IServiceProvider _serviceProvider;
+
+    public Menu(IServiceProvider serviceProvider)
     {
-        _app = app;
-        _studentManager = studentManager;
-        _teacherManager = teacherManager;
-        _adminManager = adminManager;
-        _handlerManager = handlerManager;
-        _courseManager = courseManager;
+        _serviceProvider = serviceProvider;
+    }
+    private T GetManager<T>() where T : class
+    {
+        var manager = _serviceProvider.GetRequiredService<T>();
+        return manager;
+    }
+    private void NewCourse() // now use DI instead to create an manager when needed instead for from start
+    {
+        var manager = GetManager<CourseManager>();
+        manager.AddNewCourse();
+    }
+    private void GetAllCourses()
+    {
+        var manager = GetManager<CourseManager>();
+        manager.ListAllCourses();
+    }
+    private void NewStudent()
+
+        var manager = GetManager<StudentManager>();
+        manager.AddNewStudent();
+    }
+    private void GetStudentData(string nameOfData)
+    {
+        var manager = GetManager<StudentManager>();
+        manager.ListStudentData(nameOfData);
+    }
+    private void NewTeacher()
+    {
+        var manager = GetManager<TeacherManager>();
+        manager.AddNewTeacher();
+    }
+    private void NewAdmin()
+    {
+        var manager = GetManager<AdminManager>();
+        manager.AddNewAdmin();
+    }
+    private void NewHandler()
+    {
+        var manager = GetManager<HandlerManager>();
+        manager.AddNewHandler();
     }
     public void RunMenu()
     {
@@ -225,22 +258,22 @@ public class Menu
                 switch (menuSelect)// whatever the index of menuSelect that the user was on when they pressed enter, that correlating method we call
                 {
                     case 0:
-                        _courseManager.AddNewCourse();
+                        NewCourse();
                         break;
                     case 1:
-                        _teacherManager.AddNewTeacher();
+                        NewTeacher();
                         break;
                     case 2:
-                        _studentManager.AddNewStudent();
+                        NewStudent();
                         break;
                     case 3:
-                        _handlerManager.AddNewHandler();
+                        NewHandler();
                         break;
                     case 4:
-                        _adminManager.AddNewAdmin();
+                        NewAdmin();
                         break;
                     case 5:
-                        _courseManager.ListAllCourses();
+                        GetAllCourses();
                         break;
                     case 6:
                         HandleStudentSubMenu();
@@ -355,19 +388,23 @@ public class Menu
                 switch (studentMenuSelection)
                 {
                     case 0:
-                        _studentManager.ListStudentData("name");
+                        // list names
+                        GetStudentData("name");
                         ReturnToMenu();
                         break;
                     case 1:
-                        _studentManager.ListStudentData("email");
+                        // list emails
+                        GetStudentData("email");
                         ReturnToMenu();
                         break;
                     case 2:
-                        _studentManager.ListStudentData("phone");
+                        // list phone
+                        GetStudentData("phone");
                         ReturnToMenu();
                         break;
                     case 3:
-                        _studentManager.ListStudentData("address");
+                        // List addresses
+                        GetStudentData("address");
                         ReturnToMenu();
                         break;
                     case 4:
@@ -390,6 +427,5 @@ public class Menu
         Console.ResetColor();
         Console.ReadKey();
     }
-
 
 }

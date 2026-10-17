@@ -1,26 +1,22 @@
 using System;
+using WestCoastEducation.Classes;
+using WestCoastEducation.Menus;
+using WestCoastEducation.Models;
 
 namespace WestCoastEducation.Managers;
 
 public class TeacherManager
 {
-    private readonly List<Teacher> _teachers;
+    private readonly ApplicationData _data;
 
-    public TeacherManager(List<Teacher> teachers)
+    public TeacherManager(ApplicationData data)
     {
-        _teachers = teachers;
+        _data = data;
     }
 
     public void AddNewTeacher()
     {
-        Teacher newTeacher = Helper.PromptForPersonell("Teacher");
-        //check if the teachers 'Person' propertys already exists in the teachers lsit, if it does it means the teacher already in the list
-        if (Helper.CheckForDuplicates(_teachers, newTeacher))
-        {
-            Console.WriteLine("ERROR!!! The teacher is already in the list! Press any key to return to menu...");
-            Console.ReadLine();
-            return;
-        }
+        Teacher newTeacher = Helper.PromptForPersonell("Teacher", _data.Courses);
         Console.Clear();
         Console.ForegroundColor = ConsoleColor.Cyan;
         Console.WriteLine("Press any key to generate a TeacherId for the teacher");
@@ -36,12 +32,12 @@ public class TeacherManager
         Console.WriteLine("Connecting to database...");
         Thread.Sleep(550);
         // add the new teacher to the teachers list
-        _teachers.Add(newTeacher);
+        _data.Teachers.Add(newTeacher);
         Console.WriteLine("....");
         Thread.Sleep(550);
         Console.WriteLine("Writing to disk...");
         // write the new updated list to file
-        DatabaseHandler.SaveList("teachers.json", _teachers);
+        DatabaseHandler.SaveList("teachers.json", _data.Teachers);
         Thread.Sleep(550);
         Console.WriteLine($"{newTeacher.FirstName} {newTeacher.LastName} added to the teacher rolls in the database!");
         Menu.ReturnToMenu();

@@ -1,54 +1,49 @@
+using WestCoastEducation.Models;
+using WestCoastEducation.Interfaces;
+using WestCoastEducation.Classes;
+
 namespace WestCoastEducation.Managers;
 
 public class PersonnelManager<T> where T : AdminPersonel, new() // T must inherit from AdminPersonel and have a public parameterless constructor.
 {
+    private readonly ApplicationData _data;
     private readonly List<T> _personnel;
 
-    public PersonnelManager(List<T> personnel)
+    public PersonnelManager(List<T> personnel, ApplicationData data)
     {
         _personnel = personnel;
+        _data = data;
+
     }
 
     // since pretty much all these methods does the same thing exept for names and small details i tried to make a genereic method to handle all adminpersonell
-    public void AddNewPersonnel(string fileName, string position)
+    public AdminPersonel AddNewPersonnel(string position)
     {
-        var newTeacher = Helper.PromptForPersonell(position);
+        var newTeacher = Helper.PromptForPersonell(position, _data.Courses);
         var dateOfEmployment = Helper.PromptUserForDateInput("Enter the startdate of the employment: ");
+        var officeLocation = Helper.PromptForOfficeLocation();
 
-        // map all shared propertys & add in the specific from handler class
-        T newPerson = new()
+        Console.Clear();
+        Console.ForegroundColor = ConsoleColor.Cyan;
+        Console.WriteLine($"Press any key to generate a Id for the new {position}");
+        Console.ReadKey();
+        newTeacher.TeacherId = Helper.GenerateGuid();
+
+        Console.WriteLine($" Id created: {newTeacher.TeacherId}. Press any key to confirm the creation of {newTeacher.FirstName} {newTeacher.LastName} ...");
+        Console.ReadKey();
+
+        return new AdminPersonel
         {
             FirstName = newTeacher.FirstName,
             LastName = newTeacher.LastName,
             Email = newTeacher.Email,
             PhoneNumber = newTeacher.PhoneNumber,
             Addresses = newTeacher.Addresses,
-            SubjectFields = newTeacher.SubjectFields,
             TeachingCourses = newTeacher.TeachingCourses,
-            DateOfEmployment = dateOfEmployment
+            SubjectFields = newTeacher.SubjectFields,
+            TeacherId = newTeacher.TeacherId,
+            DateOfEmployment = dateOfEmployment,
+            OfficeLocation = officeLocation
         };
-        if (Helper.CheckForDuplicates(_personnel, newPerson))
-        {
-            Console.WriteLine("ERROR!!! The personell already exist in the list!!! Press any key to return to menu...");
-            Console.ReadLine();
-            return;
-        }
-        Console.Clear();
-        Console.ForegroundColor = ConsoleColor.Cyan;
-        Console.WriteLine($"Press any key to generate a Id for the new {position}");
-        Console.ReadKey();
-
-        newPerson.TeacherId = Helper.GenerateGuid();
-
-        Console.WriteLine($" Id created: {newPerson.TeacherId}. Press any key to add {newPerson.FirstName} {newPerson.LastName} into the database...");
-        Console.ReadKey();
-
-        Console.Clear();
-        Helper.SimulateInsertToDb(newPerson.FirstName, newPerson.LastName);
-
-        _personnel.Add(newPerson);
-        DatabaseHandler.SaveList(fileName, _personnel);
-
-        Menu.ReturnToMenu();
     }
 }

@@ -2,7 +2,7 @@ using System;
 
 namespace WestCoastEducation.Models;
 
-public class Admin : AdminPersonel
+public record class Admin : AdminPersonel
 {
 
 }
