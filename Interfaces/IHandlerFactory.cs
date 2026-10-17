@@ -7,7 +7,7 @@ public interface IHandlerFactory
 {
         Handler Create(
         DateTime dateOfEmployment,
-        string? officeLocation,
+        string officeLocation,
                 string firstName,
         string lastName,
         string phoneNumber,
