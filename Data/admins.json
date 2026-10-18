@@ -15,7 +15,9 @@
         "city": "Göteborg"
       }
     ],
-    "email": "anna.svensson@example.com"
+    "email": "anna.svensson@example.com",
+    "accessLevel": "basic",
+    "isSuperAdmin": false
   },
   {
     "dateOfEmployment": "0001-01-01T00:00:00",
@@ -33,7 +35,9 @@
         "city": "Göteborg"
       }
     ],
-    "email": "marcus.johansson@example.com"
+    "email": "marcus.johansson@example.com",
+    "accessLevel": "super",
+    "isSuperAdmin": true
   },
   {
     "dateOfEmployment": "0001-01-01T00:00:00",
@@ -51,7 +55,9 @@
         "city": "Göteborg"
       }
     ],
-    "email": "linda.nilsson@example.com"
+    "email": "linda.nilsson@example.com",
+    "accessLevel": "basic",
+    "isSuperAdmin": false
   },
   {
     "dateOfEmployment": "0001-01-01T00:00:00",
@@ -69,6 +75,8 @@
         "city": "Göteborg"
       }
     ],
-    "email": "peter.eriksson@example.com"
+    "email": "peter.eriksson@example.com",
+    "accessLevel": "basic",
+    "isSuperAdmin": false
   }
 ]

@@ -19,7 +19,8 @@ public class AdminManager : PersonnelManager<Admin>
     public void AddNewAdmin()
     {
         var adminPersonalProps = AddNewPersonnel("Admin");
-
+        var adminsAccessLevel = Helper.SetPersonellsAccessLevel();
+        var isNewAdminSuperAdmin = Helper.SetIsSuperAdmin();
         var admin = _adminFactory.Create(
              adminPersonalProps.DateOfEmployment,
         adminPersonalProps.OfficeLocation,
@@ -30,8 +31,9 @@ public class AdminManager : PersonnelManager<Admin>
         adminPersonalProps.Email,
         adminPersonalProps.SubjectFields, // again, makes no sence to me but the assignment is very clear about this. They should have EVRYTHING an teacher has...
         adminPersonalProps.TeachingCourses, // again, makes no sence to me but the assignment is very clear about this. They should have EVRYTHING an teacher has...
-        adminPersonalProps.TeacherId
-        //OBS!!!! TODO: add in the admin specefics propertys when they are added into the admin record!!
+        adminPersonalProps.TeacherId,
+        adminsAccessLevel,
+isNewAdminSuperAdmin
         );
 
         Console.Clear();

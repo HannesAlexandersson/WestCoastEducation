@@ -10,5 +10,5 @@ public record class Course
     public DateTime StartDate { get; set; }
     public DateTime EndDate { get; set; }
     public Guid[] CoursePersonnelIds { get; set; } = [];
-    public CourseType CourseType { get; set; }
+    public CourseTypeEnum CourseType { get; set; }
 }

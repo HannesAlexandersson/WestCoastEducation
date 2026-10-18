@@ -1,5 +1,6 @@
 using System;
 using WestCoastEducation.Classes;
+using WestCoastEducation.Enums;
 using WestCoastEducation.Models;
 
 namespace WestCoastEducation.Interfaces;
@@ -17,6 +18,7 @@ public interface IHandlerFactory
         FieldOfKnowledge[] subjectFields,
         Course[] teachingCourses,
         Guid teacherId,
-        Course[] handlingCourses
+        Course[] handlingCourses,
+        AccessLevelEnum accessLevel
             );
 }

@@ -27,17 +27,45 @@ public class CourseManager
             counter++;
             Console.WriteLine($"\e[0;34m{counter}. {course.Title} =>   \e[0;33m{course.CourseType} \e[0m");  // Display all courses with name and type (classroom or ditance)
         }
-        Menu.ReturnToMenu();
+
+    }
+
+    public void ListAllCoursesSorted(CourseTypeEnum courseType)
+    {
+        int counter = 0;
+        foreach (var course in _data.Courses)
+        {
+
+            if (course.CourseType == courseType)
+            {
+                counter++;
+                Console.WriteLine($"\e[0;34m{counter}. {course.Title} =>   \e[0;33m{course.CourseType} \e[0m");
+            }
+            else
+            {
+                continue;
+            }
+        }
+
+    }
+    public void ListCoursesLength()
+    {
+        int counter = 0;
+        foreach (var course in _data.Courses)
+        {
+            counter++;
+            Console.WriteLine($"\e[0;34m{counter}. {course.Title} =>   \e[0;33m{course.CourseLength} \e[0m");
+        }
     }
 
     public void AddNewCourse()
     {
         string title = Helper.PromptUserForStringInput("Enter Title of course: ");
         int courseLngth = Helper.PromptUserForIntInput("Enter length of course in weeks: ");
-        DateTime strtDate = Helper.PromptUserForDateInput("Enter the startdate: ");
+        DateTime strtDate = Helper.PromptUserForDateInput("Enter the startdate: "); // in real production level I would here add checks for plausability! for example check that the dates correspondes with the inputted öength of the cours
         DateTime endDate = Helper.PromptUserForDateInput("Enter the enddate: ");
         Guid[] teacherId = Helper.SelectTeacher(_data.Teachers);
-        CourseType courseType = Helper.PromptForCourseType();
+        CourseTypeEnum courseType = Helper.PromptForCourseType();
         Console.Clear();
 
         Console.ForegroundColor = ConsoleColor.Cyan;

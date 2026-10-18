@@ -7,7 +7,7 @@ namespace WestCoastEducation.Factories;
 // the factorys job is to create the course objects
 public class CourseFactory : ICourseFactory
 {
-    public Course Create(string title, int courseLength, DateTime startDate, DateTime endDate, Guid[] teacherIds, CourseType courseType)
+    public Course Create(string title, int courseLength, DateTime startDate, DateTime endDate, Guid[] teacherIds, CourseTypeEnum courseType)
     {
         return new Course
         {
