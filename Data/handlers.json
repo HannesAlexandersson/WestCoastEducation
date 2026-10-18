@@ -17,7 +17,7 @@
       }
     ],
     "email": "erik.lindberg@example.com",
-    "accessLevel": "basic"
+    "accessLevel": 1
   },
   {
     "handlingCourses": [],
@@ -37,7 +37,7 @@
       }
     ],
     "email": "sara.andersson@example.com",
-    "accessLevel": "basic"
+    "accessLevel": 1
   },
   {
     "handlingCourses": [],
@@ -57,6 +57,6 @@
       }
     ],
     "email": "johan.bergstrom@example.com",
-    "accessLevel": "basic"
+    "accessLevel": 1
   }
 ]

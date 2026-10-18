@@ -16,7 +16,7 @@
       }
     ],
     "email": "anna.svensson@example.com",
-    "accessLevel": "basic",
+    "accessLevel": 1,
     "isSuperAdmin": false
   },
   {
@@ -36,7 +36,7 @@
       }
     ],
     "email": "marcus.johansson@example.com",
-    "accessLevel": "super",
+    "accessLevel": 2,
     "isSuperAdmin": true
   },
   {
@@ -56,7 +56,7 @@
       }
     ],
     "email": "linda.nilsson@example.com",
-    "accessLevel": "basic",
+    "accessLevel": 1,
     "isSuperAdmin": false
   },
   {
@@ -76,7 +76,7 @@
       }
     ],
     "email": "peter.eriksson@example.com",
-    "accessLevel": "basic",
+    "accessLevel": 1,
     "isSuperAdmin": false
   }
 ]
