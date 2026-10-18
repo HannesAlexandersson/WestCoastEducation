@@ -27,7 +27,7 @@ public class CourseManager
             counter++;
             Console.WriteLine($"\e[0;34m{counter}. {course.Title} =>   \e[0;33m{course.CourseType} \e[0m");  // Display all courses with name and type (classroom or ditance)
         }
-        Menu.ReturnToMenu();
+
     }
 
     public void ListAllCoursesSorted(CourseTypeEnum courseType)
@@ -46,7 +46,7 @@ public class CourseManager
                 continue;
             }
         }
-        Menu.ReturnToMenu();
+
     }
     public void ListCoursesLength()
     {

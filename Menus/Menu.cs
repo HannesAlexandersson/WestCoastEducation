@@ -293,7 +293,6 @@ public class Menu
                         break;
                     case 5:
                         HandleCourseSubMenu();
-                        //GetAllCourses();
                         break;
                     case 6:
                         HandleStudentSubMenu();
