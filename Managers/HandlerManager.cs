@@ -22,7 +22,7 @@ public class HandlerManager : PersonnelManager<Handler>
     {
         // get the shared propertys
         var adminPersonalProps = AddNewPersonnel("Handler");
-
+        var handlerAccessLevel = Helper.SetPersonellsAccessLevel();
         var handler = _handlerFactory.Create(
         adminPersonalProps.DateOfEmployment,
         adminPersonalProps.OfficeLocation,
@@ -34,7 +34,8 @@ public class HandlerManager : PersonnelManager<Handler>
         adminPersonalProps.SubjectFields,
         adminPersonalProps.TeachingCourses,
         adminPersonalProps.TeacherId,
-        adminPersonalProps.TeachingCourses // this is not actually courses that the handler teaches but courses the handler is handling. it doesnt make any sence to me have the admin personall teach classes, but again the assignment says tha these types should have EVERYTHING the teachers have so my solution is to only ask for one set of courses and use that for what courses the educational leader/handler have responsibilty for
+        adminPersonalProps.TeachingCourses, // this is not actually courses that the handler teaches but courses the handler is handling. it doesnt make any sence to me have the admin personall teach classes, but again the assignment says tha these types should have EVERYTHING the teachers have so my solution is to only ask for one set of courses and use that for what courses the educational leader/handler have responsibilty for
+    handlerAccessLevel
     );
         Console.Clear();
         Console.ForegroundColor = ConsoleColor.Cyan;

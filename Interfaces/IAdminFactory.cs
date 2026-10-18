@@ -1,5 +1,6 @@
 using System;
 using WestCoastEducation.Classes;
+using WestCoastEducation.Enums;
 using WestCoastEducation.Models;
 
 namespace WestCoastEducation.Interfaces;
@@ -16,6 +17,8 @@ public interface IAdminFactory
         string? email,
          FieldOfKnowledge[] subjectFields,
             Course[] teachingCourses,
-            Guid teacherId
+            Guid teacherId,
+            AccessLevelEnum accessLevel,
+            bool isSuperAdmin
     );
 }

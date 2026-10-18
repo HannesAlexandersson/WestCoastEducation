@@ -16,7 +16,8 @@
         "city": "Göteborg"
       }
     ],
-    "email": "erik.lindberg@example.com"
+    "email": "erik.lindberg@example.com",
+    "accessLevel": "basic"
   },
   {
     "handlingCourses": [],
@@ -35,7 +36,8 @@
         "city": "Göteborg"
       }
     ],
-    "email": "sara.andersson@example.com"
+    "email": "sara.andersson@example.com",
+    "accessLevel": "basic"
   },
   {
     "handlingCourses": [],
@@ -54,6 +56,7 @@
         "city": "Göteborg"
       }
     ],
-    "email": "johan.bergstrom@example.com"
+    "email": "johan.bergstrom@example.com",
+    "accessLevel": "basic"
   }
 ]

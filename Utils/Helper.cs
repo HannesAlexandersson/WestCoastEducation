@@ -6,6 +6,76 @@ namespace WestCoastEducation;
 
 public class Helper
 {
+    public static bool SetIsSuperAdmin()
+    {
+        Console.Clear();
+
+        while (true)
+        {
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.WriteLine("Is this admin a superadmin? (yes/no)");
+
+            Console.ForegroundColor = ConsoleColor.Green;
+            var userInput = Console.ReadLine();
+
+            if (string.IsNullOrWhiteSpace(userInput))
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Incorrect input, please enter yes or no...");
+                Console.ResetColor();
+            }
+            else if (userInput.Equals("yes", StringComparison.OrdinalIgnoreCase))
+            {
+                return true;
+            }
+            else if (userInput.Equals("no", StringComparison.OrdinalIgnoreCase))
+            {
+                return false;
+            }
+            else
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Incorrect input, please enter yes or no...");
+                Console.ResetColor();
+            }
+        }
+    }
+    public static AccessLevelEnum SetPersonellsAccessLevel()
+    {
+        Console.Clear();
+
+        Console.CursorVisible = true;
+
+        while (true)
+        {
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.WriteLine("Select an access level:");
+            Console.WriteLine("none for personell that should'nt access classified data.");
+            Console.WriteLine("basic for personell that can handle basic personal data of students.");
+            Console.WriteLine("super for personall with full access and clearence");
+
+            Console.ForegroundColor = ConsoleColor.Green;
+            var userInput = Console.ReadLine();
+
+            if (string.IsNullOrWhiteSpace(userInput))
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Incorrect input, please select a valid access level...");
+                Console.ResetColor();
+            }
+            else if (Enum.TryParse(userInput, true, out AccessLevelEnum result)
+                     && Enum.IsDefined(typeof(AccessLevelEnum), result))
+            {
+                return result;
+            }
+            else
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Incorrect input, please select none, basic, or super...");
+                Console.ResetColor();
+            }
+        }
+    }
     public static string PromptUserForStringInput(string prompt)
     {
         bool incorrect = true;
@@ -35,10 +105,11 @@ public class Helper
     public static int PromptUserForIntInput(string prompt)
     {
         Console.Clear();
-        Console.ForegroundColor = ConsoleColor.Cyan;
+
         Console.CursorVisible = true;
         while (true)
         {
+            Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine(prompt);
             Console.ForegroundColor = ConsoleColor.Green;
             var userInput = Console.ReadLine();
@@ -53,17 +124,24 @@ public class Helper
             {
                 return result;
             }
+            else
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Incorrect input, please try again, ONLY use numbers...");
+                Console.ResetColor();
+            }
         }
     }
 
     public static DateTime PromptUserForDateInput(string prompt)
     {
         Console.Clear();
-        Console.ForegroundColor = ConsoleColor.Cyan;
+
         Console.CursorVisible = true;
 
         while (true)
         {
+            Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine($"{prompt} (yyyy-MM-dd)");
             Console.ForegroundColor = ConsoleColor.Green;
             var userInput = Console.ReadLine();

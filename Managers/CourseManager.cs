@@ -62,7 +62,7 @@ public class CourseManager
     {
         string title = Helper.PromptUserForStringInput("Enter Title of course: ");
         int courseLngth = Helper.PromptUserForIntInput("Enter length of course in weeks: ");
-        DateTime strtDate = Helper.PromptUserForDateInput("Enter the startdate: ");
+        DateTime strtDate = Helper.PromptUserForDateInput("Enter the startdate: "); // in real production level I would here add checks for plausability! for example check that the dates correspondes with the inputted öength of the cours
         DateTime endDate = Helper.PromptUserForDateInput("Enter the enddate: ");
         Guid[] teacherId = Helper.SelectTeacher(_data.Teachers);
         CourseTypeEnum courseType = Helper.PromptForCourseType();
