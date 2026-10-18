@@ -500,7 +500,7 @@ public class Helper
     }
 
 
-    public static CourseType PromptForCourseType()
+    public static CourseTypeEnum PromptForCourseType()
     {
         while (true)
         {
@@ -516,10 +516,10 @@ public class Helper
             switch (input)
             {
                 case "1":
-                    return CourseType.Classroom;
+                    return CourseTypeEnum.Classroom;
 
                 case "2":
-                    return CourseType.Distance;
+                    return CourseTypeEnum.Distance;
 
                 default:
                     Console.ForegroundColor = ConsoleColor.Red;
@@ -629,7 +629,7 @@ public class Helper
         return selectedCourses;
     }
 
-    public static bool ValidateCourseType(string nameOfInput, CourseType input)
+    public static bool ValidateCourseType(string nameOfInput, CourseTypeEnum input)
     {
 
         while (true)

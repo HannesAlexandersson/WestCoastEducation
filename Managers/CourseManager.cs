@@ -30,6 +30,34 @@ public class CourseManager
         Menu.ReturnToMenu();
     }
 
+    public void ListAllCoursesSorted(CourseTypeEnum courseType)
+    {
+        int counter = 0;
+        foreach (var course in _data.Courses)
+        {
+
+            if (course.CourseType == courseType)
+            {
+                counter++;
+                Console.WriteLine($"\e[0;34m{counter}. {course.Title} =>   \e[0;33m{course.CourseType} \e[0m");
+            }
+            else
+            {
+                continue;
+            }
+        }
+        Menu.ReturnToMenu();
+    }
+    public void ListCoursesLength()
+    {
+        int counter = 0;
+        foreach (var course in _data.Courses)
+        {
+            counter++;
+            Console.WriteLine($"\e[0;34m{counter}. {course.Title} =>   \e[0;33m{course.CourseLength} \e[0m");
+        }
+    }
+
     public void AddNewCourse()
     {
         string title = Helper.PromptUserForStringInput("Enter Title of course: ");
@@ -37,7 +65,7 @@ public class CourseManager
         DateTime strtDate = Helper.PromptUserForDateInput("Enter the startdate: ");
         DateTime endDate = Helper.PromptUserForDateInput("Enter the enddate: ");
         Guid[] teacherId = Helper.SelectTeacher(_data.Teachers);
-        CourseType courseType = Helper.PromptForCourseType();
+        CourseTypeEnum courseType = Helper.PromptForCourseType();
         Console.Clear();
 
         Console.ForegroundColor = ConsoleColor.Cyan;
