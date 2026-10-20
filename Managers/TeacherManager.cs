@@ -1,5 +1,6 @@
 using System;
 using WestCoastEducation.Classes;
+using WestCoastEducation.Interfaces;
 using WestCoastEducation.Menus;
 using WestCoastEducation.Models;
 
@@ -8,10 +9,12 @@ namespace WestCoastEducation.Managers;
 public class TeacherManager
 {
     private readonly ApplicationData _data;
+    private readonly ITeacherFactory _teacherFactory;
 
-    public TeacherManager(ApplicationData data)
+    public TeacherManager(ApplicationData data, ITeacherFactory teacherFactory)
     {
         _data = data;
+        _teacherFactory = teacherFactory;
     }
 
     public void AddNewTeacher()

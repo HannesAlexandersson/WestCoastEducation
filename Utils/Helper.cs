@@ -398,6 +398,7 @@ public class Helper
 
     public static Person PromptForPerson(string nameOfObject)
     {
+        // map all propertys of a person to a dictonary so we can iterate each propery
         Dictionary<string, string> fields = new()
     {
         { "firstName", "" },
@@ -407,7 +408,7 @@ public class Helper
         { "address", "" },
         { "city", "" }
     };
-
+        // iterate each property and prompt for an userinput
         foreach (var field in fields.Keys.ToList())
         {
             fields[field] = PromptUserForStringInput(
@@ -435,7 +436,7 @@ public class Helper
         };
     }
 
-    public static Teacher PromptForPersonell(string position, List<Course> courses)
+    public static Teacher PromptForPersonell(string position, List<Course> courses) // returns a teacher since all personell extends the teacher class
     {
         var personData = PromptForPerson(position);
         FieldOfKnowledge[] subjectFields = PromptForSubjectFields();
@@ -520,7 +521,7 @@ public class Helper
         }
 
 
-        Teacher newTeacher = new()
+        Teacher newTeacherProps = new()
         {
             FirstName = personData.FirstName,
             LastName = personData.LastName,
@@ -531,7 +532,7 @@ public class Helper
             TeachingCourses = teachingCourses.ToArray()
         };
 
-        return newTeacher;
+        return newTeacherProps;
     }
 
     public static FieldOfKnowledge[] PromptForSubjectFields()

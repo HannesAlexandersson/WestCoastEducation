@@ -19,7 +19,7 @@ public class PersonnelManager<T> where T : AdminPersonel, new() // T must inheri
     // since pretty much all these methods does the same thing exept for names and small details i tried to make a genereic method to handle all adminpersonell
     public AdminPersonel AddNewPersonnel(string position)
     {
-        var newTeacher = Helper.PromptForPersonell(position, _data.Courses);
+        var newTeacherProps = Helper.PromptForPersonell(position, _data.Courses);
         var dateOfEmployment = Helper.PromptUserForDateInput("Enter the startdate of the employment: ");
         var officeLocation = Helper.PromptForOfficeLocation();
 
@@ -27,21 +27,21 @@ public class PersonnelManager<T> where T : AdminPersonel, new() // T must inheri
         Console.ForegroundColor = ConsoleColor.Cyan;
         Console.WriteLine($"Press any key to generate a Id for the new {position}");
         Console.ReadKey();
-        newTeacher.TeacherId = Helper.GenerateGuid();
+        newTeacherProps.TeacherId = Helper.GenerateGuid();
 
-        Console.WriteLine($" Id created: {newTeacher.TeacherId}. Press any key to confirm the creation of {newTeacher.FirstName} {newTeacher.LastName} ...");
+        Console.WriteLine($" Id created: {newTeacherProps.TeacherId}. Press any key to confirm the creation of {newTeacherProps.FirstName} {newTeacherProps.LastName} ...");
         Console.ReadKey();
 
         return new AdminPersonel
         {
-            FirstName = newTeacher.FirstName,
-            LastName = newTeacher.LastName,
-            Email = newTeacher.Email,
-            PhoneNumber = newTeacher.PhoneNumber,
-            Addresses = newTeacher.Addresses,
-            TeachingCourses = newTeacher.TeachingCourses,
-            SubjectFields = newTeacher.SubjectFields,
-            TeacherId = newTeacher.TeacherId,
+            FirstName = newTeacherProps.FirstName,
+            LastName = newTeacherProps.LastName,
+            Email = newTeacherProps.Email,
+            PhoneNumber = newTeacherProps.PhoneNumber,
+            Addresses = newTeacherProps.Addresses,
+            TeachingCourses = newTeacherProps.TeachingCourses,
+            SubjectFields = newTeacherProps.SubjectFields,
+            TeacherId = newTeacherProps.TeacherId,
             DateOfEmployment = dateOfEmployment,
             OfficeLocation = officeLocation
         };
