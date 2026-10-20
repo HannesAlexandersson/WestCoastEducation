@@ -521,7 +521,7 @@ public class Helper
         }
 
 
-        Teacher newTeacherProps = new()
+        return new Teacher()
         {
             FirstName = personData.FirstName,
             LastName = personData.LastName,
@@ -532,7 +532,7 @@ public class Helper
             TeachingCourses = teachingCourses.ToArray()
         };
 
-        return newTeacherProps;
+
     }
 
     public static FieldOfKnowledge[] PromptForSubjectFields()

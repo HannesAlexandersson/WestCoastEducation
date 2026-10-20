@@ -1,5 +1,7 @@
 [
   {
+    "isSuperAdmin": false,
+    "accessLevel": 1,
     "dateOfEmployment": "0001-01-01T00:00:00",
     "officeLocation": "",
     "subjectFields": [],
@@ -15,11 +17,11 @@
         "city": "Göteborg"
       }
     ],
-    "email": "anna.svensson@example.com",
-    "accessLevel": 1,
-    "isSuperAdmin": false
+    "email": "anna.svensson@example.com"
   },
   {
+    "isSuperAdmin": true,
+    "accessLevel": 2,
     "dateOfEmployment": "0001-01-01T00:00:00",
     "officeLocation": "",
     "subjectFields": [],
@@ -35,11 +37,11 @@
         "city": "Göteborg"
       }
     ],
-    "email": "marcus.johansson@example.com",
-    "accessLevel": 2,
-    "isSuperAdmin": true
+    "email": "marcus.johansson@example.com"
   },
   {
+    "isSuperAdmin": false,
+    "accessLevel": 1,
     "dateOfEmployment": "0001-01-01T00:00:00",
     "officeLocation": "",
     "subjectFields": [],
@@ -55,11 +57,11 @@
         "city": "Göteborg"
       }
     ],
-    "email": "linda.nilsson@example.com",
-    "accessLevel": 1,
-    "isSuperAdmin": false
+    "email": "linda.nilsson@example.com"
   },
   {
+    "isSuperAdmin": false,
+    "accessLevel": 1,
     "dateOfEmployment": "0001-01-01T00:00:00",
     "officeLocation": "",
     "subjectFields": [],
@@ -75,8 +77,42 @@
         "city": "Göteborg"
       }
     ],
-    "email": "peter.eriksson@example.com",
+    "email": "peter.eriksson@example.com"
+  },
+  {
+    "isSuperAdmin": false,
     "accessLevel": 1,
-    "isSuperAdmin": false
+    "dateOfEmployment": "2026-12-01T00:00:00",
+    "officeLocation": "Floor: 2, DoorNumber: 22",
+    "subjectFields": [
+      {
+        "nameOfSubject": "Potatis"
+      }
+    ],
+    "teachingCourses": [
+      {
+        "courseId": "4a6f2c8d-1b75-49e3-8d20-5c7a9f1e6b83",
+        "title": "Git and Version Control",
+        "courseLength": 3,
+        "startDate": "2026-05-11T00:00:00",
+        "endDate": "2026-06-01T00:00:00",
+        "coursePersonnelIds": [
+          "7a5e2c93-6b14-48f1-9d30-4e8c1a6b7f52"
+        ],
+        "courseType": 1
+      }
+    ],
+    "teacherId": "f744cea7-5d8d-4880-8168-bebff210feb2",
+    "firstName": "Hannes",
+    "lastName": "Alexandersson",
+    "phoneNumber": "0790112009",
+    "addresses": [
+      {
+        "streetAddress": "mammavägen 23",
+        "postalCode": 44833,
+        "city": "gbg"
+      }
+    ],
+    "email": "sdsfds@gmail.com"
   }
 ]

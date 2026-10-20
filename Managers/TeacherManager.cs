@@ -19,20 +19,41 @@ public class TeacherManager
 
     public void AddNewTeacher()
     {
-        Teacher newTeacher = Helper.PromptForPersonell("Teacher", _data.Courses);
+        Teacher newTeacherProps = Helper.PromptForPersonell("Teacher", _data.Courses);
         Console.Clear();
         Console.ForegroundColor = ConsoleColor.Cyan;
         Console.WriteLine("Press any key to generate a TeacherId for the teacher");
         Console.ReadKey();
-        newTeacher.TeacherId = Helper.GenerateGuid();
-        Console.WriteLine($" TeacherId created: {newTeacher.TeacherId}. Press any key to add {newTeacher.FirstName} {newTeacher.LastName} into the database...");
+        newTeacherProps.TeacherId = Helper.GenerateGuid();
+        Console.WriteLine($" TeacherId created: {newTeacherProps.TeacherId}. Press any key to add {newTeacherProps.FirstName} {newTeacherProps.LastName} into the database...");
         Console.ReadKey();
         Thread.Sleep(550);
         Console.WriteLine("Please wait while the system adds the teacher to the database...");
+        Teacher newTeacher = _teacherFactory.Create(
+            newTeacherProps.FirstName,
+            newTeacherProps.LastName,
+            newTeacherProps.PhoneNumber,
+            newTeacherProps.Addresses,
+            newTeacherProps.Email,
+            newTeacherProps.SubjectFields,
+            newTeacherProps.TeachingCourses,
+            newTeacherProps.TeacherId
+        );
         Thread.Sleep(550);
         Console.WriteLine("....");
         Thread.Sleep(550);
-        Console.WriteLine("Connecting to database...");
+        Console.WriteLine("....Checking for duplicates...");
+        // check for if student already exists in list
+        if (Helper.CheckForDuplicates(_data.Teachers, newTeacher))
+        {
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("ERROR!!! this teacher already exists in the rolls! Press any key to return to abort insertion...");
+            Console.ReadLine();
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            return;
+        }
+        Thread.Sleep(550);
+        Console.WriteLine("...Connecting to database...");
         Thread.Sleep(550);
         // add the new teacher to the teachers list
         _data.Teachers.Add(newTeacher);
