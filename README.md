@@ -1,3 +1,10 @@
+# TO MICHAEL GUSTAFSSON
+21/10 you mentioned to the class that it was important that we dont do to much i these assignments. At this point in time I had ALREADY handed the assignment in. So basicly I could not go back and change anything. So I guess I'll have to explain myself here instead. 
+
+I have gone "bananas" once more. But not because I want to impress or anything like that. I simply enjoy sitting and coding. And after each lesson I felt an urge to try to use the stuff we learned during those lessons and it felt natural to me to go to the only thing I had close at hand, which was this assignment. For example after the dependency injection lesson and factory pattern lessons I wanted to test myself and try them out, so I added them to the project. 
+
+So to sum it up: You told us about the restriction to late, I had ALREADY gone bananas, and I had no way of taking it back when you told us about not going bananas.
+
 # WestCoast Education
 
 ## The BIG DI & Factory  refactoring of 16/10
